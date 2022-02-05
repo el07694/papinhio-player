@@ -173,6 +173,7 @@ CREATE TABLE IF NOT EXISTS "transmitions" (
     "time_settings" TEXT NOT NULL,
     "types" TEXT NOT NULL DEFAULT 0,
     "active"    INTEGER NOT NULL DEFAULT 1,
+    "repeat"    INTEGER NOT NULL DEFAULT 1,
     PRIMARY KEY("number" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "transmitions_items" (

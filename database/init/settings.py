@@ -143,6 +143,7 @@ def import_settings():
 	settings.append(("program_component_ip_calls","0"))
 	settings.append(("program_component_player_list","1"))
 	settings.append(("program_component_web_sites","1"))
+	settings.append(("program_component_scheduled_transmitions","1"))
 	
 	settings.append(("repeat_player_list","1"))
 	settings.append(("auto_dj","1"))

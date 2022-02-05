@@ -85,7 +85,7 @@ def read_mp3_directory(path):
 
 					sound_file_item = {
 					    "type":"sound_files",
-					    "title":filename_stem,
+					    "title":filename_stem.split("_")[0],
 					    "artist":artist,
 					    "composer":composer,
 					    "author":author,
