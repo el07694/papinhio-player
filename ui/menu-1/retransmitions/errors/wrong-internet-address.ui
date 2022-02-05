@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>690</width>
+    <height>439</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Σφάλμα στην διεργασία εισαγωγής αναμετάδοσης</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../icons.qrc">
+    <normaloff>:/rest-windows/assets/images/rest-windows/information.png</normaloff>:/rest-windows/assets/images/rest-windows/information.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QFrame" name="frame">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame{border:0px;}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="image_label">
+        <property name="minimumSize">
+         <size>
+          <width>117</width>
+          <height>117</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>117</width>
+          <height>117</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../../../icons.qrc">:/rest-windows/assets/images/rest-windows/information.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Η διεύθυνση Internet του ραδιοφωνικού σταθμού ... είναι λάθος. Επεξεργαστείτε την ραδιοφωνική αναμετάδοση ώστε να εισάγετε έγκυρες ρυθμίσεις Internet ή διαγράψτε την ραδιοφωνική αναμετάδοση από την δισκοθήκη.</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPlainTextEdit" name="details"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>Επεξεργασία αναμετάδοσης</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/edit.png</normaloff>:/rest-windows/assets/images/rest-windows/edit.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="text">
+      <string>Διαγραφή αναμετάδοσης</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/delete.png</normaloff>:/rest-windows/assets/images/rest-windows/delete.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="ok">
+     <property name="text">
+      <string>Εντάξει - Παράλειψη</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/ok.png</normaloff>:/rest-windows/assets/images/rest-windows/ok.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>details</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>ok</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../../icons.qrc"/>
+  <include location="../../../icons.qrc"/>
+  <include location="../../../icons.qrc"/>
+  <include location="../../../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

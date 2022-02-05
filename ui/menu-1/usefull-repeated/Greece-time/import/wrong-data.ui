@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>696</width>
+    <height>184</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Λάθος δεδομένα</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../../icons.qrc">
+    <normaloff>:/rest-windows/assets/images/rest-windows/information.png</normaloff>:/rest-windows/assets/images/rest-windows/information.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">QFrame{border:0px;}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="image_label">
+        <property name="maximumSize">
+         <size>
+          <width>117</width>
+          <height>117</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../../../../icons.qrc">:/rest-windows/assets/images/rest-windows/information.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Ο φάκελος που επιλέξατε δεν περιέχει αρχεία στην απαραίτητη μορφή. Παρακαλώ επιλέξτε έναν διαφορετικό φάκελο που περιέχει αρχεία ήχου όπως περιγράφονται και προσπαθήστε ξανά.</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="ok">
+     <property name="text">
+      <string>Επιλογή φακέλου αρχείων ήχου ώρα Ελλάδας</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/select-file.png</normaloff>:/rest-windows/assets/images/rest-windows/select-file.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>ok</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

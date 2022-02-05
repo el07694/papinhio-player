@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>967</width>
+    <height>717</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Ρυθμίσεις ηχείων</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../icons.qrc">
+    <normaloff>:/rest-windows/assets/images/rest-windows/sound-settings.png</normaloff>:/rest-windows/assets/images/rest-windows/sound-settings.png</iconset>
+  </property>
+  <property name="whatsThis">
+   <string>Επιλέξτε την συσκευή αναπαραγωγής που επιθυμείτε να επιλέξετε κατά την ραδιοφωνική μετάδοση (τοπική αναπαραγωγή). Επιλέξτε επίσης και την συσκευή την οποία επιθυμείτε να χρησιμοποιήσετε όταν κάνετε προεπισκόπηση κάποιου αρχείου ή αναμετάδοσης από την δισκοθήκη.</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="1" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>951</width>
+        <height>722</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="whatsThis">
+          <string>Πρωτεύουσα επιλογή δηλαδή επιλογή συσκευής ηχείων για αναπαραγωγή από τα decks (σε κάθε περίπτωση πλην προεπισκόπησης)</string>
+         </property>
+         <property name="title">
+          <string>Πρωτεύουσα επιλογή</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Επιλέξτε μία συσκευή εξόδου την οποία θέλετε ως πρωτεύουσα επιλογή (αναπαραγωγή των δεδομένων μετάδοσης όπως μεταδίδονται).</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QComboBox" name="select_primary_sound_device">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="whatsThis">
+             <string>Επιλογή πρωτεύουσας επιλογής </string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="start_test_primary_sound_device">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="whatsThis">
+             <string>Δοκιμαστικός έλεγχος της πρωτεύουσας επιλογής (αναπαραγωγή του 1ου μέρους της ομιλίας: Ειρήνη - Δώρο Θεού - 1)</string>
+            </property>
+            <property name="text">
+             <string>Δοκιμή</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../icons.qrc">
+              <normaloff>:/main-window/assets/images/main-window/volume.png</normaloff>:/main-window/assets/images/main-window/volume.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="stop_test_primary_sound_device">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="whatsThis">
+             <string>Διακοπή δοκιμαστικού ελέγχου πρωτεύουσας επιλογής</string>
+            </property>
+            <property name="text">
+             <string>Διακοπή δοκιμής</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../icons.qrc">
+              <normaloff>:/main-window/assets/images/main-window/mute.png</normaloff>:/main-window/assets/images/main-window/mute.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QFrame" name="graph_1">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="whatsThis">
+             <string>Οπτικοποίηση σήματος μικροφώνου</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{border:none;background:white;}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+           <widget class="QFrame" name="primary_timeline_container_frame">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>5</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>5</height>
+             </size>
+            </property>
+            <property name="whatsThis">
+             <string>Ένδειξη έντασης ήχου κατά τον δοκιμαστικό έλεγχο της πρωτεύουσας επιλογής</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{border:1px solid #ABABAB;}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QFrame" name="primary_timeline_pick_frame">
+             <property name="geometry">
+              <rect>
+               <x>1</x>
+               <y>1</y>
+               <width>0</width>
+               <height>4</height>
+              </rect>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>4</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>4</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QFrame{
+	background-color:blue;
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>849</width>
+           <height>22</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="whatsThis">
+          <string>Δευτερεύουσα επιλογή δηλαδή επιλογή συσκευής ηχείων για αναπαραγωγή σε περιπτώσεις προεπισκόπησης</string>
+         </property>
+         <property name="title">
+          <string>Δευτερεύουσα επιλογή</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="1" column="1">
+           <widget class="QPushButton" name="start_test_secondary_sound_device">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="whatsThis">
+             <string>Δοκιμαστικός έλεγχος της δευτερεύουσας επιλογής (αναπαραγωγή του 1ου μέρους της ομιλίας: Ειρήνη - Δώρο Θεού - 1)</string>
+            </property>
+            <property name="text">
+             <string>Δοκιμή</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../icons.qrc">
+              <normaloff>:/main-window/assets/images/main-window/volume.png</normaloff>:/main-window/assets/images/main-window/volume.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="label_2">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Επιλέξτε μία συσκευή εξόδου την οποία θέλετε ως δευτερεύουσα επιλογή (προεπισκόπηση ηχητικών δεδομένων).</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="stop_test_secondary_sound_device">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="whatsThis">
+             <string>Διακοπή δοκιμαστικού ελέγχου δευτερεύουσας επιλογής</string>
+            </property>
+            <property name="text">
+             <string>Διακοπή δοκιμής</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../icons.qrc">
+              <normaloff>:/main-window/assets/images/main-window/mute.png</normaloff>:/main-window/assets/images/main-window/mute.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QComboBox" name="select_secondary_sound_device">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="whatsThis">
+             <string>Επιλογή δευτερεύουσας επιλογής </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QFrame" name="graph_2">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="whatsThis">
+             <string>Οπτικοποίηση σήματος μικροφώνου</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{border:none;background:white;}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+           <widget class="QFrame" name="secondary_timeline_container_frame">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>5</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>5</height>
+             </size>
+            </property>
+            <property name="whatsThis">
+             <string>Ένδειξη έντασης ήχου κατά τον δοκιμαστικό έλεγχο της δευτερεύουσας επιλογής</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{border:1px solid #ABABAB;}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QFrame" name="secondary_timeline_pick_frame">
+             <property name="geometry">
+              <rect>
+               <x>1</x>
+               <y>1</y>
+               <width>0</width>
+               <height>4</height>
+              </rect>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>4</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>4</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QFrame{
+	background-color:blue;
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>849</width>
+           <height>21</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-weight:bold;
+	color:green;
+}</string>
+         </property>
+         <property name="text">
+          <string>Σημείωση: Η παραπάνω ρυθμίσεις θα αποθηκευτούν στην βάση δεδομένων, και θα ισχύουν έως ότου επιθυμήσετε την αλλαγή τους.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QFrame" name="frame">
+         <property name="styleSheet">
+          <string notr="true">QFrame{border:none;}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="spacing">
+           <number>7</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="save">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>29</height>
+             </size>
+            </property>
+            <property name="whatsThis">
+             <string>Αποθήκευση αλλαγών και έξοδος</string>
+            </property>
+            <property name="text">
+             <string>Αποθήκευση</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../icons.qrc">
+              <normaloff>:/rest-windows/assets/images/rest-windows/save.png</normaloff>:/rest-windows/assets/images/rest-windows/save.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="cancel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>29</height>
+             </size>
+            </property>
+            <property name="whatsThis">
+             <string>Κλείσιμο παραθύρου (Ανοίγει παράθυρο διαλόγου σε περίπτωση αλλαγών)</string>
+            </property>
+            <property name="text">
+             <string>Ακύρωση</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>select_primary_sound_device</tabstop>
+  <tabstop>start_test_primary_sound_device</tabstop>
+  <tabstop>stop_test_primary_sound_device</tabstop>
+  <tabstop>select_secondary_sound_device</tabstop>
+  <tabstop>start_test_secondary_sound_device</tabstop>
+  <tabstop>stop_test_secondary_sound_device</tabstop>
+  <tabstop>save</tabstop>
+  <tabstop>cancel</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

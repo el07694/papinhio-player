@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>955</width>
+    <height>186</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Εξαγωγή λίστας αναπαραγωγής ως λίστα αναπαραγωγής</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../icons.qrc">
+    <normaloff>:/rest-windows/assets/images/rest-windows/export-playlist.png</normaloff>:/rest-windows/assets/images/rest-windows/export-playlist.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="1">
+    <widget class="QPushButton" name="choose_folder">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Επιλογή θέσης αποθήκευσης</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/select-file.png</normaloff>:/rest-windows/assets/images/rest-windows/select-file.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Τύπος λίστας αναπαραγωγής:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Τίτλος λίστας αναπαραγωγής:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Επιλογή θέσης αποθήκευσης:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="comboBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <item>
+      <property name="text">
+       <string>Επιλογή τύπου λίστας αναπαραγωγής</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>aimppl</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>aimppl4</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>asx</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>atom</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>b4s</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>hypetape</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>kpl</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>kpl (xml version)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>m3u</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>m3u8</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>mpcpl</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>plc</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>plist</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>plp</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>pls</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ram</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>rmp</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>rss</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>smil</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>vlc</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>wax</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>wpl</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>wvx</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>xml</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>xspf</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>zpl</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>zpl (xml version)</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">QFrame{border:0px;}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="convert_and_export">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Δημιουργία αρχείου λίστας αναπαραγωγής</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../../icons.qrc">
+          <normaloff>:/rest-windows/assets/images/rest-windows/convert.png</normaloff>:/rest-windows/assets/images/rest-windows/convert.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="cancel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Ακύρωση</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QLabel" name="label_4">
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	font-weight:bold;
+	color:green;
+}</string>
+     </property>
+     <property name="text">
+      <string>Σημείωση 1: Το αρχείο λίστας αναπαραγωγής το οποίο θα δημιουργηθεί πιθανότατα να μην είναι φορητό (portable).
+Σημείωση 2: Όλα τα πεδία είναι υποχρεωτικά.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="title">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="placeholderText">
+      <string>Πληκτρολογήστε εδώ το επιθυμητό όνομα του αρχείου λίστας αναπαραγωγής.</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>title</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>choose_folder</tabstop>
+  <tabstop>convert_and_export</tabstop>
+  <tabstop>cancel</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

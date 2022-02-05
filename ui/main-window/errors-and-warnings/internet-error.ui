@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>675</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Σφάλμα σύνδεσης</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../icons.qrc">
+    <normaloff>:/main-window/assets/images/main-window/internet-error.png</normaloff>:/main-window/assets/images/main-window/internet-error.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="minimumSize">
+      <size>
+       <width>142</width>
+       <height>142</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>142</width>
+       <height>142</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../../icons.qrc">:/main-window/assets/images/main-window/internet-error.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Σφάλμα Internet: Ο υπολογιστής δεν είναι συνδεδεμένος στο διαδίκτυο.
+Η συνδεσή με τους ραδιοφωνικούς σταθμούς θα διακοπεί.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QPushButton" name="ok">
+     <property name="text">
+      <string>Εντάξει</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/ok.png</normaloff>:/rest-windows/assets/images/rest-windows/ok.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>ok</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../icons.qrc"/>
+  <include location="../../icons.qrc"/>
+  <include location="../../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

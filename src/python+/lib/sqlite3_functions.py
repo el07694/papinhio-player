@@ -1045,10 +1045,10 @@ def delete_playlist(playlist):
 ### transmitions - transmitions_items ###
 
 def import_transmition(transmition,transmition_items):
-    query = "INSERT INTO `transmitions` (`title`,`live`,`frequency`,`time_settings`,`types`,`active`) VALUES(?,?,?,?,?,?);"
+    query = "INSERT INTO `transmitions` (`title`,`live`,`frequency`,`time_settings`,`types`,`active`,`repeat`) VALUES(?,?,?,?,?,?,?);"
     conn = create_connection()
     cur = conn.cursor()
-    cur.execute(query,(str(transmition["title"]),str(transmition["live"]),str(transmition["frequency"]),str(transmition["time_settings"]),str(transmition["types"]),transmition["active"]))
+    cur.execute(query,(str(transmition["title"]),str(transmition["live"]),str(transmition["frequency"]),str(transmition["time_settings"]),str(transmition["types"]),transmition["active"],transmition["repeat"]))
     conn.commit()
     transmition["number"] = cur.lastrowid
 

@@ -1,0 +1,2098 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1168</width>
+    <height>2136</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Εισαγωγή ραδιοφωνικού σταθμού</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../icons.qrc">
+    <normaloff>:/rest-windows/assets/images/rest-windows/import.png</normaloff>:/rest-windows/assets/images/rest-windows/import.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1166</width>
+        <height>2134</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox:title{
+	color:blue;
+}</string>
+         </property>
+         <property name="title">
+          <string>1. Στοιχεία σταθμού</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Όνομα σταθμού:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="station_name">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Όνομα σταθμού</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Διεύθυνση:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="station_address">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Διεύθυνση σταθμού</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Λογότυπο (150px X 150px):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QFrame" name="frame_3">
+            <property name="styleSheet">
+             <string notr="true">QFrame{border:1px solid #ABABAB;}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>441</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="station_image_label">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>150</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>150</width>
+                 <height>150</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>440</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="0" colspan="3">
+              <widget class="QPushButton" name="select_image_file_button">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Επιλογή άλλης εικόνας</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" colspan="3">
+              <widget class="QPushButton" name="remove_image_file">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Αφαίρεση εικόνας</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Υπεύθυνος:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="station_director">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Υπεύθυνος σταθμού</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Τηλέφωνο επικοινωνίας:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="station_telephone">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Τηλέφωνο επικοινωνίας</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Fax:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="station_fax">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Fax επικοινωνίας</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>E-mail:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="station_email">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>E-mail επικοινωνίας</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Κεντρική σελίδα:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLineEdit" name="station_main_page">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>http://www.epalxeis.gr</string>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Κεντρική σελίδα σταθμού</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Περιγραφή:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QPlainTextEdit" name="station_description">
+            <property name="styleSheet">
+             <string notr="true">QPlainTextEdit{
+	border:1px solid #ABABAB;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string>Πληκτρολογήστε εδώ την περιγραφή του σταθμού...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Είδος:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QComboBox" name="station_genre">
+            <item>
+             <property name="text">
+              <string>Επιλογή είδους...</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Blues</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Classic rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Country</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Dance</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Disco</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Funk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Grunge</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Hip-Hop</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Jazz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Metal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Age</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Oldies</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Other</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Pop</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Rhythm and Blues</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Rap</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Reggae</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Techno</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Industrial</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Alternative</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ska</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Death metal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Pranks</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Soundtrack</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Euro-Techno</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ambient</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Trip-Hop</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Vocal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Jazz &amp; Funk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fusion</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Trance</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Classical</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Instrumental</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Acid</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>House</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Game</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Sound clip</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Gospel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Noise</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Alternative Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Bass</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Soul</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Punk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Space</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Meditative</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Instrumental Pop</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Instrumental Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ethnic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Gothic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Darkwave</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Techno-Industrial</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electronic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Pop-Folk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Eurodance</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Dream</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Southern Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Comedy</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cult</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Gangsta</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Top 40</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Christian Rap</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Pop/Funk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Jungle</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Native US</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cabaret</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Wave</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Psychedelic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Rave</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Show tunes</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Trailer</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Lo-Fi</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tribal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Acid Punk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Acid Jazz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Polka</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Retro</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Musical</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Rock ’n’ Roll</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Hard rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Folk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Folk-Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>National Folk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Swing</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fast Fusion</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Bebop</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Latin</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Revival</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Celtic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Bluegrass</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Avantgarde</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Gothic Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Progressive Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Psychedelic Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Symphonic Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Slow rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Big Band</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Chorus</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Easy Listening</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Acoustic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Humour</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Speech</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Chanson</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Opera</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Chamber music</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Sonata</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Symphony</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Booty bass</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Primus</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Porn groove</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Satire</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Slow jam</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Club</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tango</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Samba</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Folklore</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ballad</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Power ballad</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Rhythmic Soul</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Freestyle</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Duet</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Punk Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Drum solo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>A cappella</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Euro-House</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Dancehall</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Goa</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Drum &amp; Bass</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Club-House</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Hardcore Techno</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Terror</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Indie</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>BritPop</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Negerpunk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Polsk Punk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Beat</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Christian Gangsta Rap</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Heavy Metal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Black Metal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Crossover</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Contemporary Christian</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Christian rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Merengue</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Salsa</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Thrash Metal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Anime</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Jpop</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Synthpop</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Abstract</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Art Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Baroque</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Bhangra</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Big beat</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Breakbeat</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Chillout</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Downtempo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Dub</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>EBM</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Eclectic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electro</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electroclash</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Emo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Experimental</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Garage</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Global</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>IDM</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Illbient</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Industro-Goth</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Jam Band</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Krautrock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Leftfield</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Lounge</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Math Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Romantic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Nu-Breakz</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Post-Punk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Post-Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Psytrance</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Shoegaze</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Space Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Trop Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>World Music</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Neoclassical</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Audiobook</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Audio theatre</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Neue Deutsche Welle</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Podcast</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Indie-Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>G-Funk</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Dubstep</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Garage Rock</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Psybient</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox:title{
+	color:blue;
+}</string>
+         </property>
+         <property name="title">
+          <string>3. Στοιχεία σύνδεσης με radio server</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_19">
+            <property name="text">
+             <string>Τύπος:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="radio_server_type">
+            <item>
+             <property name="text">
+              <string>Icecast 2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Icecast 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Shoutcast</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Python aiortc (custom)</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>Κεντρικός υπολογιστής:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="radio_server_ip">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>localhost</string>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>hostname or ip address</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_21">
+            <property name="text">
+             <string>Είσοδος (username):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="radio_server_username">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>username</string>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>username</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_24">
+            <property name="text">
+             <string>Προσάρτηση:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="radio_server_mount">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>/test.mp3</string>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>mount folder</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_22">
+            <property name="text">
+             <string>Θύρα:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QSpinBox" name="radio_server_port">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+            <property name="value">
+             <number>8000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_23">
+            <property name="text">
+             <string>Κωδικός:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="radio_server_password">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>password</string>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>password</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>Ρυθμός μετάδοσης bit (kbps):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QComboBox" name="radio_server_bit_rate">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <item>
+             <property name="text">
+              <string>128</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>320</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>256</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>224</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>192</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>160</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>112</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>96</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>80</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>64</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>48</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>32</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_25">
+            <property name="text">
+             <string>Μορφή:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QComboBox" name="radio_server_mp3_or_ogg">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <item>
+             <property name="text">
+              <string>mp3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ogg</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_26">
+            <property name="text">
+             <string>Κανάλια:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QComboBox" name="radio_server_channels">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <item>
+             <property name="text">
+              <string>2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_28">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-weight:bold;
+	color:green;
+}</string>
+         </property>
+         <property name="text">
+          <string>Σημείωση: Όλα τα πεδία είναι υποχρεωτικά.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QFrame" name="frame">
+         <property name="styleSheet">
+          <string notr="true">QFrame{border:none;}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="save">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Δημιουργία σελίδας ακρόασης και αποθήκευση</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../icons.qrc">
+              <normaloff>:/rest-windows/assets/images/rest-windows/save.png</normaloff>:/rest-windows/assets/images/rest-windows/save.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QPushButton" name="cancel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>29</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Ακύρωση</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="test_connections">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Δοκιμή συνδέσεων (http,ftp,mysql,icecast/aiortc) ( προτείνετε)</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../icons.qrc">
+              <normaloff>:/rest-windows/assets/images/rest-windows/test-connections.png</normaloff>:/rest-windows/assets/images/rest-windows/test-connections.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox:title{
+	color:blue;
+}</string>
+         </property>
+         <property name="title">
+          <string>2. Στοιχεία σύνδεσης με web server</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="3" column="1" colspan="2">
+           <widget class="QLineEdit" name="mysql_ip">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>127.0.0.1</string>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Mysql ip address or hostname</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Δημιουργία σελίδας ακρόασης:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="2">
+           <widget class="QLineEdit" name="listeners_url">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>full url of listener's web page</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QCheckBox" name="create_listeners_page">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Ftp password:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Web server Hostname or Ip address:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QLineEdit" name="mysql_username">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>test_user</string>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Mysql root username</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <widget class="QLineEdit" name="ftp_password">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>pass123</string>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Ftp password</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>Mysql username:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>Mysql password:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Ftp username:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QLineEdit" name="web_page_ip">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>127.0.0.1</string>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Hostname or ip address of website</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1" colspan="2">
+           <widget class="QLineEdit" name="mysql_password">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>pass123</string>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Mysql root password</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QLineEdit" name="ftp_username">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>test_user</string>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>Ftp username</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Εμφανιζόμενο μήνυμα (μεταβλητές: $title , $artist, $album, $date_published, $current_date, $current_time):</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>Mysql hostname - IP:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="2">
+           <widget class="QLineEdit" name="metadata">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="placeholderText">
+             <string>metadata</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>Mysql database:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1" colspan="2">
+           <widget class="QLineEdit" name="mysql_database">
+            <property name="text">
+             <string>test_database</string>
+            </property>
+            <property name="placeholderText">
+             <string>Mysql database</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>station_name</tabstop>
+  <tabstop>station_address</tabstop>
+  <tabstop>select_image_file_button</tabstop>
+  <tabstop>remove_image_file</tabstop>
+  <tabstop>station_director</tabstop>
+  <tabstop>station_telephone</tabstop>
+  <tabstop>station_fax</tabstop>
+  <tabstop>station_email</tabstop>
+  <tabstop>station_main_page</tabstop>
+  <tabstop>station_description</tabstop>
+  <tabstop>station_genre</tabstop>
+  <tabstop>web_page_ip</tabstop>
+  <tabstop>ftp_username</tabstop>
+  <tabstop>ftp_password</tabstop>
+  <tabstop>mysql_ip</tabstop>
+  <tabstop>mysql_username</tabstop>
+  <tabstop>mysql_password</tabstop>
+  <tabstop>mysql_database</tabstop>
+  <tabstop>metadata</tabstop>
+  <tabstop>create_listeners_page</tabstop>
+  <tabstop>listeners_url</tabstop>
+  <tabstop>radio_server_type</tabstop>
+  <tabstop>radio_server_ip</tabstop>
+  <tabstop>radio_server_username</tabstop>
+  <tabstop>radio_server_mount</tabstop>
+  <tabstop>radio_server_port</tabstop>
+  <tabstop>radio_server_password</tabstop>
+  <tabstop>radio_server_bit_rate</tabstop>
+  <tabstop>radio_server_mp3_or_ogg</tabstop>
+  <tabstop>radio_server_channels</tabstop>
+  <tabstop>save</tabstop>
+  <tabstop>test_connections</tabstop>
+  <tabstop>cancel</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

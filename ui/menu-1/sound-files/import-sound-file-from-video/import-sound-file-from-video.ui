@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>820</width>
+    <height>229</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Εισαγωγή αρχείου ήχου από βίντεο</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../icons.qrc">
+    <normaloff>:/rest-windows/assets/images/rest-windows/import-video.png</normaloff>:/rest-windows/assets/images/rest-windows/import-video.png</iconset>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="tabsClosable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Εισαγωγή ήχου από τοπικό αρχείο video</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Ποσοστό εξαγωγής αρχείου ήχου:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QPushButton" name="select_local_video">
+         <property name="text">
+          <string>Επιλογή τοπικού αρχείου video</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../../icons.qrc">
+           <normaloff>:/rest-windows/assets/images/rest-windows/select-file.png</normaloff>:/rest-windows/assets/images/rest-windows/select-file.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QProgressBar" name="local_video_progressBar">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QLabel" name="label_4">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-weight:bold;
+	color:green;
+}</string>
+         </property>
+         <property name="text">
+          <string>Σημείωση: Μετά το πέρας της εισαγωγής θα ανοιξει το παράθυρο &quot;Εισαγωγή αρχείου ήχου&quot; για την επεξεργασία των πληροφοριών του αρχείου ήχου (όπως καλλιτέχνης, στιχουργός και συνθέτης)</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Εισαγωγή video από το youtube</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="1" column="1">
+        <widget class="QProgressBar" name="download_progressBar">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLineEdit" name="youtube_url">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="dragEnabled">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>Εισαγωγή youtube διεύθυνσης</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="download_and_export_video_from_youtube">
+         <property name="text">
+          <string>Λήψη αρχείου video και εξαγωγή ήχου από το youtube</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../../icons.qrc">
+           <normaloff>:/rest-windows/assets/images/rest-windows/download.png</normaloff>:/rest-windows/assets/images/rest-windows/download.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Ποσοστό λήψης:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QProgressBar" name="youtube_convert_progressBar">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Ποσοστό εξαγωγής αρχείου ήχου:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="label_5">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font-weight:bold;
+	color:green;
+}</string>
+         </property>
+         <property name="text">
+          <string>Σημείωση: Μετά το πέρας της λήψης και της εξαγωγής θα ανοιξει το παράθυρο &quot;Εισαγωγή αρχείου ήχου&quot; για την επεξεργασία των πληροφοριών του αρχείου ήχου (όπως καλλιτέχνης, στιχουργός και συνθέτης)</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>select_local_video</tabstop>
+  <tabstop>youtube_url</tabstop>
+  <tabstop>download_and_export_video_from_youtube</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1916</width>
+    <height>1052</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Επεξεργασία προγραμματισμένων μεταδόσεων</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../icons.qrc">
+    <normaloff>:/rest-windows/assets/images/rest-windows/edit.png</normaloff>:/rest-windows/assets/images/rest-windows/edit.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="3">
+    <widget class="QTableWidget" name="table">
+     <property name="styleSheet">
+      <string notr="true">QTableWidget{border:1px solid #ABABAB;}</string>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="rowCount">
+      <number>0</number>
+     </property>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>260</number>
+     </attribute>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>Τίτλος</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Τύποι</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Κατάσταση</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ημερομηνία έναρξης</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>New Column</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Παράμετροι επανάληψης</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ημερομηνία λήξης</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Επόμενη εκτέλεση</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ενέργειες</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="add_new">
+     <property name="text">
+      <string>Προσθήκη νέας προγραμματισμένης μετάδοσης</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/add-circle.png</normaloff>:/rest-windows/assets/images/rest-windows/add-circle.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="activate_all">
+     <property name="text">
+      <string>Ενεργοποίηση όλων</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/activate.png</normaloff>:/rest-windows/assets/images/rest-windows/activate.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="deactivate_all">
+     <property name="text">
+      <string>Απενεργοποίηση όλων</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/deactivate.png</normaloff>:/rest-windows/assets/images/rest-windows/deactivate.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QPushButton" name="ok">
+     <property name="text">
+      <string>Εντάξει - Κλείσιμο παραθύρου</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/ok.png</normaloff>:/rest-windows/assets/images/rest-windows/ok.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

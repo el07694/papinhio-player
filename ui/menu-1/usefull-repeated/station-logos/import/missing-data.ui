@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>435</width>
+    <height>252</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Ελλιπή στοιχεία</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../../icons.qrc">
+    <normaloff>:/rest-windows/assets/images/rest-windows/information.png</normaloff>:/rest-windows/assets/images/rest-windows/information.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="0">
+    <widget class="QPushButton" name="ok">
+     <property name="text">
+      <string>Εντάξει</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/ok.png</normaloff>:/rest-windows/assets/images/rest-windows/ok.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Παρακαλώ εισάγετε τα ελλιπή δεδομένα και έπειτα πατήστε πάλι το κουμπί 'Αποθήκευση και προεπισκόπηση'.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">QFrame{border:0px;}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="image_label">
+        <property name="maximumSize">
+         <size>
+          <width>117</width>
+          <height>117</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../../../../icons.qrc">:/rest-windows/assets/images/rest-windows/information.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Δεν έχετε συμπληρώσει όλα τα στοιχεία.</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>ok</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
