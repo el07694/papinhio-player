@@ -53,6 +53,7 @@ def import_settings():
 	default_buttons_font_color = "#000000"
 	#default_style = "WindowsVista"
 	default_style = "Fusion"
+	default_custome_theme = "dark_teal.xml"
 
 	sql = """ INSERT INTO `settings` (`keyword`, `current_value`) VALUES ( ?, ?) """
 	settings = []
@@ -108,6 +109,7 @@ def import_settings():
 	settings.append(("default_button_background",default_buttons_background))
 	settings.append(("default_button_font_color",default_buttons_font_color))
 	settings.append(("default_style",default_style))
+	settings.append(("default_custome_theme",default_custome_theme))
 	
 	settings.append(("player_field_change_position","1"))
 	settings.append(("player_field_play","1"))
