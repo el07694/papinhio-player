@@ -72,7 +72,7 @@ import sys
 sys.path.append('../../../')
 
 import importlib
-icons = importlib.import_module('icons')
+icons = importlib.import_module('compiled-ui.icons')
 
 
 if __name__ == "__main__":

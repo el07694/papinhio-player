@@ -12,9 +12,9 @@ class Support_Ui_Dialog:
         self.main_self.edit_radio_stations_window.showMaximized()
         self.main_self.edit_radio_stations_window.update()
         
-        self.main_self.'********_window'.closeEvent = lambda event:self.closeEvent(event)
+        self.main_self.export_sound_file_window.closeEvent = lambda event:self.closeEvent(event)
         
     def closeEvent(self,event):
-        self.main_self.'********_window_is_open' = False
+        self.main_self.export_sound_file_window_is_open = False
         event.accept()        
         	

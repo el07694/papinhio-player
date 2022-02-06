@@ -53,7 +53,7 @@ def import_settings():
 	default_buttons_font_color = "#000000"
 	#default_style = "WindowsVista"
 	default_style = "Fusion"
-	default_custome_theme = "dark_teal.xml"
+	default_custome_theme = "light_blue.xml"
 
 	sql = """ INSERT INTO `settings` (`keyword`, `current_value`) VALUES ( ?, ?) """
 	settings = []

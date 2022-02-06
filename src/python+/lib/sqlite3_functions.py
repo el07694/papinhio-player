@@ -30,7 +30,9 @@ def create_connection():
         conn = sqlite3.connect(db_file)
         return conn
     except Error as e:
-        print(e)
+        db_file = os.path.abspath("../../../database/database.db")
+        conn = sqlite3.connect(db_file)
+        return conn
         
     return conn
 

@@ -86,7 +86,7 @@ import sys
 sys.path.append('../../../')
 
 import importlib
-icons = importlib.import_module('icons')
+icons = importlib.import_module('compiled-ui.icons')
 import Εικόνες προγράμματος_rc
 
 

@@ -103,7 +103,7 @@ def parse_directory_2(path):
                 for k in range(1,folders_back):
                     folders_back_str += "../"
 
-                replace_str = "import sys\nsys.path.append('"+folders_back_str+"')\n\nimport importlib\nicons = importlib.import_module('icons')"
+                replace_str = "import sys\nsys.path.append('"+folders_back_str+"')\n\nimport importlib\nicons = importlib.import_module('compiled-ui.icons')"
 
                 data = data.replace("import icons_rc",replace_str)
                 
