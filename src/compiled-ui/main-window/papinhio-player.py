@@ -6118,7 +6118,7 @@ class Ui_MainWindow(object):
         self.menu_church_news_add_to_playlist_bottom.setStatusTip(_translate("MainWindow", "Προσθήκη δελτίου εκκλησιαστικών ανακοινώσεων στην λίστα αναπαραγωγής του main player στην τέλος."))
         self.menu_church_news_add_to_new_scheduled_transmition.setText(_translate("MainWindow", "Προσθήκη δελτίου εκκλησιαστικών ανακοινώσεων σε νέα προγραμματισμένη μετάδοση"))
         self.menu_church_news_add_to_new_scheduled_transmition.setStatusTip(_translate("MainWindow", "Προσθήκη δελτίου εκκλησιαστικών ανακοινώσεων σε νέα προγραμματισμένη μετάδοση."))
-        self.menu_church_news_add_to_existed_scheduled_transmition.setText(_translate("MainWindow", "Προσθήκη δελτίου εκκλησιαστικών ανακοινώσεων σε νέα προγραμματισμένη μετάδοση"))
+        self.menu_church_news_add_to_existed_scheduled_transmition.setText(_translate("MainWindow", "Προσθήκη δελτίου εκκλησιαστικών ανακοινώσεων σε υπάρχουσα προγραμματισμένη μετάδοση"))
         self.menu_church_news_add_to_existed_scheduled_transmition.setStatusTip(_translate("MainWindow", "Προσθήκη δελτίου εκκλησιαστικών ανακοινώσεων σε υπάρχουσα προγραμματισμένη μετάδοση."))
         self.menu_weather_news_import.setText(_translate("MainWindow", "Εισαγωγή δελτίου καιρού"))
         self.menu_weather_news_import.setStatusTip(_translate("MainWindow", "Εισαγωγή δελτίου καιρού με ποικίλους τρόπους."))

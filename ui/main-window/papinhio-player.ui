@@ -13663,7 +13663,7 @@ background-color:#E8ECF0;</string>
      <normaloff>:/main-window/assets/images/main-window/add-sound-file-to-schedule.png</normaloff>:/main-window/assets/images/main-window/add-sound-file-to-schedule.png</iconset>
    </property>
    <property name="text">
-    <string>Προσθήκη δελτίου εκκλησιαστικών ανακοινώσεων σε νέα προγραμματισμένη μετάδοση</string>
+    <string>Προσθήκη δελτίου εκκλησιαστικών ανακοινώσεων σε υπάρχουσα προγραμματισμένη μετάδοση</string>
    </property>
    <property name="statusTip">
     <string>Προσθήκη δελτίου εκκλησιαστικών ανακοινώσεων σε υπάρχουσα προγραμματισμένη μετάδοση.</string>
