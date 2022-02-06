@@ -15,6 +15,6 @@ class Support_Ui_Dialog:
         self.main_self.manage_proccesses_window.closeEvent = lambda event:self.closeEvent(event)
         
     def closeEvent(self,event):
-        self.main_self.manage_proccesses__window_is_open = False
+        self.main_self.manage_proccesses_window_is_open = False
         event.accept()        
         	

@@ -329,13 +329,13 @@ class Papinhio_player:
         #apply theme settings
         self.apply_theme_settings()
         
-        '''
+        
         #set False to all menu windows
         self.set_windows_boolean_value()
         
         #link menu items with actions (for example: open window)
-        self.link_menus()
-        
+        #self.link_menus()
+        '''
         
         #create proccess for program components
         self.programm_components_proccess_number = 21
@@ -426,20 +426,20 @@ class Papinhio_player:
         ### Menu 1 ###
         
         # Παράθυρο για πολλές χρήσεις #
-        self.search_scheduled_transmition_window_is_open = False
+        self.search_schedule_transmitions_window_is_open = False
         
-        self.internet_connection_error_window_is_open = False
+        self.internet_error_window_is_open = False
         
         # Διαχείριση ραδιοφωνικών μεταδόσεων #
-        self.manage_radio_connections_window_is_open = False
+        self.manage_radio_transmitions_window_is_open = False
 
         # Αρχεία ήχου #
-        self.import_sound_file_window_is_open = False
-        self.import_sound_file_unsupported_type_error_window_is_open = False
-        self.import_sound_file_unsupported_image_type_error_window_is_open = False
-        self.import_sound_file_missing_data_error_window_is_open = False
+        self.import_sound_file_from_sound_file_window_is_open = False
+        #self.import_sound_file_unsupported_type_error_window_is_open = False
+        #self.import_sound_file_unsupported_image_type_error_window_is_open = False
+        #self.import_sound_file_missing_data_error_window_is_open = False
         self.import_sound_file_from_video_window_is_open = False
-        self.import_sound_file_save_question_window_is_open = False
+        #self.import_sound_file_save_question_window_is_open = False
         self.export_sound_file_window_is_open = False
         self.edit_sound_file_window_is_open = False
         self.search_sound_file_window_is_open = False
@@ -448,7 +448,7 @@ class Papinhio_player:
         # Λίστες αναπαραγωγής #
         self.create_playlist_window_is_open = False
         self.import_playlist_window_is_open = False
-        self.import_playlist_unsupported_type_error_window_is_open = False
+        #self.import_playlist_unsupported_type_error_window_is_open = False
         self.export_playlist_as_sound_files_window_is_open = False
         self.export_playlist_as_playlist_window_is_open = False
         self.edit_playlist_window_is_open = False
@@ -457,7 +457,7 @@ class Papinhio_player:
 
         # Ηχητικά clips #
         self.import_sound_clip_window_is_open = False
-        self.import_sound_clip_unsupported_type_error_window_is_open = False
+        #self.import_sound_clip_unsupported_type_error_window_is_open = False
         self.export_sound_clip_window_is_open = False
         self.edit_sound_clip_window_is_open = False
         self.search_sound_clip_window_is_open = False
@@ -473,7 +473,7 @@ class Papinhio_player:
 
         # Σήμα σταθμού #
         self.import_station_logo_window_is_open = False
-        self.import_station_logo_unsupported_type_error_window_is_open = False
+        #self.import_station_logo_unsupported_type_error_window_is_open = False
         self.export_station_logo_window_is_open = False
         self.edit_station_logo_window_is_open = False
         self.search_station_logo_window_is_open = False
@@ -504,17 +504,17 @@ class Papinhio_player:
         self.start_record_window_is_open = False
 
         # Αναφορές #
-        self.week_report_window_is_open = False
-        self.player_history_report_window_is_open = False
+        self.weekly_programm_report_window_is_open = False
+        self.player_history_report_window_window_is_open = False
         self.scheduled_transmition_report_window_is_open = False
         self.listeners_statistics_report_window_is_open = False
 
         # Διαχείριση συσκευών #
         self.manage_output_devices_window_is_open = False
-        self.manage_output_devices_save_question_window_is_open = False
-        self.manage_output_unable_to_open_process_window_is_open = False
+        #self.manage_output_devices_save_question_window_is_open = False
+        #self.manage_output_unable_to_open_process_window_is_open = False
         self.manage_input_device_window_is_open = False
-        self.manage_input_device_save_question_window_is_open = False
+        #self.manage_input_device_save_question_window_is_open = False
 
         #Διαχείριση διεργασιών #
         self.manage_proccesses_window_is_open = False
@@ -524,21 +524,21 @@ class Papinhio_player:
 
         # Επιλογή θέματος #
         self.choose_theme_window_is_open = False
-        self.choose_theme_save_question_window_is_open = False
+        #self.choose_theme_save_question_window_is_open = False
         
         # Ορατά πεδία λίστας αναπαραγωγής #
         self.visible_player_list_fields_window_is_open = False
-        self.visible_player_list_fields_save_question_window_is_open = False
+        #self.visible_player_list_fields_save_question_window_is_open = False
 
         # Ορατά πεδία προγράμματος #
-        self.visible_programm_components_window_is_open = False
-        self.visible_programm_components_save_question_window_is_open = False
+        self.visible_program_components_window_is_open = False
+        #self.visible_programm_components_save_question_window_is_open = False
         
         ### Menu 3 ###
 
         # Προγραμματισμένες μεταδόσεις #
-        self.import_scheduled_transmition_window_is_open = False
-        self.manage_scheduled_transmitions_window_is_open = False
+        self.create_schedule_transmition_window = False
+        self.explore_scheduled_transmitions_window_is_open = False
 
         # Ραδιοφωνικοί σταθμοί #
         self.import_radio_station_window_is_open = False
