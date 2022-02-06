@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>899</width>
-    <height>248</height>
+    <width>690</width>
+    <height>184</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Προγραμματισμένες μεταδόσεις</string>
+   <string>Ελλιπή δεδομένα</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../icons.qrc">
+   <iconset resource="../../../../icons.qrc">
     <normaloff>:/rest-windows/assets/images/rest-windows/information.png</normaloff>:/rest-windows/assets/images/rest-windows/information.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -42,7 +42,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../../icons.qrc">:/rest-windows/assets/images/rest-windows/information.png</pixmap>
+         <pixmap resource="../../../../icons.qrc">:/rest-windows/assets/images/rest-windows/information.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -52,9 +52,13 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Έχει προγραμματιστεί η προγραμματισμένη μετάδοση με τίτλο:
- &quot;...&quot; για ... δηλαδή σε 1 λεπτό.
-Παρακαλώ αποφασίστε αν θα γίνει εισαγωγή των δεδομένων της στην λίστα αναπαραγωγής του main player.</string>
+         <string>Δεν έχετε εισάγει την σχετική συχνότητα (μετά από Χ τραγούδια).</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -62,31 +66,27 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QPushButton" name="yes_when_right_time">
+    <widget class="QPushButton" name="ok">
      <property name="text">
-      <string>Ναι (όταν φτάσει η κατάλληλη στιγμή)</string>
+      <string>Εντάξει</string>
      </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="yes_no">
-     <property name="text">
-      <string>Ναι (αμέσως τώρα)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="ignore_scheduled_transmition">
-     <property name="text">
-      <string>Όχι</string>
+     <property name="icon">
+      <iconset resource="../../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/ok.png</normaloff>:/rest-windows/assets/images/rest-windows/ok.png</iconset>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>ok</tabstop>
+ </tabstops>
  <resources>
-  <include location="../../../icons.qrc"/>
-  <include location="../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
+  <include location="../../../../icons.qrc"/>
  </resources>
  <connections/>
 </ui>

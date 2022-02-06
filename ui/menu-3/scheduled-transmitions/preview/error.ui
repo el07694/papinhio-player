@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>899</width>
-    <height>248</height>
+    <width>690</width>
+    <height>413</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Προγραμματισμένες μεταδόσεις</string>
+   <string>Σφάλμα στην διεργασία προεπισκόπησης προγραμματισμένης μετάδοσης</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../../icons.qrc">
@@ -52,39 +52,52 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Έχει προγραμματιστεί η προγραμματισμένη μετάδοση με τίτλο:
- &quot;...&quot; για ... δηλαδή σε 1 λεπτό.
-Παρακαλώ αποφασίστε αν θα γίνει εισαγωγή των δεδομένων της στην λίστα αναπαραγωγής του main player.</string>
+         <string>Προεύκυψε σφάλμα κατά την προεπισκόπηση προγραμματισμένης μετάδοσης.
+Λεπτομέρειες:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignJustify|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QPushButton" name="yes_when_right_time">
+   <item row="3" column="0">
+    <widget class="QPushButton" name="ok">
      <property name="text">
-      <string>Ναι (όταν φτάσει η κατάλληλη στιγμή)</string>
+      <string>Εντάξει</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/ok.png</normaloff>:/rest-windows/assets/images/rest-windows/ok.png</iconset>
      </property>
     </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPlainTextEdit" name="details"/>
    </item>
    <item row="2" column="0">
-    <widget class="QPushButton" name="yes_no">
+    <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Ναι (αμέσως τώρα)</string>
+      <string>Θα επιχειρηθεί επανεκκίνηση της διεργασίας προεπισκόπησης προγραμματισμένης μετάδοσης.</string>
      </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="ignore_scheduled_transmition">
-     <property name="text">
-      <string>Όχι</string>
+     <property name="alignment">
+      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>details</tabstop>
+  <tabstop>ok</tabstop>
+ </tabstops>
  <resources>
+  <include location="../../../icons.qrc"/>
+  <include location="../../../icons.qrc"/>
+  <include location="../../../icons.qrc"/>
+  <include location="../../../icons.qrc"/>
   <include location="../../../icons.qrc"/>
   <include location="../../../icons.qrc"/>
  </resources>

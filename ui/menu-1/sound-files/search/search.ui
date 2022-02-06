@@ -225,7 +225,7 @@
           <string notr="true">QLabel{font-weight:bold;text-decoration:underline;}</string>
          </property>
          <property name="text">
-          <string>Αποτέλεσμα ανζήτησης: Η αναζήτηση ολοκληρώθηκε επιτυχώς. Βρέθηκαν ... αρχεία ήχου</string>
+          <string>Αποτέλεσμα αναζήτησης: Η αναζήτηση ολοκληρώθηκε επιτυχώς. Βρέθηκαν ... αρχεία ήχου</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

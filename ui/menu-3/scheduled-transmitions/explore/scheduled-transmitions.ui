@@ -44,11 +44,11 @@
      <attribute name="horizontalHeaderCascadingSectionResizes">
       <bool>false</bool>
      </attribute>
-     <attribute name="horizontalHeaderHighlightSections">
-      <bool>false</bool>
-     </attribute>
      <attribute name="horizontalHeaderMinimumSectionSize">
       <number>260</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
      </attribute>
      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
       <bool>false</bool>
@@ -152,6 +152,13 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>table</tabstop>
+  <tabstop>add_new</tabstop>
+  <tabstop>activate_all</tabstop>
+  <tabstop>deactivate_all</tabstop>
+  <tabstop>ok</tabstop>
+ </tabstops>
  <resources>
   <include location="../../../icons.qrc"/>
  </resources>

@@ -233,6 +233,8 @@ echo p2swex819 | sudo anydesk --set-password
 #8. install sqlite3
 apt-get -y install sqlite3
 
+#9. Install pyqt themes
+pip install qt-material
 
 #9. Run python test script
 python3.9 test_modules.py
