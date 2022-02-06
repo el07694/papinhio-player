@@ -431,7 +431,7 @@ class Papinhio_player:
         self.internet_error_window_is_open = False
         
         # Διαχείριση ραδιοφωνικών μεταδόσεων #
-        self.manage_radio_transmitions_window_is_open = False
+        self.manage_radio_connections_window_is_open = False
 
         # Αρχεία ήχου #
         self.import_sound_file_from_sound_file_window_is_open = False
@@ -505,7 +505,7 @@ class Papinhio_player:
 
         # Αναφορές #
         self.weekly_programm_report_window_is_open = False
-        self.player_history_report_window_window_is_open = False
+        self.player_history_report_window_is_open = False
         self.scheduled_transmition_report_window_is_open = False
         self.listeners_statistics_report_window_is_open = False
 
@@ -537,7 +537,7 @@ class Papinhio_player:
         ### Menu 3 ###
 
         # Προγραμματισμένες μεταδόσεις #
-        self.create_schedule_transmition_window = False
+        self.create_schedule_transmition_window_is_open = False
         self.explore_scheduled_transmitions_window_is_open = False
 
         # Ραδιοφωνικοί σταθμοί #
@@ -1276,11 +1276,11 @@ class Papinhio_player:
             self.scheduled_transmition_report_window.exec()
             
     def open_week_programm_report_window_window(self,checked):
-        if(self.week_report_window_is_open==False): 
+        if(self.weekly_programm_report_window_is_open==False): 
             self.week_report_window = QtWidgets.QDialog(self.MainWindow)
             self.ui_week_report_window = week_report_ui.Ui_Dialog()
             self.ui_week_report_window.setupUi(self.week_report_window)
-            self.week_report_window_is_open = True
+            self.weekly_programm_report_window_is_open = True
             self.week_report_window_support_code = week_report_support_ui.Support_Ui_Dialog(self)
             self.week_report_window.exec()
         
@@ -1376,11 +1376,11 @@ class Papinhio_player:
 
     # Ορατά πεδία προγράμματος #
     def open_programm_components_window(self,checked):
-        if(self.visible_programm_components_window_is_open==False): 
+        if(self.visible_program_components_window_is_open==False): 
             self.visible_programm_components_window = QtWidgets.QDialog(self.MainWindow)
             self.ui_visible_programm_components_window = visible_programm_components_ui.Ui_Dialog()
             self.ui_visible_programm_components_window.setupUi(self.visible_programm_components_window)
-            self.visible_programm_components_window_is_open = True
+            self.visible_program_components_window_is_open = True
             self.visible_programm_components_window_support_code = visible_programm_components_support_ui.Support_Ui_Dialog(self)
             self.visible_programm_components_window.exec()
             
@@ -1400,11 +1400,11 @@ class Papinhio_player:
             self.create_schedule_transmition_window.exec()
     
     def open_review_transmitions_window(self,checked):
-        if(self.manage_scheduled_transmitions_window_is_open==False):   
+        if(self.explore_scheduled_transmitions_window_is_open==False):   
             self.manage_scheduled_transmitions_window = QtWidgets.QDialog(self.MainWindow)
             self.ui_manage_scheduled_transmitions_window = manage_scheduled_transmitions_ui.Ui_Dialog()
             self.ui_manage_scheduled_transmitions_window.setupUi(self.manage_scheduled_transmitions_window)
-            self.manage_scheduled_transmitions_window_is_open = True
+            self.explore_scheduled_transmitions_window_is_open = True
             self.manage_scheduled_transmitions_window_support_code = manage_scheduled_transmitions_support_ui.Support_Ui_Dialog(self)
             self.manage_scheduled_transmitions_window.exec()
 
