@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Support_Ui_Dialog:
 
-    def __init__(self,main_self):
+    def __init__(self,main_self,action):
         self.main_self = main_self
         
         #apply theme

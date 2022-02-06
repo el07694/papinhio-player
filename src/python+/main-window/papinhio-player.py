@@ -334,7 +334,7 @@ class Papinhio_player:
         self.set_windows_boolean_value()
         
         #link menu items with actions (for example: open window)
-        #self.link_menus()
+        self.link_menus()
         '''
         
         #create proccess for program components
@@ -752,6 +752,7 @@ class Papinhio_player:
          
     # Αρχεία ήχου #
     def open_import_sound_file_from_sound_file_window(self,checked,sound_file_path=None):
+        return 1
         if(sound_file_path==None):
             if(self.import_sound_file_window_is_open==False):
                 dialog = QtWidgets.QFileDialog(self.MainWindow)
@@ -785,31 +786,13 @@ class Papinhio_player:
             self.import_sound_file_window.exec()
 
     def open_import_sound_file_unsupported_image_type_error_window(self):
-        if self.import_sound_file_unsupported_image_type_error_window_is_open==False:
-            self.import_sound_file_unsupported_image_type_error_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_import_sound_file_unsupported_image_type_error_window = import_sound_file_unsupported_image_type_error_ui.Ui_Dialog()
-            self.ui_import_sound_file_unsupported_image_type_error_window.setupUi(self.import_sound_file_unsupported_image_type_error_window)
-            self.import_sound_file_unsupported_image_type_error_window_is_open = True
-            self.import_sound_file_unsupported_image_type_error_window_support_code = import_sound_file_unsupported_image_type_error_support_ui.Support_Ui_Dialog(self)
-            self.import_sound_file_unsupported_image_type_error_window.exec()
+        pass
             
     def open_import_sound_file_missing_data_error_window(self,error_message):
-        if self.import_sound_file_missing_data_error_window_is_open==False:
-            self.import_sound_file_missing_data_error_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_import_sound_file_missing_data_error_window = import_sound_file_missing_data_error_ui.Ui_Dialog()
-            self.ui_import_sound_file_missing_data_error_window.setupUi(self.import_sound_file_missing_data_error_window)
-            self.import_sound_file_missing_data_error_window_is_open = True
-            self.import_sound_file_missing_data_error_window_support_code = import_sound_file_missing_data_error_support_ui.Support_Ui_Dialog(self,error_message)
-            self.import_sound_file_missing_data_error_window.exec()
+        pass
          
     def open_import_sound_file_save_question_window(self):
-        if self.import_sound_file_save_question_window_is_open==False:
-            self.import_sound_file_save_question_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_import_sound_file_save_question_window = import_sound_file_save_question_ui.Ui_Dialog()
-            self.ui_import_sound_file_save_question_window.setupUi(self.import_sound_file_save_question_window)
-            self.import_sound_file_save_question_window_is_open = True
-            self.import_sound_file_save_question_window_support_code = import_sound_file_save_question_support_ui.Support_Ui_Dialog(self)
-            self.import_sound_file_save_question_window.exec()
+        pass
          
     def open_import_sound_file_from_video_window(self,checked):
         if(self.import_sound_file_from_video_window_is_open==False):    
@@ -858,6 +841,7 @@ class Papinhio_player:
     
     # Λίστες αναπαραγωγής #    
     def open_import_playlist_window(self,checked):
+        return 1
         if(self.import_playlist_window_is_open==False):
             dialog = QtWidgets.QFileDialog(self.MainWindow)
             dialog.setWindowTitle('Άνοιγμα αρχείου playlist')
@@ -946,6 +930,7 @@ class Papinhio_player:
             
     # Ηχητικά clips #
     def open_import_sound_clip_window(self,checked):
+        return 1
         if(self.import_sound_clip_window_is_open==False):
             dialog = QtWidgets.QFileDialog(self.MainWindow)
             dialog.setWindowTitle('Άνοιγμα ηχητικού clip')
@@ -1063,6 +1048,7 @@ class Papinhio_player:
             
     # Σήμα σταθμού #
     def open_import_station_logo_window(self,checked,station_logo_path=None):
+        return 1
         if(station_logo_path==None):
             if(self.import_station_logo_window_is_open==False):
                 dialog = QtWidgets.QFileDialog(self.MainWindow)
@@ -1175,7 +1161,7 @@ class Papinhio_player:
             self.ui_preview_Greece_time_window.setupUi(self.preview_Greece_time_window)
             self.preview_Greece_time_window_is_open = True
             self.preview_Greece_time_window_support_code = preview_Greece_time_support_ui.Support_Ui_Dialog(self,Greece_time_number)
-            self.preview_Greece_time_window_is_open.exec()
+            self.preview_Greece_time_window.exec()
             
     # Δελτίο εκκλησιαστικών ανακοινώσεων #
     def open_import_church_news_window(self,checked):
@@ -1330,23 +1316,10 @@ class Papinhio_player:
                 self.manage_output_devices_window.exec()
             
     def open_manage_output_devices_save_question_window(self):
-        if(self.manage_output_devices_save_question_window_is_open==False): 
-            self.manage_output_devices_save_question_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_manage_output_devices_save_question_window = manage_output_devices_save_question_ui.Ui_Dialog()
-            self.ui_manage_output_devices_save_question_window.setupUi(self.manage_output_devices_save_question_window)
-            self.manage_output_devices_save_question_window_is_open = True
-            self.manage_output_devices_save_question_window_support_code = manage_output_devices_save_question_support_ui.Support_Ui_Dialog(self)
-            self.manage_output_devices_save_question_window.exec()
+        pass
 
     def open_manage_output_unable_to_open_process_window(self,description):
-        if(self.manage_output_unable_to_open_process_window_is_open==False):    
-            self.manage_output_unable_to_open_process_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_manage_output_unable_to_open_process_window = manage_output_unable_to_open_process_ui.Ui_Dialog()
-            self.ui_manage_output_unable_to_open_process_window.setupUi(self.manage_output_unable_to_open_process_window)
-            self.manage_output_unable_to_open_process_window_is_open = True
-            self.manage_output_unable_to_open_process_window_support_code = manage_output_unable_to_open_process_support_ui.Support_Ui_Dialog(self,description)
-            self.manage_output_unable_to_open_process_window.exec()
-
+        pass
         
     def open_manage_input_devices_window(self,checked):
         if(self.manage_input_device_window_is_open==False): 
@@ -1358,13 +1331,7 @@ class Papinhio_player:
             self.manage_input_device_window.exec()
 
     def open_manage_input_device_save_question_window(self):
-        if(self.manage_input_device_save_question_window_is_open==False):   
-            self.manage_input_device_save_question_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_manage_input_device_save_question_window = manage_input_device_save_question_ui.Ui_Dialog()
-            self.ui_manage_input_device_save_question_window.setupUi(self.manage_input_device_save_question_window)
-            self.manage_input_device_save_question_window_is_open = True
-            self.manage_input_device_save_question_window_support_code = manage_input_device_save_question_support_ui.Support_Ui_Dialog(self)
-            self.manage_input_device_save_question_window.exec()
+        pass
 
             
     #Διαχείριση διεργασιών #
@@ -1391,14 +1358,7 @@ class Papinhio_player:
             self.choose_theme_window.exec()
 
     def open_change_theme_save_question_window(self):
-        if(self.choose_theme_save_question_window_is_open==False):  
-            self.choose_theme_save_question_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_choose_theme_save_question_window = choose_theme_save_question_ui.Ui_Dialog()
-            self.ui_choose_theme_save_question_window.setupUi(self.choose_theme_save_question_window)
-            self.choose_theme_save_question_window_is_open = True
-            self.choose_theme_save_question_window_support_code = choose_theme_save_question_support_ui.Support_Ui_Dialog(self)
-            self.choose_theme_save_question_window.exec()
-    
+        pass
 
     # Ορατά πεδία λίστας αναπαραγωγής #
     def open_select_player_list_fields_window(self,checked):
@@ -1411,13 +1371,7 @@ class Papinhio_player:
             self.visible_player_list_fields_window.exec()
             
     def open_select_player_list_fields_save_question_window(self):
-        if self.visible_player_list_fields_save_question_window_is_open==False:
-            self.visible_player_list_fields_save_question_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_visible_player_list_fields_save_question_window = visible_player_list_fields_save_question_ui.Ui_Dialog()
-            self.ui_visible_player_list_fields_save_question_window.setupUi(self.visible_player_list_fields_save_question_window)
-            self.visible_player_list_fields_save_question_window_is_open = True
-            self.visible_player_list_fields_save_question_window_support_code = visible_player_list_fields_save_question_support_ui.Support_Ui_Dialog(self)
-            self.visible_player_list_fields_save_question_window.exec()
+        pass
  
 
     # Ορατά πεδία προγράμματος #
@@ -1431,25 +1385,19 @@ class Papinhio_player:
             self.visible_programm_components_window.exec()
             
     def open_visible_programm_components_save_question_window(self):
-        if self.visible_programm_components_save_question_window_is_open==False:
-            self.visible_programm_components_save_question_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_visible_programm_components_save_question_window = visible_programm_components_save_question_ui.Ui_Dialog()
-            self.ui_visible_programm_components_save_question_window.setupUi(self.visible_programm_components_save_question_window)
-            self.visible_programm_components_save_question_window_is_open = True
-            self.visible_programm_components_save_question_window_support_code = visible_programm_components_save_question_support_ui.Support_Ui_Dialog(self)
-            self.visible_programm_components_save_question_window.exec()
+        pass
     
     ### Menu 3 ###
 
     # Προγραμματισμένες μεταδόσεις #
     def open_new_scheduled_transmition_window(self,checked):
-        if(self.import_scheduled_transmition_window_is_open==False):    
-            self.import_scheduled_transmition_window = QtWidgets.QDialog(self.MainWindow)
-            self.ui_import_scheduled_transmition_window = import_scheduled_transmition_ui.Ui_Dialog()
-            self.ui_import_scheduled_transmition_window.setupUi(self.import_scheduled_transmition_window)
-            self.import_scheduled_transmition_window_is_open = True
-            self.import_scheduled_transmition_window_support_code = import_scheduled_transmition_support_ui.Support_Ui_Dialog(self)
-            self.import_scheduled_transmition_window.exec()
+        if(self.create_schedule_transmition_window_is_open==False):    
+            self.create_schedule_transmition_window = QtWidgets.QDialog(self.MainWindow)
+            self.ui_create_schedule_transmition_window = import_scheduled_transmition_ui.Ui_Dialog()
+            self.ui_create_schedule_transmition_window.setupUi(self.create_schedule_transmition_window)
+            self.create_schedule_transmition_window_is_open = True
+            self.create_schedule_transmition_window_support_code = import_scheduled_transmition_support_ui.Support_Ui_Dialog(self)
+            self.create_schedule_transmition_window.exec()
     
     def open_review_transmitions_window(self,checked):
         if(self.manage_scheduled_transmitions_window_is_open==False):   
@@ -1482,7 +1430,7 @@ class Papinhio_player:
         
     ### Menu 4 ###
 
-    # Επικοινωνία #
+    # Λίγα λόγια για το πρόγραμμα #
     def open_programm_abstract_information_window(self,checked):
         if(self.programm_abstract_information_window_is_open==False):   
             self.programm_abstract_information_window = QtWidgets.QDialog(self.MainWindow)
@@ -1492,7 +1440,7 @@ class Papinhio_player:
             self.programm_abstract_information_window_support_code = programm_abstract_information_support_ui.Support_Ui_Dialog(self)
             self.programm_abstract_information_window.exec()
             
-    # Λίγα λόγια για το πρόγραμμα #
+    # Επικοινωνία #
     def open_contact_window(self,checked):
         if(self.contact_window_is_open==False): 
             self.contact_window = QtWidgets.QDialog(self.MainWindow)
