@@ -140,7 +140,9 @@ choose_theme_error_ui = importlib.import_module("compiled-ui.menu-2.choose-theme
 
 # Ορατά πεδία λίστας αναπαραγωγής #
 visible_player_list_fields_ui = importlib.import_module("compiled-ui.menu-2.visible-player-list-fields.visible-player-list-fields")
-#visible_player_list_fields_save_question_ui = importlib.import_module("compiled-ui.menu-2.Ορατα πεδία λίστας αναπαραγωγής (Visible player list fields).Ερώτηση αποθήκευσης (Save question)")
+select_player_list_fields_save_question_ui = importlib.import_module("compiled-ui.menu-2.visible-player-list-fields.save-question")
+visible_player_list_fields_error_ui = importlib.import_module("compiled-ui.menu-2.visible-player-list-fields.error")
+
 
 # Ορατά πεδία προγράμματος #
 visible_programm_components_ui = importlib.import_module("compiled-ui.menu-2.visible-program-components.visible-program-components")
@@ -273,7 +275,8 @@ choose_theme_error_support_ui = importlib.import_module("python+.menu-2.choose-t
 
 # Ορατά πεδία λίστας αναπαραγωγής #
 visible_player_list_fields_support_ui = importlib.import_module("python+.menu-2.visible-player-list-fields.visible-player-list-fields")
-#visible_player_list_fields_save_question_support_ui = importlib.import_module("python+.menu-2.Ορατα πεδία λίστας αναπαραγωγής (Visible player list fields).Ερώτηση αποθήκευσης (Save question)")
+select_player_list_fields_save_question_support_ui = importlib.import_module("python+.menu-2.visible-player-list-fields.save-question")
+visible_player_list_fields_error_support_ui = importlib.import_module("python+.menu-2.visible-player-list-fields.error")
 
 # Ορατά πεδία προγράμματος #
 visible_programm_components_support_ui = importlib.import_module("python+.menu-2.visible-program-components.visible-program-components") 
@@ -539,7 +542,8 @@ class Papinhio_player:
         
         # Ορατά πεδία λίστας αναπαραγωγής #
         self.visible_player_list_fields_window_is_open = False
-        #self.visible_player_list_fields_save_question_window_is_open = False
+        self.select_player_list_fields_save_question_window_is_open = False
+        self.visible_player_list_fields_error_window_is_open = False
 
         # Ορατά πεδία προγράμματος #
         self.visible_program_components_window_is_open = False
@@ -1397,7 +1401,22 @@ class Papinhio_player:
             self.visible_player_list_fields_window.exec()
             
     def open_select_player_list_fields_save_question_window(self):
-        pass
+        if(self.select_player_list_fields_save_question_window_is_open==False):    
+            self.select_player_list_fields_save_question_window = QtWidgets.QDialog(self.visible_player_list_fields_window)
+            self.ui_select_player_list_fields_save_question_window = select_player_list_fields_save_question_ui.Ui_Dialog()
+            self.ui_select_player_list_fields_save_question_window.setupUi(self.select_player_list_fields_save_question_window)
+            self.select_player_list_fields_save_question_window_is_open = True
+            self.select_player_list_fields_save_question_window_support_code = select_player_list_fields_save_question_support_ui.Support_Ui_Dialog(self)
+            self.select_player_list_fields_save_question_window.exec()
+
+    def open_select_player_list_fields_error_window(self,error_message):
+        if(self.visible_player_list_fields_error_window_is_open==False):    
+            self.visible_player_list_fields_error_window = QtWidgets.QDialog(self.visible_player_list_fields_window)
+            self.ui_visible_player_list_fields_error_window = visible_player_list_fields_error_ui.Ui_Dialog()
+            self.ui_visible_player_list_fields_error_window.setupUi(self.visible_player_list_fields_error_window)
+            self.visible_player_list_fields_error_window_is_open = True
+            self.visible_player_list_fields_error_window_support_code = visible_player_list_fields_error_support_ui.Support_Ui_Dialog(self,error_message)
+            self.visible_player_list_fields_error_window.exec()
  
 
     # Ορατά πεδία προγράμματος #
