@@ -30,6 +30,7 @@ class Support_Ui_Dialog:
             self.main_self.choose_theme_window.update()
 
             self.need_save = False
+            self.save_in_progress = False
 
             self.main_self.choose_theme_window.resize(676, 456)
             self.main_self.choose_theme_window.hide()
@@ -238,6 +239,7 @@ class Support_Ui_Dialog:
 
     def save(self,state):
         try:
+            self.save_in_progress = True
             self.choose_theme_queue.put({"type":"save","default_font":self.default_font,"default_font_size":self.default_font_size,"default_font_color":self.default_font_color,"default_background_color":self.default_background_color,"default_buttons_background":self.default_buttons_background,"default_buttons_font_color":self.default_buttons_font_color,"default_style":self.default_style,"default_custome_theme":self.default_custome_theme})
         except Exception as e:
             error_message = str(traceback.format_exc())
@@ -246,6 +248,7 @@ class Support_Ui_Dialog:
     def save_finished(self):
         try:
             self.need_save = False
+            self.save_in_progress = False
             self.main_self.apply_theme_settings()
             self.close_window(None)
         except Exception as e:
@@ -257,9 +260,15 @@ class Support_Ui_Dialog:
 
 
     def closeEvent(self,event):
+        if self.save_in_progress:
+            event.ignore()
+            return 1
+
         if self.need_save == True:
             self.main_self.open_change_theme_save_question_window()
             event.ignore()
+
+
             
         if self.need_save == False:
             if self.choose_theme_child_process is not None:

@@ -1,1 +1,4 @@
 exe/1.[[:space:]]main-window/dist/Papinhio[[:space:]]player filter=lfs diff=lfs merge=lfs -text
+exe filter=lfs diff=lfs merge=lfs -text
+disket-box/ filter=lfs diff=lfs merge=lfs -text
+extra filter=lfs diff=lfs merge=lfs -text

@@ -75,7 +75,7 @@ class Support_Ui_Dialog:
             self.main_self.ui_visible_player_list_fields_window.gridLayout_2.removeWidget(self.main_self.ui_visible_player_list_fields_window.frame_4)
             self.main_self.ui_visible_player_list_fields_window.gridLayout_2.addWidget(self.main_self.ui_visible_player_list_fields_window.frame_4, 3, 0, 1, 1)
             
-            self.main_self.ui_visible_player_list_fields_window.groupBox = Custom_QGroupBox('Επιλογή όλων')
+            self.main_self.ui_visible_player_list_fields_window.groupBox = Custom_QGroupBox('Επιλογή όλων',main_self=self.main_self)
             self.main_self.ui_visible_player_list_fields_window.groupBox.toggled.connect(self.toggleCheckBoxes)
             self.main_self.ui_visible_player_list_fields_window.layout = QtWidgets.QGridLayout(self.main_self.ui_visible_player_list_fields_window.groupBox)
 
@@ -466,7 +466,10 @@ class Support_Ui_Dialog:
             error_message = str(traceback.format_exc())
             self.main_self.open_select_player_list_fields_error_window(error_message)
 
-        
+
+    def close_window(self,state):
+        self.main_self.visible_player_list_fields_window.close()
+
     def closeEvent(self,event):
         try:
             if self.save_in_progress:
@@ -643,61 +646,85 @@ class Player_List_Fields_Child_Proc(Process):
         
 class Custom_QGroupBox(QtWidgets.QGroupBox):
     checkAllIfAny = True
-    def __init__(self, *args, **kwargs):
-        super(Custom_QGroupBox, self).__init__(*args, **kwargs)
-        self.setCheckable(True)
-        self.checkBoxes = []
-        self.toggled.connect(self.toggleCheckBoxes)
+    def __init__(self,title,main_self=None):
+        try:
+            self.main_self = main_self
+            super(Custom_QGroupBox, self).__init__(title=title,parent=None)
+            self.setCheckable(True)
+            self.checkBoxes = []
+            self.toggled.connect(self.toggleCheckBoxes)
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_select_player_list_fields_error_window(error_message)
+
 
     def addCheckBox(self, cb):
-        self.checkBoxes.append(cb)
-        cb.toggled.connect(self.update)
-        cb.destroyed.connect(lambda: self.removeCheckBox(cb))
+        try:
+            self.checkBoxes.append(cb)
+            cb.toggled.connect(self.update)
+            cb.destroyed.connect(lambda: self.removeCheckBox(cb))
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_select_player_list_fields_error_window(error_message)
 
     def removeCheckBox(self, cb):
         try:
             self.checkBoxes.remove(cb)
             cb.toggled.disconnect(self.update)
-        except:
+        except Exception as e:
             pass
+            error_message = str(traceback.format_exc())
+            #self.main_self.open_select_player_list_fields_error_window(error_message)
 
     def allStates(self):
-        return [cb.isChecked() for cb in self.checkBoxes]
+        try:
+            return [cb.isChecked() for cb in self.checkBoxes]
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_select_player_list_fields_error_window(error_message)
 
     def toggleCheckBoxes(self):
-        if self.checkAllIfAny:
-            state = not all(self.allStates())
-        else:
-            state = not any(self.allStates())
+        try:
+            if self.checkAllIfAny:
+                state = not all(self.allStates())
+            else:
+                state = not any(self.allStates())
 
-        for widget in self.children():
-            if not widget.isWidgetType():
-                continue
-            if not widget.testAttribute(QtCore.Qt.WA_ForceDisabled):
-                # restore the enabled state in order to override the default
-                # behavior of setChecked(False); previous explicit calls for
-                # setEnabled(False) on the target widget will be ignored
-                widget.setEnabled(True)
-                if widget in self.checkBoxes:
-                    widget.setChecked(state)
+            for widget in self.children():
+                if not widget.isWidgetType():
+                    continue
+                if not widget.testAttribute(QtCore.Qt.WA_ForceDisabled):
+                    # restore the enabled state in order to override the default
+                    # behavior of setChecked(False); previous explicit calls for
+                    # setEnabled(False) on the target widget will be ignored
+                    widget.setEnabled(True)
+                    if widget in self.checkBoxes:
+                        widget.setChecked(state)
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_select_player_list_fields_error_window(error_message)
 
     def paintEvent(self, event):
-        opt = QtWidgets.QStyleOptionGroupBox()
-        self.initStyleOption(opt)
-        states = self.allStates()
-        if all(states):
-            # force the "checked" state
-            opt.state |= QtWidgets.QStyle.State_On
-            opt.state &= ~QtWidgets.QStyle.State_Off
-        else:
-            # force the "not checked" state
-            opt.state &= ~QtWidgets.QStyle.State_On
-            if any(states):
-                # force the "not unchecked" state and set the tristate mode
+        try:
+            opt = QtWidgets.QStyleOptionGroupBox()
+            self.initStyleOption(opt)
+            states = self.allStates()
+            if all(states):
+                # force the "checked" state
+                opt.state |= QtWidgets.QStyle.State_On
                 opt.state &= ~QtWidgets.QStyle.State_Off
-                opt.state |= QtWidgets.QStyle.State_NoChange
             else:
-                # force the "unchecked" state
-                opt.state |= QtWidgets.QStyle.State_Off
-        painter = QtWidgets.QStylePainter(self)
-        painter.drawComplexControl(QtWidgets.QStyle.CC_GroupBox, opt)
+                # force the "not checked" state
+                opt.state &= ~QtWidgets.QStyle.State_On
+                if any(states):
+                    # force the "not unchecked" state and set the tristate mode
+                    opt.state &= ~QtWidgets.QStyle.State_Off
+                    opt.state |= QtWidgets.QStyle.State_NoChange
+                else:
+                    # force the "unchecked" state
+                    opt.state |= QtWidgets.QStyle.State_Off
+            painter = QtWidgets.QStylePainter(self)
+            painter.drawComplexControl(QtWidgets.QStyle.CC_GroupBox, opt)
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_select_player_list_fields_error_window(error_message)

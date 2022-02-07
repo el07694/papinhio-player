@@ -29,6 +29,7 @@ class Support_Ui_Dialog:
             self.main_self.change_theme_save_question_window_is_open = False
 
         self.main_self.choose_theme_window_support_code.need_save = False
+        self.main_self.choose_theme_window_support_code.save_in_progress = False
         if self.main_self.choose_theme_window_is_open:
             self.main_self.choose_theme_window_support_code.close_window(None)
             self.main_self.choose_theme_window_is_open = False
@@ -41,6 +42,7 @@ class Support_Ui_Dialog:
             self.main_self.change_theme_save_question_window_support_code.close_window(None)
 
         self.main_self.choose_theme_window_support_code.need_save = False
+        self.main_self.choose_theme_window_support_code.save_in_progress = False
         if self.main_self.choose_theme_window_is_open:
             self.main_self.choose_theme_window_support_code.close_window(None)
 
@@ -51,9 +53,9 @@ class Support_Ui_Dialog:
             self.main_self.change_theme_save_question_window_support_code.close_window(None)
 
         self.main_self.choose_theme_window_support_code.need_save = False
+        self.main_self.choose_theme_window_support_code.save_in_progress = False
         if self.main_self.choose_theme_window_is_open:
             self.main_self.choose_theme_window_support_code.close_window(None)
 
         self.main_self.choose_theme_error_window_is_open = False
-        event.accept()        
-        	
+        event.accept()

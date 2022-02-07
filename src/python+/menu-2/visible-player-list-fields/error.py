@@ -1,4 +1,3 @@
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Support_Ui_Dialog:
@@ -23,53 +22,40 @@ class Support_Ui_Dialog:
         self.main_self.visible_player_list_fields_error_window.closeEvent = lambda event:self.closeEvent(event)
         
     def restart_proccess(self,state):
-        try:
-            if self.main_self.select_player_list_fields_save_question_window_is_open:
-                self.main_self.select_player_list_fields_save_question_window_support_code.close_window(None)
-                self.main_self.select_player_list_fields_save_question_window_is_open = False
+        if self.main_self.select_player_list_fields_save_question_window_is_open:
+            self.main_self.select_player_list_fields_save_question_window_support_code.close_window(None)
+            self.main_self.select_player_list_fields_save_question_window_is_open = False
 
-            
-            if self.main_self.visible_player_list_fields_window_is_open:
-                self.main_self.visible_player_list_fields_window_support_code.need_save = False
-                self.main_self.visible_player_list_fields_window_support_code.close_window(None)
-                self.main_self.visible_player_list_fields_window_is_open = False
+        self.main_self.visible_player_list_fields_window_support_code.need_save = False
+        self.main_self.visible_player_list_fields_window_support_code.save_in_progress = False
+        if self.main_self.visible_player_list_fields_window_is_open:
+            self.main_self.visible_player_list_fields_window_support_code.close_window(None)
+            self.main_self.visible_player_list_fields_window_is_open = False
 
-            self.main_self.visible_player_list_fields_error_window.close()
-            self.main_self.open_select_player_list_fields_window(None)
-        except Exception as e:
-            pass
+        self.main_self.visible_player_list_fields_error_window.close()
+        self.main_self.open_select_player_list_fields_window(None)
 
     def close_window(self,state):
-        try:
-            if self.main_self.select_player_list_fields_save_question_window_is_open:
-                self.main_self.select_player_list_fields_save_question_window_support_code.close_window(None)
-                self.main_self.select_player_list_fields_save_question_window_is_open = False
+        if self.main_self.select_player_list_fields_save_question_window_is_open:
+            self.main_self.select_player_list_fields_save_question_window_support_code.close_window(None)
 
-            
-            if self.main_self.visible_player_list_fields_window_is_open:
-                self.main_self.visible_player_list_fields_window_support_code.need_save = False
-                self.main_self.visible_player_list_fields_window_support_code.close_window(None)
-                self.main_self.visible_player_list_fields_window_is_open = False
+        self.main_self.visible_player_list_fields_window_support_code.need_save = False
+        self.main_self.visible_player_list_fields_window_support_code.save_in_progress = False
+        if self.main_self.visible_player_list_fields_window_is_open:
+            self.main_self.visible_player_list_fields_window_support_code.close_window(None)
 
-            self.main_self.visible_player_list_fields_error_window.close()
-        except Exception as e:
-            pass
+        self.main_self.visible_player_list_fields_error_window.close()
         
     def closeEvent(self,event):
-        try:
-            if self.main_self.select_player_list_fields_save_question_window_is_open:
-                self.main_self.select_player_list_fields_save_question_window_support_code.close_window(None)
-                self.main_self.select_player_list_fields_save_question_window_is_open = False
+        if self.main_self.select_player_list_fields_save_question_window_is_open:
+            self.main_self.select_player_list_fields_save_question_window_support_code.close_window(None)
 
+        self.main_self.visible_player_list_fields_window_support_code.need_save = False
+        self.main_self.visible_player_list_fields_window_support_code.save_in_progress = False
+        if self.main_self.visible_player_list_fields_window_is_open:
+            self.main_self.visible_player_list_fields_window_support_code.close_window(None)
+            print("Visible player list fields window closed.")
+
+        self.main_self.visible_player_list_fields_error_window_is_open = False
+        event.accept()        
             
-            if self.main_self.visible_player_list_fields_window_is_open:
-                self.main_self.visible_player_list_fields_window_support_code.need_save = False
-                self.main_self.visible_player_list_fields_window_support_code.close_window(None)
-                self.main_self.visible_player_list_fields_window_is_open = False
-
-            self.main_self.visible_player_list_fields_error_window.close()
-            event.accept()
-        except Exception as e:
-            event.accept()
-      
-        	

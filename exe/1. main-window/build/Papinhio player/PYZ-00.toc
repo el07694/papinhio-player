@@ -588,26 +588,16 @@
    '/home/chris/Documents/papinhio-player/src/python+/menu-2/visible-program-components/visible-program-components.py',
    'PYMODULE'),
   ('python+.menu-2.visible-program-components', '-', 'PYMODULE'),
+  ('python+.menu-2.visible-player-list-fields.save-question',
+   '/home/chris/Documents/papinhio-player/src/python+/menu-2/visible-player-list-fields/save-question.py',
+   'PYMODULE'),
   ('python+.menu-2.visible-player-list-fields.visible-player-list-fields',
    '/home/chris/Documents/papinhio-player/src/python+/menu-2/visible-player-list-fields/visible-player-list-fields.py',
    'PYMODULE'),
+  ('python+.menu-2.visible-player-list-fields.error',
+   '/home/chris/Documents/papinhio-player/src/python+/menu-2/visible-player-list-fields/error.py',
+   'PYMODULE'),
   ('python+.menu-2.visible-player-list-fields', '-', 'PYMODULE'),
-  ('python+.menu-2.Ορατα πεδία λίστας αναπαραγωγής (Visible player list '
-   'fields).Ορατα πεδία λίστας αναπαραγωγής (Visible player list fields)',
-   '/home/chris/Documents/papinhio-player/src/python+/menu-2/Ορατα πεδία '
-   'λίστας αναπαραγωγής (Visible player list fields)/Ορατα πεδία λίστας '
-   'αναπαραγωγής (Visible player list fields).py',
-   'PYMODULE'),
-  ('python+.menu-2.Ορατα πεδία λίστας αναπαραγωγής (Visible player list '
-   'fields).Ερώτηση αποθήκευσης (Save question)',
-   '/home/chris/Documents/papinhio-player/src/python+/menu-2/Ορατα πεδία '
-   'λίστας αναπαραγωγής (Visible player list fields)/Ερώτηση αποθήκευσης (Save '
-   'question).py',
-   'PYMODULE'),
-  ('python+.menu-2.Ορατα πεδία λίστας αναπαραγωγής (Visible player list '
-   'fields)',
-   '-',
-   'PYMODULE'),
   ('python+.menu-2.choose-theme.save-question',
    '/home/chris/Documents/papinhio-player/src/python+/menu-2/choose-theme/save-question.py',
    'PYMODULE'),
@@ -1727,8 +1717,8 @@
   ('compiled-ui.main-window', '-', 'PYMODULE'),
   ('compiled-ui', '-', 'PYMODULE'),
   ('_py_abc', '/usr/lib/python3.9/_py_abc.py', 'PYMODULE'),
-  ('stringprep', '/usr/lib/python3.9/stringprep.py', 'PYMODULE'),
   ('tracemalloc', '/usr/lib/python3.9/tracemalloc.py', 'PYMODULE'),
+  ('stringprep', '/usr/lib/python3.9/stringprep.py', 'PYMODULE'),
   ('datetime', '/usr/lib/python3.9/datetime.py', 'PYMODULE'),
   ('_strptime', '/usr/lib/python3.9/_strptime.py', 'PYMODULE'),
   ('multiprocessing',

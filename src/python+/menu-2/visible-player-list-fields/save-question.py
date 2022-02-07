@@ -40,11 +40,11 @@ class Support_Ui_Dialog:
 
     def close_window(self,state):
         try:
-            self.main_self.select_player_list_fields_save_question_window.close()
+            self.main_self.visible_player_list_fields_error_window.close()
         except Exception as e:
             error_message = str(traceback.format_exc())
-            self.main_self.open_select_player_list_fields_error_window(error_message)
-            
+            self.main_self.open_select_player_list_fields_error_window(error_message)            
+
     def save(self,state):
         try:
             self.main_self.visible_player_list_fields_window_support_code.save(None)
