@@ -91,6 +91,7 @@ class Support_Ui_Dialog:
             self.choose_theme_child_process = Choose_Theme_Child_Proc(self.choose_theme_child_pipe, self.choose_theme_queue)
             self.choose_theme_child_process.start()
             self.choose_theme_emitter.save_finished.connect(self.save_finished)
+            self.choose_theme_emitter.error_signal.connect(lambda error_message:self.main_self.open_choose_theme_error_window(error_message))
             
             counter = 0
             for process in self.main_self.manage_processes_instance.processes:
@@ -282,9 +283,14 @@ class Support_Ui_Dialog:
         else:
             event.ignore()
 
+def hello(error_message):
+    error_message = str(traceback.format_exc())
+
+
 class Choose_Theme_Emitter(QThread):
     try:
         save_finished = pyqtSignal()
+        error_signal = pyqtSignal(str)
     except Exception as e:
         pass
 
@@ -299,9 +305,16 @@ class Choose_Theme_Emitter(QThread):
         try:
             while True:
                 data = self.data_from_process.recv()
-                self.save_finished.emit()
+                if data["type"]=="save_finished":
+                    self.save_finished.emit()
+                else:
+                    self.error_signal.emit(data["error_message"])
         except Exception as e:
-            pass
+            try:
+                error_message = str(traceback.format_exc())
+                self.error_signal.emit(error_message)
+            except Exception as e:
+                pass
         
 class Choose_Theme_Child_Proc(Process):
 
@@ -312,7 +325,11 @@ class Choose_Theme_Child_Proc(Process):
             self.to_emitter = to_emitter
             self.data_from_mother = from_mother
         except Exception as e:
-            pass
+            try:
+                error_message = str(traceback.format_exc())
+                self.to_emitter.send({"type":"error","error_message":error_message})
+            except Exception as e:
+                pass
             
     def run(self):
         try:
@@ -321,13 +338,16 @@ class Choose_Theme_Child_Proc(Process):
             while True:
                 time.sleep(1)
         except Exception as e:
-            pass
+            error_message = str(traceback.format_exc())
+            self.to_emitter.send({"type":"error","error_message":error_message})
             
     def save_theme_settings(self,data):
         try:
             for key in data:
                 if key!="save":
                     database_functions.update_setting({"keyword":key,"current_value":data[key]})
-            self.to_emitter.send({"type":"save_finished"})
+            self.to_emitter.send({"type":"error","type":"save_finished"})
         except Exception as e:
-            pass
+            error_message = str(traceback.format_exc())
+            self.to_emitter.send({"type":"error","error_message":error_message})
+
