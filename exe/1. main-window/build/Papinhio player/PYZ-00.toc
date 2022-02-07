@@ -592,6 +592,22 @@
    '/home/chris/Documents/papinhio-player/src/python+/menu-2/visible-player-list-fields/visible-player-list-fields.py',
    'PYMODULE'),
   ('python+.menu-2.visible-player-list-fields', '-', 'PYMODULE'),
+  ('python+.menu-2.Ορατα πεδία λίστας αναπαραγωγής (Visible player list '
+   'fields).Ορατα πεδία λίστας αναπαραγωγής (Visible player list fields)',
+   '/home/chris/Documents/papinhio-player/src/python+/menu-2/Ορατα πεδία '
+   'λίστας αναπαραγωγής (Visible player list fields)/Ορατα πεδία λίστας '
+   'αναπαραγωγής (Visible player list fields).py',
+   'PYMODULE'),
+  ('python+.menu-2.Ορατα πεδία λίστας αναπαραγωγής (Visible player list '
+   'fields).Ερώτηση αποθήκευσης (Save question)',
+   '/home/chris/Documents/papinhio-player/src/python+/menu-2/Ορατα πεδία '
+   'λίστας αναπαραγωγής (Visible player list fields)/Ερώτηση αποθήκευσης (Save '
+   'question).py',
+   'PYMODULE'),
+  ('python+.menu-2.Ορατα πεδία λίστας αναπαραγωγής (Visible player list '
+   'fields)',
+   '-',
+   'PYMODULE'),
   ('python+.menu-2.choose-theme.save-question',
    '/home/chris/Documents/papinhio-player/src/python+/menu-2/choose-theme/save-question.py',
    'PYMODULE'),
@@ -602,6 +618,21 @@
    '/home/chris/Documents/papinhio-player/src/python+/menu-2/choose-theme/choose-theme.py',
    'PYMODULE'),
   ('python+.menu-2.choose-theme', '-', 'PYMODULE'),
+  ('python+.menu-2.Ορατά πεδία προγράμματος (Visible programm '
+   'components).Ερώτηση αποθήκευσης (Save question)',
+   '/home/chris/Documents/papinhio-player/src/python+/menu-2/Ορατά πεδία '
+   'προγράμματος (Visible programm components)/Ερώτηση αποθήκευσης (Save '
+   'question).py',
+   'PYMODULE'),
+  ('python+.menu-2.Ορατά πεδία προγράμματος (Visible programm '
+   'components).Ορατά πεδία προγράμματος (Visible programm components)',
+   '/home/chris/Documents/papinhio-player/src/python+/menu-2/Ορατά πεδία '
+   'προγράμματος (Visible programm components)/Ορατά πεδία προγράμματος '
+   '(Visible programm components).py',
+   'PYMODULE'),
+  ('python+.menu-2.Ορατά πεδία προγράμματος (Visible programm components)',
+   '-',
+   'PYMODULE'),
   ('python+.menu-2', '-', 'PYMODULE'),
   ('python+.menu-3.radio-stations.edit.edit',
    '/home/chris/Documents/papinhio-player/src/python+/menu-3/radio-stations/edit/edit.py',
@@ -638,6 +669,9 @@
    'PYMODULE'),
   ('python+.main-window.manage-player-list',
    '/home/chris/Documents/papinhio-player/src/python+/main-window/manage-player-list.py',
+   'PYMODULE'),
+  ('python+.main-window.manage-procceses',
+   '/home/chris/Documents/papinhio-player/src/python+/main-window/manage-procceses.py',
    'PYMODULE'),
   ('python+.main-window.errors-and-warnings.internet-error',
    '/home/chris/Documents/papinhio-player/src/python+/main-window/errors-and-warnings/internet-error.py',
@@ -1693,8 +1727,8 @@
   ('compiled-ui.main-window', '-', 'PYMODULE'),
   ('compiled-ui', '-', 'PYMODULE'),
   ('_py_abc', '/usr/lib/python3.9/_py_abc.py', 'PYMODULE'),
-  ('tracemalloc', '/usr/lib/python3.9/tracemalloc.py', 'PYMODULE'),
   ('stringprep', '/usr/lib/python3.9/stringprep.py', 'PYMODULE'),
+  ('tracemalloc', '/usr/lib/python3.9/tracemalloc.py', 'PYMODULE'),
   ('datetime', '/usr/lib/python3.9/datetime.py', 'PYMODULE'),
   ('_strptime', '/usr/lib/python3.9/_strptime.py', 'PYMODULE'),
   ('multiprocessing',

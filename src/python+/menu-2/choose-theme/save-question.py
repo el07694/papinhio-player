@@ -57,7 +57,6 @@ class Support_Ui_Dialog:
             
     def no_save(self,state):
         try:
-            a = b
             self.main_self.choose_theme_window_support_code.need_save = False
             self.main_self.choose_theme_window.close()
             self.main_self.apply_theme_settings()
