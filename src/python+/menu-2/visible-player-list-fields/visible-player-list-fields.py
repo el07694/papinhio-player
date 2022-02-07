@@ -440,7 +440,7 @@ class Support_Ui_Dialog:
 
     def save_finished(self):
         try:
-            #self.main_self.manage_player_list_table_instance.main_player_list_queue.put({"type":"player_list_fields"})
+            self.main_self.manage_player_list_table_instance.main_player_list_queue.put({"type":"player_list_fields"})
         
             self.player_list_fields_child_process.terminate()
             self.player_list_fields_emitter.terminate()

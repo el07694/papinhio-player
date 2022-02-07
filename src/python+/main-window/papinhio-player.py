@@ -1496,6 +1496,25 @@ class Papinhio_player:
             self.contact_window.exec()
             
     def closeEvent(self,event):
+        q_size = self.manage_player_list_table_instance.main_player_list_queue.qsize()
+        while(q_size!=0):
+            time.sleep(1)
+            q_size = self.manage_player_list_table_instance.main_player_list_queue.qsize()
+        self.manage_player_list_table_instance.main_player_list_child_process.terminate()
+        self.manage_player_list_table_instance.main_player_list_emitter.terminate()
+
+        counter = 0
+        for process in self.manage_processes_instance.processes:
+            if "process_number" in process:
+                if process["process_number"]==self.manage_player_list_table_instance.proccess_number:
+                    self.manage_processes_instance.processes[counter]["pid"] = None
+                    self.manage_processes_instance.processes[counter]["start_datetime"] = None
+                    self.manage_processes_instance.processes[counter]["status"] = "stopped"
+                    self.manage_processes_instance.processes[counter]["cpu"] = 0
+                    self.manage_processes_instance.processes[counter]["ram"] = 0
+            counter += 1
+
+
         event.accept()
         '''
         self.manage_player_list_table_instance.auto_dj = 0
