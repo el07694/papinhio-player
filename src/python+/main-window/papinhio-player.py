@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-#from qt_material import apply_stylesheet
+from qt_material import apply_stylesheet
 import subprocess
 import sys
 import os
@@ -23,7 +23,7 @@ papinhio_player_ui = importlib.import_module("compiled-ui.main-window.papinhio-p
 database_functions = importlib.import_module("python+.lib.sqlite3_functions")
 
 ### import manage processes class ###
-manage_processes_class = importlib.import_module("python+.menu-1.manage-procceses.manage-procceses")
+manage_processes_class = importlib.import_module("python+.main-window.manage-procceses")
 
 ### import manage microphone procces class ###
 manage_microphone_class = importlib.import_module("python+.main-window.manage-microphone")
@@ -309,7 +309,7 @@ class Papinhio_player:
         
         self.database_functions = database_functions
         
-        '''
+        
 
         #decks state is saved (for close Event)
         self.decks_state_saved = False
@@ -317,6 +317,7 @@ class Papinhio_player:
         #manage_processes_class
         self.manage_processes_instance = manage_processes_class.Manage_Processes(self)
         
+
         #manage microphone class
         self.manage_microphone_instance = manage_microphone_class.Manage_Microphone_Deck(self)
         
@@ -325,7 +326,8 @@ class Papinhio_player:
         
         #manage_decks_class
         self.manage_decks_instance = manage_decks_class.Manage_Decks(self)
-        '''        
+        
+
         #apply theme settings
         self.apply_theme_settings()
         
@@ -410,16 +412,22 @@ class Papinhio_player:
         self.default_buttons_background = database_functions.read_setting("default_button_background")["current_value"]
         self.default_buttons_font_color = database_functions.read_setting("default_button_font_color")["current_value"]
         self.default_style = database_functions.read_setting("default_style")["current_value"]
-        #self.default_custome_theme = database_functions.read_setting("default_custome_theme")["current_value"]
+        self.default_custome_theme = database_functions.read_setting("default_custome_theme")["current_value"]
 
-        #apply theme to mainwindow
-        self.app.setStyle(self.default_style)
-        self.font = QtGui.QFont(self.default_font, int(self.default_font_size))
-        self.MainWindow.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+self.default_font_size+"px;color:\""+self.default_font_color+"\";}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
-        self.ui.scrollAreaWidgetContents.setStyleSheet("#scrollAreaWidgetContents{background:\""+self.default_background_color+"\"}")
+        if self.default_custome_theme!="":
+            apply_stylesheet(self.app, theme=self.default_custome_theme)
+        else:
+            self.app.setStyle("")
+            self.app.setStyleSheet("")
+            self.MainWindow.setStyleSheet("")
 
-        #apply_stylesheet(self.app, theme=self.default_custome_theme,extra={'density_scale': '-2',})
-
+            #apply theme to mainwindow
+            self.app.setStyle(self.default_style)
+            self.font = QtGui.QFont(self.default_font, int(self.default_font_size))
+            self.MainWindow.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+self.default_font_size+"px;color:\""+self.default_font_color+"\";}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
+            self.ui.scrollAreaWidgetContents.setStyleSheet("#scrollAreaWidgetContents{background:\""+self.default_background_color+"\"}")
+        
+        
         self.MainWindow.update()
   
     def set_windows_boolean_value(self): 
