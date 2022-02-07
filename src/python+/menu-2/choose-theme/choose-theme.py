@@ -27,6 +27,10 @@ class Support_Ui_Dialog:
         self.main_self.choose_theme_window.update()
 
         self.need_save = False
+
+        self.main_self.choose_theme_window.resize(676, 456)
+        self.main_self.choose_theme_window.hide()
+        self.main_self.choose_theme_window.show()
         
         self.default_font = self.main_self.default_font
         self.default_font_size = self.main_self.default_font_size
@@ -178,6 +182,7 @@ class Support_Ui_Dialog:
             self.custom_theme_changed(index)
     
     def custom_theme_changed(self,index):
+       self.need_save = True
        if index == 0:
             self.default_custome_theme = ""
        else:        
@@ -206,8 +211,8 @@ class Support_Ui_Dialog:
 
     def closeEvent(self,event):
         if self.need_save == True:
-            self.need_save = False
-            #self.main_self.open_change_theme_save_question_window()
+            self.main_self.open_change_theme_save_question_window()
+            event.ignore()
             
         if self.need_save == False:
             if self.choose_theme_child_process is not None:
