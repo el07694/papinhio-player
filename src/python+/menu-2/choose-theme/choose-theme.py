@@ -9,6 +9,8 @@ import os
 from datetime import datetime
 import time
 import importlib
+import traceback
+
 
 sys.path.append("../../")
 sys.path.append("../../../")
@@ -18,192 +20,236 @@ database_functions = importlib.import_module("python+.lib.sqlite3_functions")
 class Support_Ui_Dialog:
 
     def __init__(self,main_self):
-        self.main_self = main_self
-        
-        #apply theme
-        self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
-        self.main_self.choose_theme_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
-        self.main_self.choose_theme_window.showMaximized()
-        self.main_self.choose_theme_window.update()
-
-        self.need_save = False
-
-        self.main_self.choose_theme_window.resize(676, 456)
-        self.main_self.choose_theme_window.hide()
-        self.main_self.choose_theme_window.show()
-        
-        self.default_font = self.main_self.default_font
-        self.default_font_size = self.main_self.default_font_size
-        self.default_font_color = self.main_self.default_font_color
-        self.default_background_color = self.main_self.default_background_color
-        self.default_buttons_background = self.main_self.default_buttons_background
-        self.default_buttons_font_color = self.main_self.default_buttons_font_color
-        self.default_style = self.main_self.default_style
-        self.default_custome_theme = self.main_self.default_custome_theme
-
-        self.main_self.ui_choose_theme_window.font.setCurrentFont(self.font)
-        self.main_self.ui_choose_theme_window.font_size.setValue(int(self.default_font_size))
-        self.main_self.ui_choose_theme_window.font_size.setMinimum(6)
-        self.main_self.ui_choose_theme_window.font_size.setMaximum(40)
-        self.main_self.ui_choose_theme_window.font_size.valueChanged.connect(lambda new_font_size:self.font_size_changed(new_font_size))
-
-        self.factor_styles = QtWidgets.QStyleFactory.keys()
-        counter = 0
-        for factor_style in self.factor_styles:
-            self.main_self.ui_choose_theme_window.style.addItem(factor_style)
-            if(factor_style==self.default_style):
-                self.main_self.ui_choose_theme_window.style.setCurrentIndex(counter)
-            counter += 1
+        try:
+            self.main_self = main_self
             
-        self.main_self.ui_choose_theme_window.style.currentIndexChanged.connect(lambda index:self.current_style_changed(index))
-        self.custom_themes = list_themes()
-        counter = 1
-        for custom_theme in self.custom_themes:
-            self.main_self.ui_choose_theme_window.qt_material_themes.addItem(custom_theme)
-            if custom_theme == self.default_custome_theme:
-                self.main_self.ui_choose_theme_window.qt_material_themes.setCurrentIndex(counter)
-            counter += 1
+            #apply theme
+            self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+            self.main_self.choose_theme_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+            self.main_self.choose_theme_window.showMaximized()
+            self.main_self.choose_theme_window.update()
+
+            self.need_save = False
+
+            self.main_self.choose_theme_window.resize(676, 456)
+            self.main_self.choose_theme_window.hide()
+            self.main_self.choose_theme_window.show()
+            
+            self.default_font = self.main_self.default_font
+            self.default_font_size = self.main_self.default_font_size
+            self.default_font_color = self.main_self.default_font_color
+            self.default_background_color = self.main_self.default_background_color
+            self.default_buttons_background = self.main_self.default_buttons_background
+            self.default_buttons_font_color = self.main_self.default_buttons_font_color
+            self.default_style = self.main_self.default_style
+            self.default_custome_theme = self.main_self.default_custome_theme
+
+            self.main_self.ui_choose_theme_window.font.setCurrentFont(self.font)
+            self.main_self.ui_choose_theme_window.font_size.setValue(int(self.default_font_size))
+            self.main_self.ui_choose_theme_window.font_size.setMinimum(6)
+            self.main_self.ui_choose_theme_window.font_size.setMaximum(40)
+            self.main_self.ui_choose_theme_window.font_size.valueChanged.connect(lambda new_font_size:self.font_size_changed(new_font_size))
+
+            self.factor_styles = QtWidgets.QStyleFactory.keys()
+            counter = 0
+            for factor_style in self.factor_styles:
+                self.main_self.ui_choose_theme_window.style.addItem(factor_style)
+                if(factor_style==self.default_style):
+                    self.main_self.ui_choose_theme_window.style.setCurrentIndex(counter)
+                counter += 1
+                
+            self.main_self.ui_choose_theme_window.style.currentIndexChanged.connect(lambda index:self.current_style_changed(index))
+            self.custom_themes = list_themes()
+            counter = 1
+            for custom_theme in self.custom_themes:
+                self.main_self.ui_choose_theme_window.qt_material_themes.addItem(custom_theme)
+                if custom_theme == self.default_custome_theme:
+                    self.main_self.ui_choose_theme_window.qt_material_themes.setCurrentIndex(counter)
+                counter += 1
 
 
-        self.main_self.ui_choose_theme_window.font_colour.clicked.connect(lambda state:self.text_color_changed(state))
-        self.main_self.ui_choose_theme_window.background_colour.clicked.connect(lambda state:self.background_color_changed(state))
+            self.main_self.ui_choose_theme_window.font_colour.clicked.connect(lambda state:self.text_color_changed(state))
+            self.main_self.ui_choose_theme_window.background_colour.clicked.connect(lambda state:self.background_color_changed(state))
 
-        self.main_self.ui_choose_theme_window.button_background_colour.clicked.connect(lambda state:self.button_background_changed(state))
-        self.main_self.ui_choose_theme_window.button_font_colour.clicked.connect(lambda state:self.button_text_color_changed(state))
+            self.main_self.ui_choose_theme_window.button_background_colour.clicked.connect(lambda state:self.button_background_changed(state))
+            self.main_self.ui_choose_theme_window.button_font_colour.clicked.connect(lambda state:self.button_text_color_changed(state))
 
-        self.main_self.ui_choose_theme_window.font.currentFontChanged.connect(lambda new_font:self.current_font_changed(new_font))
+            self.main_self.ui_choose_theme_window.font.currentFontChanged.connect(lambda new_font:self.current_font_changed(new_font))
 
-        self.main_self.ui_choose_theme_window.qt_material_themes.currentIndexChanged.connect(lambda index:self.custom_theme_changed(index))
+            self.main_self.ui_choose_theme_window.qt_material_themes.currentIndexChanged.connect(lambda index:self.custom_theme_changed(index))
 
-        self.main_self.ui_choose_theme_window.save.clicked.connect(lambda state:self.save(state))
+            self.main_self.ui_choose_theme_window.save.clicked.connect(lambda state:self.save(state))
 
-        self.main_self.ui_choose_theme_window.cancel.clicked.connect(lambda state:self.close_window(state))
-        
-        #create process
-        self.process_number = 13
-        self.choose_theme_mother_pipe, self.choose_theme_child_pipe = Pipe()
-        self.choose_theme_queue = Queue()
-        self.choose_theme_emitter = Choose_Theme_Emitter(self.choose_theme_mother_pipe)
-        self.choose_theme_emitter.start()
-        self.choose_theme_child_process = Choose_Theme_Child_Proc(self.choose_theme_child_pipe, self.choose_theme_queue)
-        self.choose_theme_child_process.start()
-        self.choose_theme_emitter.save_finished.connect(self.save_finished)
-        
-        counter = 0
-        for process in self.main_self.manage_processes_instance.processes:
-            if "process_number" in process:
-                if process["process_number"]==self.process_number:
-                    self.main_self.manage_processes_instance.processes[counter]["pid"] = self.choose_theme_child_process.pid
-                    self.main_self.manage_processes_instance.processes[counter]["start_datetime"] = datetime.now()
-                    self.main_self.manage_processes_instance.processes[counter]["status"] = "in_progress"
-            counter += 1
+            self.main_self.ui_choose_theme_window.cancel.clicked.connect(lambda state:self.close_window(state))
+            
+            #create process
+            self.process_number = 13
+            self.choose_theme_mother_pipe, self.choose_theme_child_pipe = Pipe()
+            self.choose_theme_queue = Queue()
+            self.choose_theme_emitter = Choose_Theme_Emitter(self.choose_theme_mother_pipe)
+            self.choose_theme_emitter.start()
+            self.choose_theme_child_process = Choose_Theme_Child_Proc(self.choose_theme_child_pipe, self.choose_theme_queue)
+            self.choose_theme_child_process.start()
+            self.choose_theme_emitter.save_finished.connect(self.save_finished)
+            
+            counter = 0
+            for process in self.main_self.manage_processes_instance.processes:
+                if "process_number" in process:
+                    if process["process_number"]==self.process_number:
+                        self.main_self.manage_processes_instance.processes[counter]["pid"] = self.choose_theme_child_process.pid
+                        self.main_self.manage_processes_instance.processes[counter]["start_datetime"] = datetime.now()
+                        self.main_self.manage_processes_instance.processes[counter]["status"] = "in_progress"
+                counter += 1
 
-        
-        
-        self.main_self.choose_theme_window.closeEvent = lambda event:self.closeEvent(event)
+            
+            
+            self.main_self.choose_theme_window.closeEvent = lambda event:self.closeEvent(event)
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
         
     def font_size_changed(self,new_font_size):
-        index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
-        self.default_font_size = self.main_self.ui_choose_theme_window.font_size.value()
-        if index==0:
-            self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
-        else:
-            self.custom_theme_changed(index)
-        self.need_save = True
-        
-    def current_style_changed(self,index):
-        self.default_style = self.factor_styles[index]
-        self.main_self.app.setStyle(self.default_style)
-        self.need_save = True
-    
-    def text_color_changed(self,state):
-        color = QtWidgets.QColorDialog.getColor()
-
-        if color.isValid():
-            self.default_font_color = color.name()
-            self.need_save = True
+        try:
             index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
+            self.default_font_size = self.main_self.ui_choose_theme_window.font_size.value()
             if index==0:
                 self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
             else:
                 self.custom_theme_changed(index)
-        else:
-            pass
+            self.need_save = True
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
+        
+    def current_style_changed(self,index):
+        try:
+            self.default_style = self.factor_styles[index]
+            self.main_self.app.setStyle(self.default_style)
+            self.need_save = True
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
+    
+    def text_color_changed(self,state):
+        try:
+            color = QtWidgets.QColorDialog.getColor()
+
+            if color.isValid():
+                self.default_font_color = color.name()
+                self.need_save = True
+                index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
+                if index==0:
+                    self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
+                else:
+                    self.custom_theme_changed(index)
+            else:
+                pass
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
 
     
     def background_color_changed(self,state):
-        color = QtWidgets.QColorDialog.getColor()
-        if color.isValid():
-            self.default_background_color = color.name()
-            self.need_save = True
-            index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
-            if index==0:
-                self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
+        try:
+            color = QtWidgets.QColorDialog.getColor()
+            if color.isValid():
+                self.default_background_color = color.name()
+                self.need_save = True
+                index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
+                if index==0:
+                    self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
+                else:
+                    self.custom_theme_changed(index)
             else:
-                self.custom_theme_changed(index)
-        else:
-            pass
+                pass
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
         
     def button_background_changed(self,state):
-        color = QtWidgets.QColorDialog.getColor()
+        try:
+            color = QtWidgets.QColorDialog.getColor()
 
-        if color.isValid():
-            self.default_buttons_background = color.name()
-            self.need_save = True
-            index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
-            if index==0:
-                self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
+            if color.isValid():
+                self.default_buttons_background = color.name()
+                self.need_save = True
+                index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
+                if index==0:
+                    self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
+                else:
+                    self.custom_theme_changed(index)
             else:
-                self.custom_theme_changed(index)
-        else:
-            pass
+                pass
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
         
     def button_text_color_changed(self,state):
-        color = QtWidgets.QColorDialog.getColor()
+        try:
+            color = QtWidgets.QColorDialog.getColor()
 
-        if color.isValid():
-            self.default_buttons_font_color = color.name()
+            if color.isValid():
+                self.default_buttons_font_color = color.name()
+                self.need_save = True
+                index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
+                if index==0:
+                    self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
+                else:
+                    self.custom_theme_changed(index)
+            else:
+                pass
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
+            
+    def current_font_changed(self,new_font):
+        try:
+            self.default_font = self.main_self.ui_choose_theme_window.font.currentFont().family()
             self.need_save = True
             index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
             if index==0:
                 self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
             else:
                 self.custom_theme_changed(index)
-        else:
-            pass
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
         
-    def current_font_changed(self,new_font):
-        self.default_font = self.main_self.ui_choose_theme_window.font.currentFont().family()
-        self.need_save = True
-        index = self.main_self.ui_choose_theme_window.qt_material_themes.currentIndex()
-        if index==0:
-            self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
-        else:
-            self.custom_theme_changed(index)
-    
     def custom_theme_changed(self,index):
-       self.need_save = True
-       if index == 0:
-            self.default_custome_theme = ""
-       else:        
-            self.default_custome_theme = self.main_self.ui_choose_theme_window.qt_material_themes.currentText()
-       if index != 0:
-            self.main_self.app.setStyle("")
-            self.main_self.app.setStyleSheet("")
-            self.main_self.choose_theme_window.setStyleSheet("")
-            apply_stylesheet(self.main_self.app, theme=self.default_custome_theme)
-       else:
-            self.main_self.app.setStyle("")
-            self.main_self.app.setStyleSheet("")
-            self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
+        try:
+           self.need_save = True
+           if index == 0:
+                self.default_custome_theme = ""
+           else:        
+                self.default_custome_theme = self.main_self.ui_choose_theme_window.qt_material_themes.currentText()
+           if index != 0:
+                self.main_self.app.setStyle("")
+                self.main_self.app.setStyleSheet("")
+                self.main_self.choose_theme_window.setStyleSheet("")
+                apply_stylesheet(self.main_self.app, theme=self.default_custome_theme)
+           else:
+                self.main_self.app.setStyle("")
+                self.main_self.app.setStyleSheet("")
+                self.main_self.choose_theme_window.setStyleSheet("*{font-family:\""+self.default_font+"\";font-size:"+str(self.default_font_size)+"px;color:\""+self.default_font_color+"\";}QFrame{border:0px;}QDialog{background:\""+self.default_background_color+"\"}QPushButton, QComboBox{background:\""+self.default_buttons_background+"\";color:\""+self.default_buttons_font_color+"\"}QFrame{border:0px;}")
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
 
     def save(self,state):
-        self.choose_theme_queue.put({"type":"save","default_font":self.default_font,"default_font_size":self.default_font_size,"default_font_color":self.default_font_color,"default_background_color":self.default_background_color,"default_buttons_background":self.default_buttons_background,"default_buttons_font_color":self.default_buttons_font_color,"default_style":self.default_style,"default_custome_theme":self.default_custome_theme})
+        try:
+            self.choose_theme_queue.put({"type":"save","default_font":self.default_font,"default_font_size":self.default_font_size,"default_font_color":self.default_font_color,"default_background_color":self.default_background_color,"default_buttons_background":self.default_buttons_background,"default_buttons_font_color":self.default_buttons_font_color,"default_style":self.default_style,"default_custome_theme":self.default_custome_theme})
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
 
     def save_finished(self):
-        self.need_save = False
-        self.main_self.apply_theme_settings()
-        self.close_window(None)
+        try:
+            self.need_save = False
+            self.main_self.apply_theme_settings()
+            self.close_window(None)
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
         
     def close_window(self,state):
         self.main_self.choose_theme_window.close()
@@ -237,33 +283,51 @@ class Support_Ui_Dialog:
             event.ignore()
 
 class Choose_Theme_Emitter(QThread):
-    save_finished = pyqtSignal()
+    try:
+        save_finished = pyqtSignal()
+    except Exception as e:
+        pass
 
     def __init__(self, from_process: Pipe):
-        super().__init__()
-        self.data_from_process = from_process
+        try:
+            super().__init__()
+            self.data_from_process = from_process
+        except Exception as e:
+            pass
 
     def run(self):
-        while True:
-            data = self.data_from_process.recv()
-            self.save_finished.emit()
+        try:
+            while True:
+                data = self.data_from_process.recv()
+                self.save_finished.emit()
+        except Exception as e:
+            pass
         
 class Choose_Theme_Child_Proc(Process):
 
     def __init__(self, to_emitter, from_mother):
-        super().__init__()
-        self.daemon = False
-        self.to_emitter = to_emitter
-        self.data_from_mother = from_mother
-        
+        try:
+            super().__init__()
+            self.daemon = False
+            self.to_emitter = to_emitter
+            self.data_from_mother = from_mother
+        except Exception as e:
+            pass
+            
     def run(self):
-        data = self.data_from_mother.get()
-        self.save_theme_settings(data)
-        while True:
-            time.sleep(1)
-        
+        try:
+            data = self.data_from_mother.get()
+            self.save_theme_settings(data)
+            while True:
+                time.sleep(1)
+        except Exception as e:
+            pass
+            
     def save_theme_settings(self,data):
-        for key in data:
-            if key!="save":
-                database_functions.update_setting({"keyword":key,"current_value":data[key]})
-        self.to_emitter.send({"type":"save_finished"})
+        try:
+            for key in data:
+                if key!="save":
+                    database_functions.update_setting({"keyword":key,"current_value":data[key]})
+            self.to_emitter.send({"type":"save_finished"})
+        except Exception as e:
+            pass

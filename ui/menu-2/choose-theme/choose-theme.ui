@@ -182,7 +182,7 @@
     <widget class="QComboBox" name="qt_material_themes">
      <item>
       <property name="text">
-       <string/>
+       <string>(Καμία επιλογή)</string>
       </property>
      </item>
     </widget>

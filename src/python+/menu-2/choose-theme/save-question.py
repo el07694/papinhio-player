@@ -1,50 +1,75 @@
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+import traceback
 
 class Support_Ui_Dialog:
 
     def __init__(self,main_self):
-        self.main_self = main_self
-        
-        #apply theme
-        self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
-        self.main_self.change_theme_save_question_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
-        self.main_self.change_theme_save_question_window.showMaximized()
-        self.main_self.change_theme_save_question_window.update()
+        try:
+            self.main_self = main_self
+            
+            #apply theme
+            self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+            self.main_self.change_theme_save_question_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+            self.main_self.change_theme_save_question_window.showMaximized()
+            self.main_self.change_theme_save_question_window.update()
 
-        self.main_self.change_theme_save_question_window.hide()
-        self.main_self.change_theme_save_question_window.show()
+            self.main_self.change_theme_save_question_window.hide()
+            self.main_self.change_theme_save_question_window.show()
 
-        #Αποθήκευση
-        self.main_self.ui_change_theme_save_question_window.save.clicked.connect(lambda state:self.save(state))
-        
-        #Απόρριψη
-        self.main_self.ui_change_theme_save_question_window.no_save.clicked.connect(lambda state:self.no_save(state))
+            #Αποθήκευση
+            self.main_self.ui_change_theme_save_question_window.save.clicked.connect(lambda state:self.save(state))
+            
+            #Απόρριψη
+            self.main_self.ui_change_theme_save_question_window.no_save.clicked.connect(lambda state:self.no_save(state))
 
-        #Ακύρωση
-        self.main_self.ui_change_theme_save_question_window.cancel.clicked.connect(lambda state:self.cancel(state))
+            #Ακύρωση
+            self.main_self.ui_change_theme_save_question_window.cancel.clicked.connect(lambda state:self.cancel(state))
 
 
-        
-        self.main_self.change_theme_save_question_window.closeEvent = lambda event:self.closeEvent(event)
+            
+            self.main_self.change_theme_save_question_window.closeEvent = lambda event:self.closeEvent(event)
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
         
     def closeEvent(self,event):
-        self.main_self.change_theme_save_question_window_is_open = False
-        event.accept()        
+        try:
+            self.main_self.change_theme_save_question_window_is_open = False
+            event.accept()
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
 
     def close_window(self,state):
-        self.main_self.change_theme_save_question_window.close()
+        try:
+            self.main_self.change_theme_save_question_window.close()
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
             
     def save(self,state):
-        self.main_self.choose_theme_window_support_code.save(None)
-        self.close_window(None)
+        try:
+            self.main_self.choose_theme_window_support_code.save(None)
+            self.close_window(None)
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
             
     def no_save(self,state):
-        self.main_self.choose_theme_window_support_code.need_save = False
-        self.main_self.choose_theme_window.close()
-        self.main_self.apply_theme_settings()
-        self.close_window(None)
-            
+        try:
+            a = b
+            self.main_self.choose_theme_window_support_code.need_save = False
+            self.main_self.choose_theme_window.close()
+            self.main_self.apply_theme_settings()
+            self.close_window(None)
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)
+                
     def cancel(self,state):
-        self.main_self.choose_theme_window_support_code.need_save = True
-        self.close_window(None)
+        try:
+            self.main_self.choose_theme_window_support_code.need_save = True
+            self.close_window(None)
+        except Exception as e:
+            error_message = str(traceback.format_exc())
+            self.main_self.open_choose_theme_error_window(error_message)

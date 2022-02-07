@@ -136,6 +136,7 @@ manage_proccesses_ui = importlib.import_module("compiled-ui.menu-1.manage-procce
 # Επιλογή θέματος #
 choose_theme_ui = importlib.import_module("compiled-ui.menu-2.choose-theme.choose-theme")
 change_theme_save_question_ui = importlib.import_module("compiled-ui.menu-2.choose-theme.save-question")
+choose_theme_error_ui = importlib.import_module("compiled-ui.menu-2.choose-theme.error")
 
 # Ορατά πεδία λίστας αναπαραγωγής #
 visible_player_list_fields_ui = importlib.import_module("compiled-ui.menu-2.visible-player-list-fields.visible-player-list-fields")
@@ -268,6 +269,7 @@ manage_proccesses_support_ui = importlib.import_module("python+.menu-1.manage-pr
 # Επιλογή θέματος #
 choose_theme_support_ui = importlib.import_module("python+.menu-2.choose-theme.choose-theme")
 change_theme_save_question_support_ui = importlib.import_module("python+.menu-2.choose-theme.save-question")
+choose_theme_error_support_ui = importlib.import_module("python+.menu-2.choose-theme.error")
 
 # Ορατά πεδία λίστας αναπαραγωγής #
 visible_player_list_fields_support_ui = importlib.import_module("python+.menu-2.visible-player-list-fields.visible-player-list-fields")
@@ -533,6 +535,7 @@ class Papinhio_player:
         # Επιλογή θέματος #
         self.choose_theme_window_is_open = False
         self.change_theme_save_question_window_is_open = False
+        self.choose_theme_error_window_is_open = False
         
         # Ορατά πεδία λίστας αναπαραγωγής #
         self.visible_player_list_fields_window_is_open = False
@@ -1373,6 +1376,15 @@ class Papinhio_player:
             self.change_theme_save_question_window_is_open = True
             self.change_theme_save_question_window_support_code = change_theme_save_question_support_ui.Support_Ui_Dialog(self)
             self.change_theme_save_question_window.exec()
+
+    def open_choose_theme_error_window(self,error_message):
+    	if(self.choose_theme_error_window_is_open==False):    
+            self.choose_theme_error_window = QtWidgets.QDialog(self.choose_theme_window)
+            self.ui_choose_theme_error_window = choose_theme_error_ui.Ui_Dialog()
+            self.ui_choose_theme_error_window.setupUi(self.choose_theme_error_window)
+            self.choose_theme_error_window_is_open = True
+            self.choose_theme_error_window_support_code = choose_theme_error_support_ui.Support_Ui_Dialog(self,error_message)
+            self.choose_theme_error_window.exec()
 
     # Ορατά πεδία λίστας αναπαραγωγής #
     def open_select_player_list_fields_window(self,checked):
