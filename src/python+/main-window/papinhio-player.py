@@ -169,6 +169,7 @@ contact_ui = importlib.import_module("compiled-ui.menu-4.contact.contact")
 
 # Λίγα λόγια για το πρόγραμμα #
 programm_abstract_information_ui = importlib.import_module("compiled-ui.menu-4.program-abstract-information.program-abstract-information")
+programm_abstract_information_error_ui = importlib.import_module("compiled-ui.menu-4.program-abstract-information.error")
 
 ### import internet connection error class ###
 internet_connection_error_support_ui = importlib.import_module("python+.main-window.errors-and-warnings.internet-error")
@@ -305,6 +306,7 @@ contact_support_ui = importlib.import_module("python+.menu-4.contact.contact")
 
 # Λίγα λόγια για το πρόγραμμα #
 programm_abstract_information_support_ui = importlib.import_module("python+.menu-4.program-abstract-information.program-abstract-information")
+programm_abstract_information_error_support_ui = importlib.import_module("python+.menu-4.program-abstract-information.error")
 
 class Papinhio_player:
 
@@ -515,6 +517,7 @@ class Papinhio_player:
 
         # Λίγα λόγια για το πρόγραμμα #
         self.programm_abstract_information_window_is_open = False
+        self.programm_abstract_information_error_window_is_open = False
            
     def link_menus(self):
         ### Menu 1 ###
