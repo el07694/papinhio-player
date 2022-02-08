@@ -1323,7 +1323,10 @@ class Papinhio_player:
 
     def open_change_theme_save_question_window(self):
         if(self.change_theme_save_question_window_is_open==False):    
-            self.change_theme_save_question_window = QtWidgets.QDialog(self.choose_theme_window)
+            if self.choose_theme_window_is_open:
+            	self.change_theme_save_question_window = QtWidgets.QDialog(self.choose_theme_window)
+            else:
+            	self.change_theme_save_question_window = QtWidgets.QDialog(self.MainWindow)
             self.ui_change_theme_save_question_window = change_theme_save_question_ui.Ui_Dialog()
             self.ui_change_theme_save_question_window.setupUi(self.change_theme_save_question_window)
             self.change_theme_save_question_window_is_open = True
@@ -1332,7 +1335,12 @@ class Papinhio_player:
 
     def open_choose_theme_error_window(self,error_message):
     	if(self.choose_theme_error_window_is_open==False):    
-            self.choose_theme_error_window = QtWidgets.QDialog(self.choose_theme_window)
+            if(self.change_theme_save_question_window_is_open):
+            	self.choose_theme_error_window = QtWidgets.QDialog(self.change_theme_save_question_window)
+            elif self.choose_theme_window_is_open:
+            	self.choose_theme_error_window = QtWidgets.QDialog(self.choose_theme_window)
+            else:
+            	self.choose_theme_error_window = QtWidgets.QDialog(self.MainWindow)
             self.ui_choose_theme_error_window = choose_theme_error_ui.Ui_Dialog()
             self.ui_choose_theme_error_window.setupUi(self.choose_theme_error_window)
             self.choose_theme_error_window_is_open = True
@@ -1351,7 +1359,10 @@ class Papinhio_player:
             
     def open_select_player_list_fields_save_question_window(self):
         if(self.select_player_list_fields_save_question_window_is_open==False):    
-            self.select_player_list_fields_save_question_window = QtWidgets.QDialog(self.visible_player_list_fields_window)
+            if self.visible_player_list_fields_window_is_open:
+            	self.select_player_list_fields_save_question_window = QtWidgets.QDialog(self.visible_player_list_fields_window)
+            else:
+            	self.select_player_list_fields_save_question_window = QtWidgets.QDialog(self.MainWindow)
             self.ui_select_player_list_fields_save_question_window = select_player_list_fields_save_question_ui.Ui_Dialog()
             self.ui_select_player_list_fields_save_question_window.setupUi(self.select_player_list_fields_save_question_window)
             self.select_player_list_fields_save_question_window_is_open = True
@@ -1362,8 +1373,10 @@ class Papinhio_player:
         if(self.visible_player_list_fields_error_window_is_open==False):    
             if self.select_player_list_fields_save_question_window_is_open:
             	self.visible_player_list_fields_error_window = QtWidgets.QDialog(self.select_player_list_fields_save_question_window_is_open)
-            else:
+            elif self.visible_player_list_fields_window_is_open:
             	self.visible_player_list_fields_error_window = QtWidgets.QDialog(self.visible_player_list_fields_window)
+            else:
+            	self.visible_player_list_fields_error_window = QtWidgets.QDialog(self.MainWindow)
             self.ui_visible_player_list_fields_error_window = visible_player_list_fields_error_ui.Ui_Dialog()
             self.ui_visible_player_list_fields_error_window.setupUi(self.visible_player_list_fields_error_window)
             self.visible_player_list_fields_error_window_is_open = True
@@ -1383,7 +1396,10 @@ class Papinhio_player:
             
     def open_visible_programm_components_save_question_window(self):
         if(self.select_visible_programm_components_save_question_window_is_open==False):    
-            self.select_visible_programm_components_save_question_window = QtWidgets.QDialog(self.visible_programm_components_window)
+            if self.visible_program_components_window_is_open:
+            	self.select_visible_programm_components_save_question_window = QtWidgets.QDialog(self.visible_programm_components_window)
+            else:
+            	self.select_visible_programm_components_save_question_window = QtWidgets.QDialog(self.MainWindow)
             self.ui_select_visible_programm_components_save_question_window = select_visible_programm_components_save_question_ui.Ui_Dialog()
             self.ui_select_visible_programm_components_save_question_window.setupUi(self.select_visible_programm_components_save_question_window)
             self.select_visible_programm_components_save_question_window_is_open = True
@@ -1394,8 +1410,10 @@ class Papinhio_player:
         if(self.visible_programm_components_error_window_is_open==False):    
             if self.select_visible_programm_components_save_question_window_is_open:
             	self.visible_programm_components_error_window = QtWidgets.QDialog(self.select_visible_programm_components_save_question_window)
-            else:
+            elif self.visible_program_components_window_is_open:
             	self.visible_programm_components_error_window = QtWidgets.QDialog(self.visible_programm_components_window)
+            else:
+            	self.visible_programm_components_error_window = QtWidgets.QDialog(self.MainWindow)
             self.ui_visible_programm_components_error_window = visible_programm_components_error_ui.Ui_Dialog()
             self.ui_visible_programm_components_error_window.setupUi(self.visible_programm_components_error_window)
             self.visible_programm_components_error_window_is_open = True
@@ -1454,6 +1472,18 @@ class Papinhio_player:
             self.ui_programm_abstract_information_window.setupUi(self.programm_abstract_information_window)
             self.programm_abstract_information_window_is_open = True
             self.programm_abstract_information_window_support_code = programm_abstract_information_support_ui.Support_Ui_Dialog(self)
+            self.programm_abstract_information_window.exec()
+
+    def open_programm_abstract_information_error_window(self,error_message):
+        if(self.programm_abstract_information_error_window_is_open==False):   
+            if(self.programm_abstract_information_window_is_open):
+                self.programm_abstract_information_error_window = QtWidgets.QDialog(self.programm_abstract_information_window)
+            else:
+                self.programm_abstract_information_error_window = QtWidgets.QDialog(self.MainWindow)
+            self.ui_programm_abstract_information_error_window = programm_abstract_information_error_ui.Ui_Dialog()
+            self.ui_programm_abstract_information_error_window.setupUi(self.programm_abstract_information_error_window)
+            self.programm_abstract_information_error_window_is_open = True
+            self.programm_abstract_information_error_window_support_code = programm_abstract_information_error_support_ui.Support_Ui_Dialog(self,error_message)
             self.programm_abstract_information_window.exec()
             
     # Επικοινωνία #
