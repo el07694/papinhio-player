@@ -1,4 +1,3 @@
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Support_Ui_Dialog:
@@ -40,7 +39,7 @@ class Support_Ui_Dialog:
 
     def close_window(self,state):
         try:
-            self.main_self.visible_player_list_fields_error_window.close()
+            self.main_self.select_player_list_fields_save_question_window.close()
         except Exception as e:
             error_message = str(traceback.format_exc())
             self.main_self.open_select_player_list_fields_error_window(error_message)            

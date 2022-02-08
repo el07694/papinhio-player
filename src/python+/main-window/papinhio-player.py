@@ -149,7 +149,8 @@ visible_player_list_fields_error_ui = importlib.import_module("compiled-ui.menu-
 
 # Ορατά πεδία προγράμματος #
 visible_programm_components_ui = importlib.import_module("compiled-ui.menu-2.visible-program-components.visible-program-components")
-#visible_programm_components_save_question_ui = importlib.import_module("compiled-ui.menu-2.Ορατά πεδία προγράμματος (Visible programm components).Ερώτηση αποθήκευσης (Save question)")
+select_visible_programm_components_save_question_ui = importlib.import_module("compiled-ui.menu-2.visible-program-components.save-question")
+visible_programm_components_error_ui = importlib.import_module("compiled-ui.menu-2.visible-program-components.error")
 
 ### import menu 3 ui classes ###
 
@@ -283,7 +284,8 @@ visible_player_list_fields_error_support_ui = importlib.import_module("python+.m
 
 # Ορατά πεδία προγράμματος #
 visible_programm_components_support_ui = importlib.import_module("python+.menu-2.visible-program-components.visible-program-components") 
-#visible_programm_components_save_question_support_ui = importlib.import_module("python+.menu-2.Ορατά πεδία προγράμματος (Visible programm components).Ερώτηση αποθήκευσης (Save question)")
+select_visible_programm_components_save_question_support_ui = importlib.import_module("python+.menu-2.visible-program-components.save-question") 
+visible_programm_components_error_support_ui = importlib.import_module("python+.menu-2.visible-program-components.error") 
 
 ### import menu 3 support ui classes ###
 
@@ -493,7 +495,8 @@ class Papinhio_player:
 
         # Ορατά πεδία προγράμματος #
         self.visible_program_components_window_is_open = False
-        #self.visible_programm_components_save_question_window_is_open = False
+        self.select_visible_programm_components_save_question_window_is_open = False
+        self.visible_programm_components_error_window_is_open = False
         
         ### Menu 3 ###
 
@@ -1376,7 +1379,23 @@ class Papinhio_player:
             self.visible_programm_components_window.exec()
             
     def open_visible_programm_components_save_question_window(self):
-        pass
+        if(self.select_visible_programm_components_save_question_window_is_open==False):    
+            self.select_visible_programm_components_save_question_window = QtWidgets.QDialog(self.visible_programm_components_window)
+            self.ui_select_visible_programm_components_save_question_window = select_visible_programm_components_save_question_ui.Ui_Dialog()
+            self.ui_select_visible_programm_components_save_question_window.setupUi(self.select_visible_programm_components_save_question_window)
+            self.select_visible_programm_components_save_question_window_is_open = True
+            self.select_visible_programm_components_save_question_window_support_code = select_visible_programm_components_save_question_support_ui.Support_Ui_Dialog(self)
+            self.select_visible_programm_components_save_question_window.exec()
+
+    def open_select_programm_components_error_window(self,error_message):
+        if(self.visible_programm_components_error_window_is_open==False):    
+            self.visible_programm_components_error_window = QtWidgets.QDialog(self.visible_programm_components_window)
+            self.ui_visible_programm_components_error_window = visible_programm_components_error_ui.Ui_Dialog()
+            self.ui_visible_programm_components_error_window.setupUi(self.visible_player_list_fields_error_window)
+            self.visible_programm_components_error_window_is_open = True
+            self.visible_programm_components_error_window_support_code = visible_programm_components_error_support_ui.Support_Ui_Dialog(self,error_message)
+            self.visible_programm_components_error_window.exec()
+
     
     ### Menu 3 ###
 

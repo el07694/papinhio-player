@@ -8812,7 +8812,7 @@ border-style: inset;</string>
          </widget>
         </item>
         <item row="6" column="0">
-         <widget class="QFrame" name="ip_calls_framw">
+         <widget class="QFrame" name="ip_calls_frame">
           <property name="minimumSize">
            <size>
             <width>0</width>

@@ -51,11 +51,11 @@ class Programm_Components:
         if settings["program_component_general_deck"]==1:
             self.main_self.ui.general_deck_frame.show()
         else:
-            self.main_self.uigeneral_deck_frame.hide()
+            self.main_self.ui.general_deck_frame.hide()
         if settings["program_component_deck_1"]==1:
             self.main_self.ui.deck_1_frame.show()
         else:
-            self.main_self.uideck_1_frame.hide()
+            self.main_self.ui.deck_1_frame.hide()
         if settings["program_component_deck_2"]==1:
             self.main_self.ui.deck_2_frame.show()
         else:
@@ -69,9 +69,9 @@ class Programm_Components:
         else:
             self.main_self.ui.speackers_deck_frame.hide()
         if settings["program_component_ip_calls"]==1:
-            self.main_self.ui.ip_calls_tabs.show()
+            self.main_self.ui.ip_calls_frame.show()
         else:
-            self.main_self.ui.ip_calls_tabs.hide()
+            self.main_self.ui.ip_calls_frame.hide()
         if settings["program_component_player_list"]==1:
             self.main_self.ui.player_list_frame.show()
         else:
@@ -80,6 +80,11 @@ class Programm_Components:
             self.main_self.ui.web_pages.show()
         else:
             self.main_self.ui.web_pages.hide()
+        if settings["program_component_scheduled_transmitions"] == 1:
+            self.main_self.ui.scheduled_transmitions_frame.show()
+        else:
+            self.main_self.ui.scheduled_transmitions_frame.hide()
+
         
 
 class Programm_Components_Emitter(QThread):
@@ -121,6 +126,7 @@ class Programm_Components_Child_Proc(Process):
         program_component_ip_calls = int(database_functions.read_setting("program_component_ip_calls")["current_value"])
         program_component_player_list = int(database_functions.read_setting("program_component_player_list")["current_value"])
         program_component_web_sites = int(database_functions.read_setting("program_component_web_sites")["current_value"])
+        program_component_scheduled_transmitions = int(database_functions.read_setting("program_component_scheduled_transmitions")["current_value"])
 
         
         settings = {
@@ -132,7 +138,8 @@ class Programm_Components_Child_Proc(Process):
             "program_component_speackers_deck":program_component_speackers_deck,
             "program_component_ip_calls":program_component_ip_calls,
             "program_component_player_list":program_component_player_list,
-            "program_component_web_sites":program_component_web_sites
+            "program_component_web_sites":program_component_web_sites,
+            "program_component_scheduled_transmitions":program_component_scheduled_transmitions
         }
         
         self.to_emitter.send({"type":"programm_components_ready","settings":settings})
