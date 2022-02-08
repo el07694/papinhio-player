@@ -96,6 +96,10 @@
      <property name="text">
       <string>Επανεκκίνηση διεργασίας</string>
      </property>
+     <property name="icon">
+      <iconset resource="../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/restart.png</normaloff>:/rest-windows/assets/images/rest-windows/restart.png</iconset>
+     </property>
     </widget>
    </item>
   </layout>

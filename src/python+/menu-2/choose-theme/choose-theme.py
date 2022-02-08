@@ -307,6 +307,20 @@ class Support_Ui_Dialog:
                 self.main_self.programm_abstract_information_error_window.showMaximized()
                 self.main_self.programm_abstract_information_error_window.update()
 
+            if self.main_self.contact_window_is_open:
+                #apply theme
+                self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+                self.main_self.contact_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+                self.main_self.contact_window.showMaximized()
+                self.main_self.contact_window.update()
+
+            if self.main_self.contact_error_window_is_open:
+                #apply theme
+                self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+                self.main_self.contact_error_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+                self.main_self.contact_error_window.showMaximized()
+                self.main_self.contact_error_window.update()
+
             self.close_window(None)
         except Exception as e:
             error_message = str(traceback.format_exc())

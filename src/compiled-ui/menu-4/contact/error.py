@@ -54,6 +54,9 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.label)
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
         self.restart_proccess = QtWidgets.QPushButton(Dialog)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/rest-windows/assets/images/rest-windows/restart.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.restart_proccess.setIcon(icon2)
         self.restart_proccess.setObjectName("restart_proccess")
         self.gridLayout.addWidget(self.restart_proccess, 3, 0, 1, 1)
 

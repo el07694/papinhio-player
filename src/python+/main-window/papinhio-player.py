@@ -166,6 +166,7 @@ edit_radio_stations_ui = importlib.import_module("compiled-ui.menu-3.radio-stati
 
 # Επικοινωνία #
 contact_ui = importlib.import_module("compiled-ui.menu-4.contact.contact")
+contact_error_ui = importlib.import_module("compiled-ui.menu-4.contact.error")
 
 # Λίγα λόγια για το πρόγραμμα #
 programm_abstract_information_ui = importlib.import_module("compiled-ui.menu-4.program-abstract-information.program-abstract-information")
@@ -303,6 +304,7 @@ edit_radio_stations_support_ui = importlib.import_module("python+.menu-3.radio-s
 
 # Επικοινωνία #
 contact_support_ui = importlib.import_module("python+.menu-4.contact.contact")
+contact_error_support_ui = importlib.import_module("python+.menu-4.contact.error")
 
 # Λίγα λόγια για το πρόγραμμα #
 programm_abstract_information_support_ui = importlib.import_module("python+.menu-4.program-abstract-information.program-abstract-information")
@@ -514,6 +516,7 @@ class Papinhio_player:
 
         # Επικοινωνία #
         self.contact_window_is_open = False
+        self.contact_error_window_is_open = False
 
         # Λίγα λόγια για το πρόγραμμα #
         self.programm_abstract_information_window_is_open = False
@@ -1498,6 +1501,18 @@ class Papinhio_player:
             self.contact_window_is_open = True
             self.contact_window_support_code = contact_support_ui.Support_Ui_Dialog(self)
             self.contact_window.exec()
+
+    def open_contact_error_window(self,error_message):
+        if(self.contact_error_window_is_open==False): 
+            if self.contact_window_is_open:
+                self.contact_error_window = QtWidgets.QDialog(self.contact_window)
+            else:
+                self.contact_error_window = QtWidgets.QDialog(self.MainWindow)
+            self.ui_contact_error_window = contact_error_ui.Ui_Dialog()
+            self.ui_contact_error_window.setupUi(self.contact_error_window)
+            self.contact_error_window_is_open = True
+            self.contact_error_window_support_code = contact_error_support_ui.Support_Ui_Dialog(self,error_message)
+            self.contact_error_window.exec()
             
     def closeEvent(self,event):
         q_size = self.manage_player_list_table_instance.main_player_list_queue.qsize()
