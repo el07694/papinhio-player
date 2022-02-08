@@ -63,20 +63,6 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="ok">
-     <property name="text">
-      <string>Εντάξει</string>
-     </property>
-     <property name="icon">
-      <iconset resource="../../icons.qrc">
-       <normaloff>:/rest-windows/assets/images/rest-windows/ok.png</normaloff>:/rest-windows/assets/images/rest-windows/ok.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QPlainTextEdit" name="details"/>
-   </item>
    <item row="2" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
@@ -84,6 +70,35 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPlainTextEdit" name="details">
+     <property name="styleSheet">
+      <string notr="true">QPlainTextEdit{border:1px solid #ABABAB;}</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QPushButton" name="ok">
+     <property name="text">
+      <string>Εντάξει - Κλείσιμο παραθύρων</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/ok.png</normaloff>:/rest-windows/assets/images/rest-windows/ok.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="restart_proccess">
+     <property name="text">
+      <string>Επανεκκίνηση διεργασίας</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/restart.png</normaloff>:/rest-windows/assets/images/rest-windows/restart.png</iconset>
      </property>
     </widget>
    </item>
