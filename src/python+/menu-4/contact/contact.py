@@ -280,11 +280,19 @@ class Send_Email_Child_Proc(Process):
             #if os.path.exists('../menu-4/contact/token.pickle'):
             #    creds = Credentials.from_authorized_user_file(os.path.exists('../menu-4/contact/token.pickle'), SCOPES)
             #else:
-            flow = InstalledAppFlow.from_client_secrets_file(os.path.abspath('../menu-4/contact/credentials.json'), self.SCOPES)
+            if getattr(sys, 'frozen', False):
+                json_path = "credentials.json"
+            else:
+                json_path = os.path.abspath('../menu-4/contact/credentials.json')
+            flow = InstalledAppFlow.from_client_secrets_file(json_path, self.SCOPES)
             creds = flow.run_local_server(port=0)
             
             # save the credentials for the next run
-            with open(os.path.abspath("../menu-4/contact/token.pickle"), "wb") as token:
+            if getattr(sys, 'frozen', False):
+                pickle_path = "token.pickle"
+            else:
+                pickle_path = os.path.abspath('../menu-4/contact/token.pickle')
+            with open(pickle_path, "wb") as token:
                 pickle.dump(creds, token)
             return build('gmail', 'v1', credentials=creds)
         except Exception as e:

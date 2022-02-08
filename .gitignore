@@ -3,3 +3,5 @@ extra
 back-up
 src/python+/menu-4/contact/token.pickle
 src/python+/menu-4/contact/credentials.json
+exe/1. main-window/dist/credentials.json
+exe/1. main-window/dist/token.pickle
