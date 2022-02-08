@@ -1360,7 +1360,10 @@ class Papinhio_player:
 
     def open_select_player_list_fields_error_window(self,error_message):
         if(self.visible_player_list_fields_error_window_is_open==False):    
-            self.visible_player_list_fields_error_window = QtWidgets.QDialog(self.visible_player_list_fields_window)
+            if self.select_player_list_fields_save_question_window_is_open:
+            	self.visible_player_list_fields_error_window = QtWidgets.QDialog(self.select_player_list_fields_save_question_window_is_open)
+            else:
+            	self.visible_player_list_fields_error_window = QtWidgets.QDialog(self.visible_player_list_fields_window)
             self.ui_visible_player_list_fields_error_window = visible_player_list_fields_error_ui.Ui_Dialog()
             self.ui_visible_player_list_fields_error_window.setupUi(self.visible_player_list_fields_error_window)
             self.visible_player_list_fields_error_window_is_open = True
@@ -1389,9 +1392,12 @@ class Papinhio_player:
 
     def open_select_programm_components_error_window(self,error_message):
         if(self.visible_programm_components_error_window_is_open==False):    
-            self.visible_programm_components_error_window = QtWidgets.QDialog(self.visible_programm_components_window)
+            if self.select_visible_programm_components_save_question_window_is_open:
+            	self.visible_programm_components_error_window = QtWidgets.QDialog(self.select_visible_programm_components_save_question_window)
+            else:
+            	self.visible_programm_components_error_window = QtWidgets.QDialog(self.visible_programm_components_window)
             self.ui_visible_programm_components_error_window = visible_programm_components_error_ui.Ui_Dialog()
-            self.ui_visible_programm_components_error_window.setupUi(self.visible_player_list_fields_error_window)
+            self.ui_visible_programm_components_error_window.setupUi(self.visible_programm_components_error_window)
             self.visible_programm_components_error_window_is_open = True
             self.visible_programm_components_error_window_support_code = visible_programm_components_error_support_ui.Support_Ui_Dialog(self,error_message)
             self.visible_programm_components_error_window.exec()

@@ -18,6 +18,23 @@
     <normaloff>:/rest-windows/assets/images/rest-windows/information.png</normaloff>:/rest-windows/assets/images/rest-windows/information.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QPlainTextEdit" name="details">
+     <property name="styleSheet">
+      <string notr="true">QPlainTextEdit{border: 1px solid #ABABAB;}</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Θα επιχειρηθεί επανεκκίνηση της διεργασίας &quot;Ορατά πεδία προγράμματος&quot;.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
@@ -63,7 +80,7 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="4" column="0">
     <widget class="QPushButton" name="ok">
      <property name="text">
       <string>Εντάξει</string>
@@ -74,16 +91,14 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QPlainTextEdit" name="details"/>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_2">
+   <item row="3" column="0">
+    <widget class="QPushButton" name="restart_proccess">
      <property name="text">
-      <string>Θα επιχειρηθεί επανεκκίνηση της διεργασίας &quot;Ορατά πεδία προγράμματος&quot;.</string>
+      <string>Επανεκκίνηση διεργασίας</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+     <property name="icon">
+      <iconset resource="../../icons.qrc">
+       <normaloff>:/rest-windows/assets/images/rest-windows/restart.png</normaloff>:/rest-windows/assets/images/rest-windows/restart.png</iconset>
      </property>
     </widget>
    </item>

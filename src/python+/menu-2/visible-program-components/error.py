@@ -14,7 +14,7 @@ class Support_Ui_Dialog:
         self.main_self.visible_programm_components_error_window.hide()
         self.main_self.visible_programm_components_error_window.show()
 
-        self.main_self.visible_programm_components_error_window.details.setPlainText(str(error_message))
+        self.main_self.ui_visible_programm_components_error_window.details.setPlainText(str(error_message))
 
         self.main_self.ui_visible_programm_components_error_window.restart_proccess.clicked.connect(lambda state:self.restart_proccess(state))
         self.main_self.ui_visible_programm_components_error_window.ok.clicked.connect(lambda state:self.close_window(state))
