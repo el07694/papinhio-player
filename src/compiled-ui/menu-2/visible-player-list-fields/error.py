@@ -51,6 +51,7 @@ class Ui_Dialog(object):
         self.gridLayout.addWidget(self.ok, 4, 0, 1, 1)
         self.label_2 = QtWidgets.QLabel(Dialog)
         self.label_2.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignVCenter)
+        self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
         self.restart_proccess = QtWidgets.QPushButton(Dialog)
@@ -70,7 +71,7 @@ class Ui_Dialog(object):
         self.label.setText(_translate("Dialog", "Προεύκυψε σφάλμα κατά την επιλογή των ορατών πεδίων της λίστας αναπαραγωγής.\n"
 "Λεπτομέρειες:"))
         self.ok.setText(_translate("Dialog", "Εντάξει - Κλείσιμο παραθύρων"))
-        self.label_2.setText(_translate("Dialog", "Θα επιχειρηθεί επανεκκίνηση της διεργασίας \"Ορατά πεδία λίστας αναπαραγωγής\"."))
+        self.label_2.setText(_translate("Dialog", "Θα επιχειρηθεί επανεκκίνηση της διεργασίας \"Ορατά πεδία λίστας αναπαραγωγής\" αν επιθυμήσετε κάτι τέτοιο."))
         self.restart_proccess.setText(_translate("Dialog", "Επανεκκίνηση διεργασίας"))
 import sys
 sys.path.append('../../')

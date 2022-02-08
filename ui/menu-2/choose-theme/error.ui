@@ -73,7 +73,7 @@
    <item row="2" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Θα επιχειρηθεί επανεκκίνηση της διεργασίας επιλογής θέματος.</string>
+      <string>Θα επιχειρηθεί επανεκκίνηση της διεργασίας επιλογής θέματος αν επιθυμήσετε κάτι τέτοιο.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignJustify|Qt::AlignVCenter</set>

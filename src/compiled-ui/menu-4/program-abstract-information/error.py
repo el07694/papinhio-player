@@ -41,6 +41,7 @@ class Ui_Dialog(object):
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
         self.label_2 = QtWidgets.QLabel(Dialog)
         self.label_2.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignVCenter)
+        self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
         self.details = QtWidgets.QPlainTextEdit(Dialog)
@@ -69,7 +70,7 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Σφάλμα στην διεργασία προβολής βασικών πληροφοριών προγράμματος"))
         self.label.setText(_translate("Dialog", "Προεύκυψε σφάλμα κατά την προβολή βασικών πληροφοριών του προγράμματος.\n"
 "Λεπτομέρειες:"))
-        self.label_2.setText(_translate("Dialog", "Θα επιχειρηθεί επανεκκίνηση της διεργασίας προβολής βασικών πληροφοριών του προγράμματος."))
+        self.label_2.setText(_translate("Dialog", "Θα επιχειρηθεί επανεκκίνηση της διεργασίας προβολής βασικών πληροφοριών του προγράμματος αν επιθυμήσετε κάτι τέτοιο."))
         self.ok.setText(_translate("Dialog", "Εντάξει - Κλείσιμο παραθύρων"))
         self.restart_proccess.setText(_translate("Dialog", "Επανεκκίνηση διεργασίας"))
 import sys

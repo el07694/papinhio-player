@@ -26,6 +26,7 @@ class Ui_Dialog(object):
         self.gridLayout.addWidget(self.details, 1, 0, 1, 1)
         self.label_2 = QtWidgets.QLabel(Dialog)
         self.label_2.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignVCenter)
+        self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
         self.frame = QtWidgets.QFrame(Dialog)
@@ -67,7 +68,7 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Σφάλμα στην διεργασία Ορατά πεδία προγράμματος"))
-        self.label_2.setText(_translate("Dialog", "Θα επιχειρηθεί επανεκκίνηση της διεργασίας \"Ορατά πεδία προγράμματος\"."))
+        self.label_2.setText(_translate("Dialog", "Θα επιχειρηθεί επανεκκίνηση της διεργασίας \"Ορατά πεδία προγράμματος\" αν επιθυμήσετε κάτι τέτοιο."))
         self.label.setText(_translate("Dialog", "Προεύκυψε σφάλμα κατά την επιλογή των ορατών πεδίων του προγράμματος.\n"
 "Λεπτομέρειες:"))
         self.ok.setText(_translate("Dialog", "Εντάξει"))

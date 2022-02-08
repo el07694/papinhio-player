@@ -69,7 +69,7 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Σφάλμα στην διεργασία Επιλογή θέματος"))
         self.label.setText(_translate("Dialog", "Προεύκυψε σφάλμα κατά την επιλογή θέματος.\n"
 "Λεπτομέρειες:"))
-        self.label_2.setText(_translate("Dialog", "Θα επιχειρηθεί επανεκκίνηση της διεργασίας επιλογής θέματος."))
+        self.label_2.setText(_translate("Dialog", "Θα επιχειρηθεί επανεκκίνηση της διεργασίας επιλογής θέματος αν επιθυμήσετε κάτι τέτοιο."))
         self.restart_proccess.setText(_translate("Dialog", "Επανεκκίνηση διεργασίας"))
         self.ok.setText(_translate("Dialog", "Εντάξει - Κλείσιμο παραθύρων"))
 import sys

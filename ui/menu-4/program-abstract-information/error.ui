@@ -66,10 +66,13 @@
    <item row="2" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Θα επιχειρηθεί επανεκκίνηση της διεργασίας προβολής βασικών πληροφοριών του προγράμματος.</string>
+      <string>Θα επιχειρηθεί επανεκκίνηση της διεργασίας προβολής βασικών πληροφοριών του προγράμματος αν επιθυμήσετε κάτι τέτοιο.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
