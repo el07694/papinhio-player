@@ -149,8 +149,7 @@ class Support_Ui_Dialog:
         except Exception as e:
             error_message = str(traceback.format_exc())
             self.main_self.open_choose_theme_error_window(error_message)
-
-    
+   
     def background_color_changed(self,state):
         try:
             color = QtWidgets.QColorDialog.getColor()
@@ -250,6 +249,50 @@ class Support_Ui_Dialog:
             self.need_save = False
             self.save_in_progress = False
             self.main_self.apply_theme_settings()
+
+            if self.main_self.visible_player_list_fields_window_is_open:
+                #apply theme
+                self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+                self.main_self.visible_player_list_fields_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+                self.main_self.visible_player_list_fields_window.showMaximized()
+                self.main_self.visible_player_list_fields_window.update()
+
+            if self.main_self.select_player_list_fields_save_question_window_is_open:
+                #apply theme
+                self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+                self.main_self.select_player_list_fields_save_question_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+                self.main_self.select_player_list_fields_save_question_window.showMaximized()
+                self.main_self.select_player_list_fields_save_question_window.update()
+
+            if self.main_self.visible_player_list_fields_error_window_is_open:
+                #apply theme
+                self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+                self.main_self.visible_player_list_fields_error_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+                self.main_self.visible_player_list_fields_error_window.showMaximized()
+                self.main_self.visible_player_list_fields_error_window.update()
+
+            if self.main_self.visible_program_components_window_is_open:
+                #apply theme
+                self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+                self.main_self.visible_programm_components_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+                self.main_self.visible_programm_components_window.showMaximized()
+                self.main_self.visible_programm_components_window.update()
+
+
+            if self.main_self.select_visible_programm_components_save_question_window_is_open:
+                #apply theme
+                self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+                self.main_self.select_visible_programm_components_save_question_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+                self.main_self.select_visible_programm_components_save_question_window.showMaximized()
+                self.main_self.select_visible_programm_components_save_question_window.update()
+
+            if self.main_self.visible_programm_components_error_window_is_open:
+                #apply theme
+                self.font = QtGui.QFont(self.main_self.default_font, int(self.main_self.default_font_size))
+                self.main_self.visible_programm_components_error_window.setStyleSheet("*{font-family:""+self.main_self.default_font+"";font-size:"+self.main_self.default_font_size+"px;color:""+self.main_self.default_font_color+"";}QFrame{border:0px;}QDialog{background:""+self.main_self.default_background_color+""}QPushButton, QComboBox{background:""+self.main_self.default_buttons_background+"";color:""+self.main_self.default_buttons_font_color+""}")
+                self.main_self.visible_programm_components_error_window.showMaximized()
+                self.main_self.visible_programm_components_error_window.update()
+
             self.close_window(None)
         except Exception as e:
             error_message = str(traceback.format_exc())
@@ -257,7 +300,6 @@ class Support_Ui_Dialog:
         
     def close_window(self,state):
         self.main_self.choose_theme_window.close()
-
 
     def closeEvent(self,event):
         if self.save_in_progress:
@@ -267,8 +309,6 @@ class Support_Ui_Dialog:
         if self.need_save == True:
             self.main_self.open_change_theme_save_question_window()
             event.ignore()
-
-
             
         if self.need_save == False:
             if self.choose_theme_child_process is not None:
@@ -291,9 +331,6 @@ class Support_Ui_Dialog:
             event.accept()
         else:
             event.ignore()
-
-def hello(error_message):
-    error_message = str(traceback.format_exc())
 
 
 class Choose_Theme_Emitter(QThread):
@@ -359,4 +396,3 @@ class Choose_Theme_Child_Proc(Process):
         except Exception as e:
             error_message = str(traceback.format_exc())
             self.to_emitter.send({"type":"error","error_message":error_message})
-

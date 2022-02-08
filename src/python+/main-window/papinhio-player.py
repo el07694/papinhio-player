@@ -358,8 +358,8 @@ class Papinhio_player:
                      
     def apply_theme_settings(self):
         self.default_font = database_functions.read_setting("default_font")["current_value"]
-        #self.default_font_size = database_functions.read_setting("default_font_size")["current_value"]
-        self.default_font_size = "14"
+        self.default_font_size = database_functions.read_setting("default_font_size")["current_value"]
+        #self.default_font_size = "14"
         self.default_font_color = database_functions.read_setting("default_font_color")["current_value"]
         self.default_background_color = database_functions.read_setting("default_background_color")["current_value"]
         self.default_buttons_background = database_functions.read_setting("default_button_background")["current_value"]
