@@ -1219,6 +1219,11 @@ class WebRtcServer(Process):
 
             self.app = web.Application()
             self.app.on_shutdown.append(self.on_shutdown)
+            self.app.router.add_get("/", self.index)
+            self.app.router.add_get("/telephone-call.ico", self.icon)
+            self.app.router.add_get("/telephone-call.png", self.png)
+            self.app.router.add_get("/signal.mp3", self.mp3)
+            self.app.router.add_get("/video_calls.js", self.javascript)
             self.app.router.add_post("/offer", self.offer)
             self.app.router.add_post("/shutdown", self.shutdown_aiohttp)
             cors = aiohttp_cors.setup(self.app, defaults={"*": aiohttp_cors.ResourceOptions(allow_credentials=True,expose_headers="*",allow_headers="*")})
@@ -1229,6 +1234,44 @@ class WebRtcServer(Process):
             error = traceback.format_exc()
             print(error)
             self.to_emitter.send({"type": "error", "error_message": error})
+
+    async def index(self,request):
+        content = open(os.path.abspath("exe/extra-files/ip_calls/index.html"), "r", encoding='utf-8').read()
+        return web.Response(content_type="text/html", text=content)
+
+    async def mp3(self,request):
+        file_path = os.path.abspath("exe/extra-files/ip_calls/signal.mp3")
+
+        # Open the file in binary mode
+        with open(file_path, 'rb') as f:
+            content = f.read()
+
+        # Return the response with correct content type and binary data
+        return web.Response(body=content, content_type='audio/mpeg')
+
+    async def icon(self,request):
+        file_path = os.path.abspath("exe/extra-files/ip_calls/telephone-call.ico")
+
+        # Open the file in binary mode
+        with open(file_path, 'rb') as f:
+            content = f.read()
+
+        # Return the response with correct content type and binary data
+        return web.Response(body=content, content_type='image/x-icon')
+
+    async def png(self,request):
+        file_path = os.path.abspath("exe/extra-files/ip_calls/telephone-call.png")
+
+        # Open the file in binary mode
+        with open(file_path, 'rb') as f:
+            content = f.read()
+
+        # Return the response with correct content type and binary data
+        return web.Response(body=content, content_type='image/png')
+
+    async def javascript(self,request):
+        content = open(os.path.abspath("exe/extra-files/ip_calls/video_calls.js"), "r", encoding='utf-8').read()
+        return web.Response(content_type="application/javascript", text=content)
 
     def get_available_cameras(self):
         try:
@@ -1345,6 +1388,9 @@ class WebRtcServer(Process):
 
 
                     self.pcs[call_number]["pc"] = RTCPeerConnection()
+
+                    #self.pcs[call_number]["pc"] = RTCPeerConnection(configuration={"iceServers": [{"urls": "stun:stun.l.google.com:19302"}]})
+
                     '''
                     configuration = RTCConfiguration(
                         iceServers=[
@@ -1353,6 +1399,13 @@ class WebRtcServer(Process):
                     )
                     self.pcs[call_number]["pc"] = RTCPeerConnection(configuration=configuration)
                     '''
+
+                    @self.pcs[call_number]["pc"].on("iceconnectionstatechange")
+                    async def on_ice_connection_state_change():
+                        print("ICE connection state is "+self.pcs[call_number]["pc"].iceConnectionState)
+                        if self.pcs[call_number]["pc"].iceConnectionState == "failed":
+                            print("ICE connection failed. Attempting to restart ICE.")
+                            await self.pcs[call_number]["pc"].restartIce()
 
                     @self.pcs[call_number]["pc"].on("connectionstatechange")
                     async def on_connectionstatechange():
