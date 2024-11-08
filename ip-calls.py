@@ -29,7 +29,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 from pyngrok import ngrok, conf
 from pyngrok.conf import PyngrokConfig
 from pyngrok import ngrok
-
+import cv2
 import subprocess
 
 from pygrabber.dshow_graph import FilterGraph
@@ -1224,7 +1224,7 @@ class WebRtcServer(Process):
             self.app.router.add_get("/telephone-call.png", self.png)
             self.app.router.add_get("/signal.mp3", self.mp3)
             self.app.router.add_get("/video_calls.js", self.javascript)
-            self.app.router.add_post("/offer", self.offer)
+            self.app.router.add_post("/offer", self.offer_new)
             self.app.router.add_post("/shutdown", self.shutdown_aiohttp)
             cors = aiohttp_cors.setup(self.app, defaults={"*": aiohttp_cors.ResourceOptions(allow_credentials=True,expose_headers="*",allow_headers="*")})
             for route in list(self.app.router.routes()):
@@ -1286,15 +1286,219 @@ class WebRtcServer(Process):
 
     def create_local_tracks(self):
         try:
-            options = {"framerate": "30", "video_size": "640x480"}
+            options = {"framerate": "10", "video_size": "160x120"}  # Reduced frame rate and resolution
             camera_name = "video=" + self.get_available_cameras()[0]
             self.webcam = MediaPlayer(camera_name, format='dshow', options=options)
             relay = MediaRelay()
-            return relay.subscribe(self.webcam.video)
-        except:
-            error = traceback.format_exc()
+            video_track = relay.subscribe(self.webcam.video)  # Relay the video stream
+            return video_track
+        except Exception as e:
+            error = f"Error in create_local_tracks: {str(e)}"
             self.to_emitter.send({"type": "error", "error_message": error})
+            print(error)  # Print the error for debugging
 
+    import uuid
+    import json
+    import traceback
+    import asyncio
+    from aiohttp import web
+    from aiortc import RTCPeerConnection, RTCSessionDescription
+    from aiortc.contrib.media import MediaBlackhole
+
+    async def offer_new(self, request):
+        try:
+            # Parse the incoming offer request
+            params = await request.json()
+
+            peer_connection = {
+                "name": params["name"],
+                "surname": params["surname"],
+                "pc": None,
+                "is_closed": False,
+                "dc": None,
+                "uid": uuid.uuid4(),
+                "audio_track": None,
+                "audio_track_for_local_use": None,
+                "audio_blackhole": None,
+                "video_track": None,
+                "video_track_for_local_use": None,
+                "video_blackhole": None,
+                "offer_in_progress": True,
+                "call_answered": False,
+                "manage_call_end_thread": None,
+                "stop_in_progress": False,
+                "call_number": None
+            }
+
+            # Check if there are already 3 active connections
+            if len(self.pcs) >= 3:
+                return web.Response(content_type="application/json", text=json.dumps({"sdp": "", "type": ""}))
+
+            # Assign a call number based on available slots
+            reserved_call_numbers = list(self.pcs.keys())
+            if 1 not in reserved_call_numbers:
+                call_number = 1
+            elif 2 not in reserved_call_numbers:
+                call_number = 2
+            else:
+                call_number = 3
+
+            peer_connection["call_number"] = call_number
+            self.pcs[call_number] = peer_connection
+
+            # Send the offer signal to the emitter for the corresponding call
+            self.to_emitter.send({
+                "type": f"call_{call_number}_offering",
+                "name": peer_connection["name"],
+                "surname": peer_connection["surname"]
+            })
+
+            # Wait for the call to be answered or rejected
+            timer = 0
+            while timer < 30 and self.ip_calls_queue.qsize() == 0 and not self.pcs[call_number]["call_answered"]:
+                if request.transport is None or request.transport.is_closing():
+                    self.to_emitter.send({"type": "transport-error", "call-number": call_number})
+                    try:
+                        request.transport.close()
+                    except:
+                        pass
+                    del self.pcs[call_number]
+                    return None
+                timer += 0.1
+                await asyncio.sleep(0.1)
+
+            # Mark the call as answered if it has been answered
+            self.pcs[call_number]["call_answered"] = True
+
+            # If the call is not answered in time, reject it
+            if self.ip_calls_queue.qsize() == 0:
+                while not self.ip_calls_queue.empty():
+                    self.ip_calls_queue.get()
+                self.to_emitter.send({
+                    "type": f"call-{call_number}-status",
+                    "status": "closed-by-server"
+                })
+                await self.stop_peer_connection(peer_connection["uid"])
+                return web.Response(content_type="application/json", text=json.dumps({"sdp": "", "type": ""}))
+
+            # Get the response from the call queue (whether to accept or reject)
+            data = self.ip_calls_queue.get()
+            if (data["type"] == f"call-{call_number}" and data["call"] == "reject"):
+                while not self.ip_calls_queue.empty():
+                    self.ip_calls_queue.get()
+                self.to_emitter.send({
+                    "type": f"call-{call_number}-status",
+                    "status": "closed-by-server"
+                })
+                await self.stop_peer_connection(peer_connection["uid"])
+                return web.Response(content_type="application/json", text=json.dumps({"sdp": "", "type": ""}))
+
+            # If the call is accepted, proceed to establish the peer connection
+            if (data["type"] == f"call-{call_number}" and data["call"] == "answer"):
+                while not self.ip_calls_queue.empty():
+                    self.ip_calls_queue.get()
+
+                # Create a new RTCPeerConnection for the call
+                self.pcs[call_number]["pc"] = RTCPeerConnection()
+
+                # ICE connection state change handler
+                @self.pcs[call_number]["pc"].on("iceconnectionstatechange")
+                async def on_ice_connection_state_change():
+                    print(
+                        f"ICE connection state for call {call_number} is {self.pcs[call_number]['pc'].iceConnectionState}")
+                    if self.pcs[call_number]["pc"].iceConnectionState == "failed":
+                        print("ICE connection failed. Restarting ICE...")
+                        await self.pcs[call_number]["pc"].restartIce()
+
+                # Connection state change handler
+                @self.pcs[call_number]["pc"].on("connectionstatechange")
+                async def on_connection_state_change():
+                    if self.pcs[call_number]["pc"].connectionState == "failed":
+                        await self.stop_peer_connection(peer_connection["uid"])
+
+                # Data channel creation
+                @self.pcs[call_number]["pc"].on("datachannel")
+                async def on_datachannel(channel):
+                    self.pcs[call_number]["dc"] = channel
+                    try:
+                        channel.send(f'{{"type":"uid","uid":"{peer_connection["uid"]}"}}')
+                    except:
+                        pass
+
+                    # Notify other clients of the new connection
+                    for pc_i_call_number in self.pcs:
+                        if pc_i_call_number != call_number:
+                            pc_i = self.pcs[pc_i_call_number]
+                            channel.send(
+                                f'{{"type":"new-client","uid":"{pc_i["uid"]}","name":"{pc_i["name"]}","surname":"{pc_i["surname"]}"}}')
+
+                    # Handle incoming messages on the data channel
+                    @channel.on("message")
+                    async def on_message(message):
+                        message = json.loads(message)
+                        if message["type"] == "disconnected":
+                            await self.stop_peer_connection(peer_connection["uid"])
+
+                # Add the server's audio and video streams to the peer connection
+                if self.server_audio_stream_offer is None:
+                    self.server_audio_stream_offer = Server_Audio_Stream_Offer(self.speackers_deck_queue)
+                self.pcs[call_number]["pc"].addTrack(self.server_audio_stream_offer)
+
+                if self.server_video_stream_offer is None:
+                    self.server_video_stream_offer = CameraTrack(self.to_emitter,device_id=0)
+                self.pcs[call_number]["pc"].addTrack(self.server_video_stream_offer)
+
+                # Attach video from server to QLabel
+                if self.server_video_track is None:
+                    self.server_video_track = self.server_video_stream_offer
+                if self.server_video_blackholde is None:
+                    self.server_video_blackholde = MediaBlackhole()
+                    self.server_video_blackholde.addTrack(self.server_video_track)
+                    await self.server_video_blackholde.start()
+
+                # Handle tracks from the client
+                @self.pcs[call_number]["pc"].on("track")
+                async def on_track(track):
+                    if track.kind == "audio":
+                        self.pcs[call_number]["audio_track"] = track
+                        self.pcs[call_number]["audio_track_for_local_use"] = ClientTrack(track, self, self.to_emitter,
+                                                                                         call_number)
+                        self.pcs[call_number]["audio_blackhole"] = MediaBlackhole()
+                        self.pcs[call_number]["audio_blackhole"].addTrack(
+                            self.pcs[call_number]["audio_track_for_local_use"])
+                        await self.pcs[call_number]["audio_blackhole"].start()
+                    else:
+                        self.pcs[call_number]["video_track"] = track
+                        self.pcs[call_number]["video_track_for_local_use"] = ClientWebCamera(track, self.to_emitter,
+                                                                                             call_number, self)
+                        self.pcs[call_number]["video_blackhole"] = MediaBlackhole()
+                        self.pcs[call_number]["video_blackhole"].addTrack(
+                            self.pcs[call_number]["video_track_for_local_use"])
+                        await self.pcs[call_number]["video_blackhole"].start()
+
+                # Handle the offer and send the SDP answer
+                offer = RTCSessionDescription(sdp=params["sdp"], type=params["type"])
+                await self.pcs[call_number]["pc"].setRemoteDescription(offer)
+
+                answer = await self.pcs[call_number]["pc"].createAnswer()
+                await self.pcs[call_number]["pc"].setLocalDescription(answer)
+
+                # Manage call end task
+                task = asyncio.ensure_future(self.manage_call_end(peer_connection["uid"]))
+                self.pcs[call_number]["manage_call_end_thread"] = task
+
+                # Send the SDP answer to the client
+                return web.Response(content_type="application/json", text=json.dumps({
+                    "sdp": self.pcs[call_number]["pc"].localDescription.sdp,
+                    "type": self.pcs[call_number]["pc"].localDescription.type
+                }))
+
+        except Exception as e:
+            error = traceback.format_exc()
+            print(f"Error in offer handler: {error}")
+            self.to_emitter.send({"type": "error", "error_message": str(error)})
+            return web.Response(content_type="application/json",
+                                text=json.dumps({"error": "An error occurred during offer processing."}))
 
     async def offer(self, request):
         try:
@@ -1620,6 +1824,7 @@ class WebRtcServer(Process):
                 try:
                     if len(list(self.pcs.keys())) == 1:
                         self.to_emitter.send({"type": "hide_server_web_camera"})
+                        self.server_video_stream_offer.stop()
                         self.server_video_stream_offer = None
 
                     del self.pcs[call_number]["audio_track"]
@@ -1738,6 +1943,35 @@ class Server_Audio_Stream_Offer(MediaStreamTrack):
         except Exception as e:
             pass
 
+
+class CameraTrack(MediaStreamTrack):
+    kind = "video"
+
+    def __init__(self,to_emitter, device_id=0):
+        super().__init__()  # Initialize the base class
+        self.cap = cv2.VideoCapture(device_id)
+        self.to_emitter = to_emitter
+        if not self.cap.isOpened():
+            raise ValueError("Could not access the camera.")
+
+    async def recv(self):
+        ret, frame = self.cap.read()
+        if not ret:
+            raise ValueError("Failed to read frame.")
+        # Convert frame to a format compatible with WebRTC (YUV420P)
+        # This may require additional processing
+        frame = self.convert_bgr_to_yuv420p(frame)
+        pil_image = frame.to_image()
+        self.to_emitter.send({"type": "server-web-camera-frame", "pil_image": [pil_image]})
+        return frame
+
+    def convert_bgr_to_yuv420p(frame_bgr):
+        # First, convert BGR (OpenCV format) to YUV (standard format)
+        frame_yuv = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2YUV_I420)
+        return frame_yuv
+
+    def stop(self):
+        self.cap.release()
 
 class WebCamera(MediaStreamTrack):
     kind = "video"
