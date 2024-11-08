@@ -1224,7 +1224,7 @@ class WebRtcServer(Process):
             self.app.router.add_get("/telephone-call.png", self.png)
             self.app.router.add_get("/signal.mp3", self.mp3)
             self.app.router.add_get("/video_calls.js", self.javascript)
-            self.app.router.add_post("/offer", self.offer)
+            self.app.router.add_post("/offer", self.offer_new)
             self.app.router.add_post("/shutdown", self.shutdown_aiohttp)
             cors = aiohttp_cors.setup(self.app, defaults={"*": aiohttp_cors.ResourceOptions(allow_credentials=True,expose_headers="*",allow_headers="*")})
             for route in list(self.app.router.routes()):
@@ -1455,7 +1455,7 @@ class WebRtcServer(Process):
                         await self.server_video_blackholde.start()
 
                         relay = MediaRelay()
-                        self.server_video_stream_offer = relay.subscribe(self.server_video_track.video)
+                        self.server_video_stream_offer = relay.subscribe(self.server_video_track)
 
                     self.pcs[call_number]["pc"].addTrack(self.server_video_stream_offer)
 
@@ -1976,16 +1976,19 @@ class CameraTrack(MediaStreamTrack):
             raise ValueError("Could not access the camera.")
 
     async def recv(self):
-        print("RECEIVE...")
         ret, frame = self.cap.read()
         if not ret:
             raise ValueError("Failed to read frame.")
         # Convert frame to a format compatible with WebRTC (YUV420P)
         # This may require additional processing
-        frame = self.convert_bgr_to_yuv420p(frame)
-        pil_image = frame.to_image()
+        # Convert the frame from BGR (OpenCV default) to RGB (pyav format)
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+        # Create a pyav video frame
+        video_frame = av.VideoFrame.from_ndarray(frame_rgb, format='rgb24')
+        pil_image = video_frame.to_image()
         self.to_emitter.send({"type": "server-web-camera-frame", "pil_image": [pil_image]})
-        return frame
+        return video_frame
 
     def convert_bgr_to_yuv420p(frame_bgr):
         # First, convert BGR (OpenCV format) to YUV (standard format)
