@@ -1297,6 +1297,8 @@ class WebRtcServer(Process):
             self.to_emitter.send({"type": "error", "error_message": error})
             print(error)  # Print the error for debugging
 
+
+
     import uuid
     import json
     import traceback
@@ -1651,16 +1653,18 @@ class WebRtcServer(Process):
 
                     # video from server to client
                     if self.server_video_stream_offer == None:
-                        self.server_video_stream_offer = self.create_local_tracks()
-                    self.pcs[call_number]["pc"].addTrack(self.server_video_stream_offer)
-
-                    # video from server attach to QLabel
-                    if self.server_video_track == None:
-                        self.server_video_track = WebCamera(self.server_video_stream_offer, self.to_emitter)
-                    if self.server_video_blackholde == None:
+                        self.server_video_track = CameraTrack(self.server_video_stream_offer, self.to_emitter)
                         self.server_video_blackholde = MediaBlackhole()
                         self.server_video_blackholde.addTrack(self.server_video_track)
                         await self.server_video_blackholde.start()
+
+                        relay = MediaRelay()
+                        self.server_video_stream_offer = relay.subscribe(self.server_video_track)
+
+                    self.pcs[call_number]["pc"].addTrack(self.server_video_stream_offer)
+
+
+
 
                     @self.pcs[call_number]["pc"].on("track")
                     async def on_track(track):
@@ -1955,6 +1959,7 @@ class CameraTrack(MediaStreamTrack):
             raise ValueError("Could not access the camera.")
 
     async def recv(self):
+        print("RECEIVE...")
         ret, frame = self.cap.read()
         if not ret:
             raise ValueError("Failed to read frame.")
