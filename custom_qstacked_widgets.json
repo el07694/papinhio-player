@@ -1,0 +1,45 @@
+{
+	"QStackedWidget":[
+		{
+			"name":"stackedWidget",
+			"transitionAnimation":[
+				{
+					"fade":[
+						{
+							"active": true,
+							"duration":1000,
+							"easingCurve": "OutBack"
+						}
+					],
+					"slide":[
+						{
+							"active":true,
+							"duration": 1000,
+							"direction": "horizontal",
+							"easingCurve": "OutBack"
+						}
+					]
+				}
+			],
+			"navigation":[
+				{
+					"nextPage":"move_next_1",
+					"previousPage": "move_previous_1"
+				},
+				{
+					"nextPage":"move_next_2",
+					"previousPage": "move_previous_2"
+				},
+				{
+					"nextPage":"move_next_3",
+					"previousPage": "move_previous_3"
+				},
+				{
+					"nextPage":"move_next_4",
+					"previousPage": "move_previous_4"
+				}
+			]
+	
+		}
+	]
+}

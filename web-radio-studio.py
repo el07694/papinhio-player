@@ -37,13 +37,13 @@ database_functions = importlib.import_module("python+.lib.sqlite3-functions")
 manage_processes_class = importlib.import_module("python+.main-window.manage-procceses")
 
 ### ip call 1 ###
-#ip_call_1_class = importlib.import_module("python+.menu-1.ip-calls.ip-call-1")
+ip_call_1_class = importlib.import_module("python+.menu-1.ip-calls.ip-call-1")
 
 ### ip call 2 ###
-#ip_call_2_class = importlib.import_module("python+.menu-1.ip-calls.ip-call-2")
+ip_call_2_class = importlib.import_module("python+.menu-1.ip-calls.ip-call-2")
 
 ### ip call 3 ###
-#ip_call_3_class = importlib.import_module("python+.menu-1.ip-calls.ip-call-3")
+ip_call_3_class = importlib.import_module("python+.menu-1.ip-calls.ip-call-3")
 
 
 ### deck 1 ###
@@ -59,7 +59,7 @@ music_clip_deck_class = importlib.import_module("python+.main-window.music-clip-
 speackers_deck_class = importlib.import_module("python+.main-window.speackers-deck")
 
 ### speackers deck secondary ###
-#speackers_deck_secondary_class = importlib.import_module("python+.menu-1.ip-calls.speackers-deck-secondary")
+speackers_deck_secondary_class = importlib.import_module("python+.menu-1.ip-calls.speackers-deck-secondary")
 
 ### final slice ###
 final_slice_class = importlib.import_module("python+.main-window.final-slice")
@@ -68,7 +68,7 @@ final_slice_class = importlib.import_module("python+.main-window.final-slice")
 ip_calls_class = importlib.import_module("python+.menu-1.ip-calls.ip-calls")
 
 # secondary slice class
-#secondary_slice_class = importlib.import_module("python+.menu-1.ip-calls.secondary-slice")
+secondary_slice_class = importlib.import_module("python+.menu-1.ip-calls.secondary-slice")
 
 ### information frame ###
 information_frame_class = importlib.import_module("python+.main-window.information-frame")
@@ -80,13 +80,13 @@ final_slice_plot_class = importlib.import_module("python+.main-window.final-slic
 final_slice_pyaudio_class = importlib.import_module("python+.main-window.final-slice-pyaudio")
 
 ### secondary slice pyaudio ###
-#secondary_slice_pyaudio_class = importlib.import_module("python+.menu-1.ip-calls.secondary-slice-pyaudio")
+secondary_slice_pyaudio_class = importlib.import_module("python+.menu-1.ip-calls.secondary-slice-pyaudio")
 
 ### record_deck ###
 record_deck_class = importlib.import_module("python+.main-window.record-deck")
 
 ### ip calls record_deck ###
-#ip_calls_record_deck_class = importlib.import_module("python+.menu-1.ip-calls.record-deck")
+ip_calls_record_deck_class = importlib.import_module("python+.menu-1.ip-calls.record-deck")
 
 
 ### make the stackedwidget movable! ###
@@ -140,25 +140,25 @@ class Web_Radio_Studio:
         self.speackers_deck_instance = speackers_deck_class.Speackers_Deck(self)
 
         # speackers deck secondary
-        #self.speackers_deck_secondary_instance = speackers_deck_secondary_class.Speackers_Deck_Secondary(self)
+        self.speackers_deck_secondary_instance = speackers_deck_secondary_class.Speackers_Deck_Secondary(self)
 
         # final slice
         self.final_slice_instance = final_slice_class.Final_Slice(self)
 
         # ip call 1
-        #self.ip_call_1_instance = ip_call_1_class.Ip_Call_1(self)
+        self.ip_call_1_instance = ip_call_1_class.Ip_Call_1(self)
 
         # ip call 2
-        #self.ip_call_2_instance = ip_call_2_class.Ip_Call_2(self)
+        self.ip_call_2_instance = ip_call_2_class.Ip_Call_2(self)
 
         # ip call 3
-        #self.ip_call_3_instance = ip_call_3_class.Ip_Call_3(self)
+        self.ip_call_3_instance = ip_call_3_class.Ip_Call_3(self)
 
         # ip calls (aiortc)
         self.ip_calls_instance = ip_calls_class.Ip_Calls(self)
 
         # secondary slice
-        #self.secondary_slice_instance = secondary_slice_class.Secondary_Slice(self)
+        self.secondary_slice_instance = secondary_slice_class.Secondary_Slice(self)
 
         # information frame
         self.information_frame_instance = information_frame_class.Information_Frame(self)
@@ -170,13 +170,13 @@ class Web_Radio_Studio:
         self.final_slice_pyaudio_instance = final_slice_pyaudio_class.Final_Slice_PyAudio(self)
 
         # secondary slice pyaudio
-        #self.secondary_slice_pyaudio_instance = secondary_slice_pyaudio_class.Secondary_Slice_PyAudio(self)
+        self.secondary_slice_pyaudio_instance = secondary_slice_pyaudio_class.Secondary_Slice_PyAudio(self)
 
         # record deck
         self.record_deck_instance = record_deck_class.Record_Deck(self)
 
         # ip calls record deck
-        #self.ip_calls_record_deck_instance = ip_calls_record_deck_class.Record_Deck(self)
+        self.ip_calls_record_deck_instance = ip_calls_record_deck_class.Record_Deck(self)
 
         # player list
         self.player_list_instance = player_list_class.Player_List(self)
@@ -999,7 +999,7 @@ class Web_Radio_Studio:
             if self.record_deck_instance.deck_status != "stopped":
                 self.record_deck_instance.stop_and_restart()
                 return None
-            '''
+            #'''
             return_None = False
             for i in range(0,3):
                 if self.ip_calls_record_deck_instance.ip_calls[i]["deck_status"] == "recording":
@@ -1007,7 +1007,7 @@ class Web_Radio_Studio:
                     return_None = True
             if return_None:
                 return None
-            '''
+            #'''
             self.close_processes()
 
             try:
@@ -1060,12 +1060,12 @@ class Web_Radio_Studio:
                 event.ignore()
                 return None
             return_None = False
-            '''
+            #'''
             for i in range(0, 3):
                 if self.ip_calls_record_deck_instance.ip_calls[i]["deck_status"] == "recording":
                     self.ip_calls_record_deck_instance.stop_and_close()
                     return_None = True
-            '''
+            #'''
             if return_None:
                 event.ignore()
                 return None
@@ -1087,15 +1087,15 @@ class Web_Radio_Studio:
             self.final_slice_instance.put_to_ip_record = False
             self.final_slice_instance.put_to_plot = False
             self.final_slice_instance.put_to_pyaudio = False
-            #self.secondary_slice_instance.put_to_pyaudio = False
+            self.secondary_slice_instance.put_to_pyaudio = False
             self.final_slice_pyaudio_instance.final_slice_pyaudio_queue.put({"type":"close"})
-            #self.secondary_slice_pyaudio_instance.secondary_slice_pyaudio_queue.put({"type":"close"})
+            self.secondary_slice_pyaudio_instance.secondary_slice_pyaudio_queue.put({"type":"close"})
             self.final_slice_plot_instance.final_slice_plot_queue.put({"type":"close"})
-            #self.secondary_slice_instance.put_to_ip_record = False
+            self.secondary_slice_instance.put_to_ip_record = False
 
-            #self.ip_call_1_instance.put_to_q = False
-            #self.ip_call_2_instance.put_to_q = False
-            #self.ip_call_3_instance.put_to_q = False
+            self.ip_call_1_instance.put_to_q = False
+            self.ip_call_2_instance.put_to_q = False
+            self.ip_call_3_instance.put_to_q = False
 
 
             self.player_list_instance.player_list_queue.put({"type":"close"})
@@ -1107,10 +1107,10 @@ class Web_Radio_Studio:
                 tmp = self.final_slice_instance.speackers_deck_queue.get()
             self.speackers_deck_instance.manage_speackers_deck_queue.put({"type": "new-status", "status": "stopped"})
             time.sleep(0.125)
-            #self.speackers_deck_secondary_instance.put_to_q = False
-            #while (self.secondary_slice_instance.speackers_deck_secondary_queue.qsize() > 0):
-            #    tmp = self.secondary_slice_instance.speackers_deck_secondary_queue.get()
-            #self.speackers_deck_secondary_instance.manage_speackers_deck_secondary_queue.put({"type": "new-status", "status": "stopped"})
+            self.speackers_deck_secondary_instance.put_to_q = False
+            while (self.secondary_slice_instance.speackers_deck_secondary_queue.qsize() > 0):
+                tmp = self.secondary_slice_instance.speackers_deck_secondary_queue.get()
+            self.speackers_deck_secondary_instance.manage_speackers_deck_secondary_queue.put({"type": "new-status", "status": "stopped"})
             time.sleep(0.125)
             self.music_clip_deck_instance.put_to_q = False
             while (self.final_slice_instance.music_clip_deck_queue.qsize() > 0):
@@ -1129,7 +1129,7 @@ class Web_Radio_Studio:
             time.sleep(0.125)
             self.record_deck_instance.put_to_record = False
             #self.record_deck_instance.record_deck_queue.put({"type": "new-status", "status": "stopped"})
-            ##self.ip_calls_record_deck_instance.record_deck_queue.put({"type": "new-status", "status": "stopped"})
+            self.ip_calls_record_deck_instance.record_deck_queue.put({"type": "new-status", "status": "stopped"})
             #time.sleep(0.150)
 
             # record deck
@@ -1149,19 +1149,19 @@ class Web_Radio_Studio:
             # speackers deck
             self.speackers_deck_instance.close()
             # speackers deck secondary
-            #self.speackers_deck_secondary_instance.close()
+            self.speackers_deck_secondary_instance.close()
             # final slice
             self.final_slice_instance.close()
             # ip call 1
-            #self.ip_call_1_instance.close()
+            self.ip_call_1_instance.close()
             # ip call 2
-            #self.ip_call_2_instance.close()
+            self.ip_call_2_instance.close()
             # ip call 3
-            #self.ip_call_3_instance.close()
+            self.ip_call_3_instance.close()
             # ip calls (aiortc)
             self.ip_calls_instance.close()
             # secondary slice
-            #self.secondary_slice_instance.close()
+            self.secondary_slice_instance.close()
             # information frame
             self.information_frame_instance.close()
             # final slice plot
@@ -1169,10 +1169,10 @@ class Web_Radio_Studio:
             # final slice pyaudio
             self.final_slice_pyaudio_instance.close()
             # secondary slice pyaudio
-            #self.secondary_slice_pyaudio_instance.close()
+            self.secondary_slice_pyaudio_instance.close()
 
             # ip calls record deck
-            #self.ip_calls_record_deck_instance.close()
+            self.ip_calls_record_deck_instance.close()
 
         except:
             print(traceback.format_exc())
