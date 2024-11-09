@@ -615,17 +615,19 @@ class Ip_Calls:
             error_message = traceback.format_exc()
             self.main_self.open_ip_calls_error_window(error_message)
 
-
-    def ip_call_packet_received(self,call_number,frame):
+    def ip_call_packet_received(self, call_number, frame):
         try:
             if self.put_to_q:
-                if call_number == 1:
-                    self.main_self.ip_call_1_instance.ip_call_1_packet_queue.put({"type":"packet","packet":frame[0]})
-                elif call_number == 2:
-                    self.main_self.ip_call_2_instance.ip_call_2_packet_queue.put({"type":"packet","packet":frame[0]})
-                else:
-                    self.main_self.ip_call_3_instance.ip_call_3_packet_queue.put({"type":"packet","packet":frame[0]})
-        except:
+                packet_data = {"type": "packet", "packet": frame[0]}
+                call_queue_map = {
+                    1: self.main_self.ip_call_1_instance.ip_call_1_packet_queue,
+                    2: self.main_self.ip_call_2_instance.ip_call_2_packet_queue,
+                    3: self.main_self.ip_call_3_instance.ip_call_3_packet_queue,
+                }
+
+                if call_number in call_queue_map:
+                    call_queue_map[call_number].put(packet_data)
+        except Exception as e:
             error_message = traceback.format_exc()
             self.main_self.open_ip_calls_error_window(error_message)
 
@@ -792,7 +794,7 @@ class Ip_Calls:
                 self.call_2_timer.setSingleShot(True)
                 self.call_2_timer.start(30000)
             else:
-                self.call_2_is_local = True
+                self.call_3_is_local = True
                 self.call_3_timer = QtCore.QTimer()
                 self.call_3_timer.timeout.connect(lambda: self.end_call(3, None))
                 self.call_3_timer.setSingleShot(True)
@@ -1224,7 +1226,7 @@ class WebRtcServer(Process):
             self.app.router.add_get("/telephone-call.png", self.png)
             self.app.router.add_get("/signal.mp3", self.mp3)
             self.app.router.add_get("/video_calls.js", self.javascript)
-            self.app.router.add_post("/offer", self.offer_new)
+            self.app.router.add_post("/offer", self.offer)
             self.app.router.add_post("/shutdown", self.shutdown_aiohttp)
             cors = aiohttp_cors.setup(self.app, defaults={"*": aiohttp_cors.ResourceOptions(allow_credentials=True,expose_headers="*",allow_headers="*")})
             for route in list(self.app.router.routes()):
@@ -1296,226 +1298,6 @@ class WebRtcServer(Process):
             error = f"Error in create_local_tracks: {str(e)}"
             self.to_emitter.send({"type": "error", "error_message": error})
             print(error)  # Print the error for debugging
-
-
-    async def offer_new(self, request):
-        try:
-            params = await request.json()
-
-            peer_connection = {
-                "name": params["name"],
-                "surname": params["surname"],
-                "pc": None,
-                "is_closed": False,
-                "dc": None,
-                "uid": uuid.uuid4(),
-                "audio_track": None,
-                "audio_track_for_local_use": None,
-                "audio_blackhole": None,
-                "video_track": None,
-                "video_track_for_local_use": None,
-                "video_blackhole": None,
-                "offer_in_progress": True,
-                "call_answered": False,
-                "manage_call_end_thread": None,
-                "stop_in_progress": False,
-                "call_number": None
-            }
-
-            if len(list(self.pcs.keys())) == 3:
-                return web.Response(content_type="application/json", text=json.dumps({"sdp": "", "type": ""}))
-
-            reserved_call_numbers = list(self.pcs.keys())
-
-            if 1 not in reserved_call_numbers:
-                call_number = 1
-            elif 2 not in reserved_call_numbers:
-                call_number = 2
-            else:
-                call_number = 3
-
-            peer_connection["call_number"] = call_number
-            self.pcs[call_number] = peer_connection
-
-            if call_number == 1:
-                self.to_emitter.send({"type": "call_1_offering", "name": peer_connection["name"], "surname": peer_connection["surname"]})
-                #data_from_mother = self.call_queues[0]
-            elif call_number == 2:
-                self.to_emitter.send({"type": "call_2_offering", "name": peer_connection["name"], "surname": peer_connection["surname"]})
-                #data_from_mother = self.call_queues[1]
-            else:
-                self.to_emitter.send({"type": "call_3_offering", "name": peer_connection["name"], "surname": peer_connection["surname"]})
-                #data_from_mother = self.call_queues[2]
-
-            timer = 0
-            while (timer < 30 and self.ip_calls_queue.qsize() == 0 and self.pcs[call_number]["call_answered"] == False):
-                if request.transport is None or request.transport.is_closing():
-                    self.to_emitter.send({"type":"transport-error","call-number":call_number})
-                    try:
-                        request.transport.close()
-                    except:
-                        pass
-                    del self.pcs[call_number]
-                    return None
-                timer += 0.1
-                await asyncio.sleep(0.1)
-            self.pcs[call_number]["call_answered"] = True
-            if self.ip_calls_queue.qsize() == 0:
-                # reject offer
-                while not self.ip_calls_queue.empty():
-                    self.ip_calls_queue.get()
-                if call_number == 1:
-                    self.to_emitter.send({"type": "call-1-status", "status": "closed-by-server"})
-                elif call_number == 2:
-                    self.to_emitter.send({"type": "call-2-status", "status": "closed-by-server"})
-                else:
-                    self.to_emitter.send({"type": "call-3-status", "status": "closed-by-server"})
-                await self.stop_peer_connection(peer_connection["uid"])
-                return web.Response(content_type="application/json", text=json.dumps({"sdp": "", "type": ""}))
-            else:
-                data = self.ip_calls_queue.get()
-                if (data["type"] == "call-1" and data["call"] == "reject") or (
-                        data["type"] == "call-2" and data["call"] == "reject") or (
-                        data["type"] == "call-3" and data["call"] == "reject"):
-                    # reject call
-                    while not self.ip_calls_queue.empty():
-                        self.ip_calls_queue.get()
-                    await self.stop_peer_connection(peer_connection["uid"])
-                    return web.Response(content_type="application/json", text=json.dumps({"sdp": "", "type": ""}))
-                elif (data["type"] == "call-1" and data["call"] == "answer") or (
-                        data["type"] == "call-2" and data["call"] == "answer") or (
-                        data["type"] == "call-3" and data["call"] == "answer"):
-                    while not self.ip_calls_queue.empty():
-                        self.ip_calls_queue.get()
-
-
-                    self.pcs[call_number]["pc"] = RTCPeerConnection()
-
-                    #self.pcs[call_number]["pc"] = RTCPeerConnection(configuration={"iceServers": [{"urls": "stun:stun.l.google.com:19302"}]})
-
-                    '''
-                    configuration = RTCConfiguration(
-                        iceServers=[
-                            RTCIceServer(urls=["stun:stun.l.google.com:19302"]),
-                        ]
-                    )
-                    self.pcs[call_number]["pc"] = RTCPeerConnection(configuration=configuration)
-                    '''
-
-                    @self.pcs[call_number]["pc"].on("iceconnectionstatechange")
-                    async def on_ice_connection_state_change():
-                        print("ICE connection state is "+self.pcs[call_number]["pc"].iceConnectionState)
-                        if self.pcs[call_number]["pc"].iceConnectionState == "failed":
-                            print("ICE connection failed. Attempting to restart ICE.")
-                            await self.pcs[call_number]["pc"].restartIce()
-
-                    @self.pcs[call_number]["pc"].on("connectionstatechange")
-                    async def on_connectionstatechange():
-                        try:
-                            if self.pcs[call_number]["pc"].connectionState == "failed":
-                                await self.stop_peer_connection(peer_connection["uid"])
-                        except:
-                            pass
-
-                    @self.pcs[call_number]["pc"].on("datachannel")
-                    async def on_datachannel(channel):
-                        self.pcs[call_number]["dc"] = channel
-                        try:
-                            channel.send('{"type":"uid","uid":"' + str(peer_connection["uid"]) + '"}')
-                        except:
-                            pass
-
-                        counter = 1
-                        for pc_i_call_number in self.pcs:
-                            try:
-                                if pc_i_call_number != call_number:
-                                    pc_i = self.pcs[pc_i_call_number]
-                                    channel.send('{"type":"new-client","uid":"' + str(pc_i["uid"]) + '","name":"' + str(
-                                        pc_i["name"]) + '","surname":"' + str(pc_i["surname"]) + '"}')
-                                    counter += 1
-                            except:
-                                pass
-
-                        @channel.on("message")
-                        async def on_message(message):
-                            message = json.loads(message)
-                            if message["type"] == "disconnected":
-                                await self.stop_peer_connection(peer_connection["uid"])
-
-                    # audio from server to client
-                    if self.server_audio_stream_offer == None:
-                        self.server_audio_stream_offer = Server_Audio_Stream_Offer(self.speackers_deck_queue)
-                    self.pcs[call_number]["pc"].addTrack(self.server_audio_stream_offer)
-
-                    # video from server
-                    if self.server_video_stream_offer is None:
-                        self.server_video_track = CameraTrack(self.to_emitter,device_id=0)
-                        self.server_video_blackholde = MediaBlackhole()
-                        self.server_video_blackholde.addTrack(self.server_video_track)
-                        await self.server_video_blackholde.start()
-
-                        relay = MediaRelay()
-                        self.server_video_stream_offer = relay.subscribe(self.server_video_track)
-
-                    self.pcs[call_number]["pc"].addTrack(self.server_video_stream_offer)
-
-
-
-
-                    @self.pcs[call_number]["pc"].on("track")
-                    async def on_track(track):
-                        if track.kind == "audio":
-                            self.pcs[call_number]["audio_track"] = track
-                            # audio from client (server use)
-                            self.pcs[call_number]["audio_track_for_local_use"] = ClientTrack(track, self, self.to_emitter,call_number)
-                            self.pcs[call_number]["audio_blackhole"] = MediaBlackhole()
-                            self.pcs[call_number]["audio_blackhole"].addTrack(
-                                self.pcs[call_number]["audio_track_for_local_use"])
-                            await self.pcs[call_number]["audio_blackhole"].start()
-                        else:
-                            self.pcs[call_number]["video_track"] = track
-                            # video from client (server use)
-                            self.pcs[call_number]["video_track_for_local_use"] = ClientWebCamera(track, self.to_emitter,
-                                                                                                 call_number, self)
-                            self.pcs[call_number]["video_blackhole"] = MediaBlackhole()
-                            self.pcs[call_number]["video_blackhole"].addTrack(
-                                self.pcs[call_number]["video_track_for_local_use"])
-                            await self.pcs[call_number]["video_blackhole"].start()
-
-                    offer = RTCSessionDescription(sdp=params["sdp"], type=params["type"])
-
-                    # handle offer
-                    await self.pcs[call_number]["pc"].setRemoteDescription(offer)
-
-                    # send answer
-                    answer = await self.pcs[call_number]["pc"].createAnswer()
-                    await self.pcs[call_number]["pc"].setLocalDescription(answer)
-
-                    # loop = asyncio.get_event_loop()
-                    task = asyncio.ensure_future(self.manage_call_end(peer_connection["uid"]))
-                    self.pcs[call_number]["manage_call_end_thread"] = task
-
-                    # asyncio.ensure_future(self.statistics(peer_connection["pc"]))
-                    return web.Response(content_type="application/json", text=json.dumps(
-                        {"sdp": self.pcs[call_number]["pc"].localDescription.sdp,
-                         "type": self.pcs[call_number]["pc"].localDescription.type}))
-                else:
-                    # reject call
-                    while not self.ip_calls_queue.empty():
-                        self.ip_calls_queue.get()
-                    if call_number == 1:
-                        self.to_emitter.send({"type": "call-1-status", "status": "closed-by-server"})
-                    elif call_number == 2:
-                        self.to_emitter.send({"type": "call-2-status", "status": "closed-by-server"})
-                    else:
-                        self.to_emitter.send({"type": "call-3-status", "status": "closed-by-server"})
-                    await self.stop_peer_connection(peer_connection["uid"])
-                    return web.Response(content_type="application/json", text=json.dumps({"sdp": "", "type": ""}))
-        except:
-            error = traceback.format_exc()
-            print(error)
-            self.to_emitter.send({"type":"error","error_message":error})
-
 
     async def offer(self, request):
         try:
@@ -1918,8 +1700,8 @@ class WebRtcServer(Process):
 class Server_Audio_Stream_Offer(MediaStreamTrack):
     kind = "audio"
 
-    def __init__(self,q):
-        super().__init__()  # don't forget this!
+    def __init__(self, q):
+        super().__init__()
 
         self.speackers_deck_queue = q
         self.q = Simple_Queue()
@@ -1929,40 +1711,57 @@ class Server_Audio_Stream_Offer(MediaStreamTrack):
         self.codec.channels = 2
 
         self.audio_samples = 0
-
         self.run = True
         self.mp3_q = AudioSegment.empty()
+
+        # Start packetization in a separate thread for concurrency
         self.packetize_correct_thread = threading.Thread(target=self.packetize_correct)
+        self.packetize_correct_thread.daemon = True
         self.packetize_correct_thread.start()
 
     async def recv(self):
-        packet = av.Packet(self.q.get())
-        frame = self.codec.decode(packet)[0]
-        frame.pts = self.audio_samples
-        frame.time_base = fractions.Fraction(1, self.codec.sample_rate)
-        self.audio_samples += frame.samples
-        return frame
+        """Receives audio frames from the queue, decodes, and prepares for sending."""
+        try:
+            packet = av.Packet(self.q.get())
+            frame = self.codec.decode(packet)[0]
+            frame.pts = self.audio_samples
+            frame.time_base = fractions.Fraction(1, self.codec.sample_rate)
+            self.audio_samples += frame.samples
+            return frame
+        except Exception as e:
+            self.run = False  # Stop the offering if we hit an error
+            print(f"Error in recv: {e}")
+            return None
 
     def packetize_correct(self):
-        while (self.run):
+        """Splits the audio slices into smaller packets suitable for Opus."""
+        while self.run:
             try:
+                # Get the next slice from the speakers deck queue
                 slice_125 = self.speackers_deck_queue.get()["slice"].set_frame_rate(8000)
                 slice_full = self.mp3_q + slice_125
                 len_slice_full = len(slice_full)
-                desired_slice_len = 20
-                packets = int(len_slice_full/desired_slice_len)
-                for i in range(0,packets):
-                    self.q.put(slice_full[i*desired_slice_len:(i+1)*desired_slice_len].raw_data)
-                self.mp3_q = slice_full[packets*desired_slice_len:]
-            except:
-                print(traceback.format_exc())
+                desired_slice_len = 20  # WebRTC prefers 20ms packets
+
+                # Split the full slice into smaller packets of 20ms duration
+                packets = int(len_slice_full / desired_slice_len)
+                for i in range(0, packets):
+                    self.q.put(slice_full[i * desired_slice_len:(i + 1) * desired_slice_len].raw_data)
+
+                # Remaining data that wasn't fully packetized
+                self.mp3_q = slice_full[packets * desired_slice_len:]
+
+            except Exception as e:
+                print(f"Error in packetize_correct: {e}")
+                self.run = False  # Stop the packetization if we hit an error
 
     def stop_offering(self):
+        """Stop the audio stream offering process."""
         try:
             self.run = False
             self.packetize_correct_thread.join()
         except Exception as e:
-            pass
+            print(f"Error in stop_offering: {e}")
 
 
 class CameraTrack(MediaStreamTrack):
@@ -2048,7 +1847,15 @@ class ClientTrack(MediaStreamTrack):
         self.to_emitter = to_emitter
         self.call_number = call_number
 
+    async def recv(self):
+        try:
+            frame = await self.track.recv()
+            packet_bytes = frame.planes[0].to_bytes()  # Direct access to plane bytes to avoid ndarray conversion
+            self.to_emitter.send({"type": "ip-call-packet", "call-number": self.call_number, "frame": [packet_bytes]})
+        except MediaStreamError:
+            raise
 
+    '''
     async def recv(self):
         # Get a new PyAV frame
         try:
@@ -2058,4 +1865,4 @@ class ClientTrack(MediaStreamTrack):
         except:
             raise MediaStreamError
             return None
-
+    '''

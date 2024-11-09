@@ -122,6 +122,7 @@ class Secondary_Slice_PyAudio_Emitter(QThread):
             error_message = traceback.format_exc()
             self.error_signal.emit(error_message)
 
+
 class Secondary_Slice_PyAudio_Child_Proc(Process):
 
     def __init__(self, to_emitter, from_mother,condition, frame_number, quit_event):

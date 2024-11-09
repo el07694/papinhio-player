@@ -39,7 +39,7 @@ class Ip_Call_1:
             # create process
             self.process_number = 106
             self.ip_call_1_mother_pipe, self.ip_call_1_child_pipe = Pipe()
-            self.ip_call_1_queue = Queue()
+            self.ip_call_1_queue = Queue(maxsize=100)
             self.ip_call_1_packet_queue = Queue()
             self.ip_call_1_emitter = Ip_call_1_Emitter(self.ip_call_1_mother_pipe)
             self.ip_call_1_emitter.error_signal.connect(lambda error_message: self.main_self.open_ip_calls_error_window(error_message))
@@ -545,17 +545,29 @@ class Ip_Call_1:
             print(error_message)
             self.main_self.open_ip_calls_error_window(error_message)
 
-    def ip_call_1_slice_ready(self,slice):
+    def ip_call_1_slice_ready(self, slice):
         try:
             if self.put_to_q:
-                if self.main_self.ip_calls_instance.call_1_is_local:
-                    self.main_self.secondary_slice_instance.ip_call_1_queue.put({"type":"slice","slice":slice})
-                else:
-                    self.main_self.final_slice_instance.ip_call_1_queue.put({"type": "slice", "slice": slice})
-        except:
-            error_message = traceback.format_exc()
-            self.main_self.open_ip_calls_error_window(error_message)
+                # Select the correct queue based on whether the call is local or not
+                target_queue = (
+                    self.main_self.secondary_slice_instance.ip_call_1_queue
+                    if self.main_self.ip_calls_instance.call_1_is_local
+                    else self.main_self.final_slice_instance.ip_call_1_queue
+                )
 
+                # Non-blocking check for queue size and put the slice if there is space
+                if target_queue.qsize() < target_queue.maxsize:  # You may need to set maxsize
+                    target_queue.put({"type": "slice", "slice": slice}, timeout=1)  # timeout to avoid hanging
+                else:
+                    # Handle the queue being full scenario
+                    print("Queue is full; cannot add slice.")
+                    self.main_self.open_ip_calls_error_window("Queue is full; unable to add slice.")
+
+        except Exception as e:
+            # Catch all other exceptions and log the error
+            error_message = str(e)
+            print(error_message)
+            self.main_self.open_ip_calls_error_window(error_message)
 
 # CAUTION: no try except block for opening error window!
 class Custom_QFrame(QtWidgets.QFrame):
@@ -632,13 +644,15 @@ class Ip_call_1_Child_Proc(Process):
 
     def run(self):
         try:
-            while (True):
-                q_size = self.data_from_mother.qsize()
-                if q_size > 0:
-                    data = self.data_from_mother.get()
-                else:
+            while True:
+                # Poll the mother queue with a timeout to avoid busy waiting
+                try:
+                    data = self.data_from_mother.get(timeout=0.1)
+                except:
                     data = None
-                if data is not None:
+
+                # Process control data if available
+                if data:
                     if data["type"] == "volume":
                         self.volume = data["value_base_100"]
                     elif data["type"] == "pan":
@@ -651,64 +665,69 @@ class Ip_call_1_Child_Proc(Process):
                         self.high_frequency = data["high_frequency_value"]
                     elif data["type"] == "close":
                         self.to_emitter.send({"type": "close"})
-                        return None
+                        return None  # Exit the process loop safely
 
+                # Check and fill the queue efficiently
                 if len(self.ip_call_1_mp3_q) < self.packet_time:
-                    while (len(self.ip_call_1_mp3_q) < self.packet_time):
-                        chunk = self.ip_call_1_packet_queue.get()["packet"]
-                        chunk_slice = AudioSegment(chunk, sample_width=2, frame_rate=48000, channels=2)
-                        self.ip_call_1_mp3_q = self.ip_call_1_mp3_q + chunk_slice
-                        time.sleep(0.020)
-                    slice = self.ip_call_1_mp3_q[0:self.packet_time]
+                    while len(self.ip_call_1_mp3_q) < self.packet_time:
+                        if not self.ip_call_1_packet_queue.empty():
+                            # Fetch and convert packets to AudioSegment
+                            packet_data = self.ip_call_1_packet_queue.get()["packet"]
+                            chunk_slice = AudioSegment(packet_data, sample_width=2, frame_rate=48000, channels=2)
+                            self.ip_call_1_mp3_q += chunk_slice
+                        else:
+                            # Yield the CPU briefly if no packets are available
+                            time.sleep(0.020)
+
+                # Process audio slice if available
+                if len(self.ip_call_1_mp3_q) >= self.packet_time:
+                    slice = self.ip_call_1_mp3_q[:self.packet_time]
                     self.ip_call_1_mp3_q = self.ip_call_1_mp3_q[self.packet_time:]
                 else:
-                    slice = self.ip_call_1_mp3_q[0:self.packet_time]
-                    self.ip_call_1_mp3_q = self.ip_call_1_mp3_q[self.packet_time:]
+                    slice = AudioSegment.empty()
 
                 if slice == AudioSegment.empty():
                     continue
-                #else:
-                #    print(len(slice))
+
+                # Apply pan, frequency filters, and volume adjustments
                 if self.pan != 0:
                     slice = slice.pan(self.pan / 100)
                 if self.low_frequency > 20:
                     slice = effects.high_pass_filter(slice, self.low_frequency)
-                if self.high_frequency > 20000:
+                if self.high_frequency < 20000:
                     slice = effects.low_pass_filter(slice, self.high_frequency)
-                if (self.volume == 0):
-                    db_volume = -200
+                if self.volume == 0:
+                    db_volume = -200  # Effectively mute the slice
                 else:
                     db_volume = 20 * math.log10(self.volume / 100)
                 slice = slice + db_volume
+
                 if self.normalize:
                     slice = self.normalize_method(slice, 0.1)
 
-                chunk_time = len(slice)
-
+                # Calculate volume amplitude for feedback
                 average_data_value = slice.max
                 normalized_value = abs(average_data_value) / slice.max_possible_amplitude
-                if normalized_value > 1:
-                    normalized_value = 1
+                normalized_value = min(normalized_value, 1)  # Cap at 1
 
+                # Send data to parent for UI or further processing
                 self.to_emitter.send({"type": "volume_amplitude", "normalized_value": normalized_value})
 
+                # Track duration and manage chunks
                 self.now = datetime.now()
-
                 self.chunk_number += 1
-                self.current_duration_milliseconds += chunk_time
+                self.current_duration_milliseconds += len(slice)
 
+                # Send updates to parent process
                 self.to_emitter.send(
                     {"type": "current_duration_milliseconds", "duration": self.current_duration_milliseconds})
                 if slice != AudioSegment.empty():
                     self.to_emitter.send({"type": "slice", "slice": slice})
 
-
-        except:
-            error_message = str(traceback.format_exc())
+        except Exception as e:
+            error_message = traceback.format_exc()
             print(error_message)
             self.to_emitter.send({"type": "error", "error_message": error_message})
-
-
 
     # Use pydub effect to normalize the volume of a sound file
     def normalize_method(self, seg, headroom):

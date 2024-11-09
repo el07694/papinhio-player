@@ -67,23 +67,21 @@ class Secondary_Slice:
             error_message = traceback.format_exc()
             self.main_self.open_secondary_slice_error_window(error_message)
 
-
-    def secondary_slice_ready(self,slice):
+    def secondary_slice_ready(self, slice):
         try:
-            try:
-                if "put_to_ip_record" in dir(self):
-                    if self.put_to_ip_record:
-                        self.main_self.ip_calls_record_deck_instance.secondary_slice_queue.put({"type":"slice","slice":slice})
-                if self.put_to_pyaudio:
-                    self.main_self.secondary_slice_pyaudio_instance.secondary_slice_pyaudio_queue.put(
-                        {"type": "slice", "slice": slice})
-            except RuntimeError as e:
-                print(e)
-            except:
-                print(traceback.format_exc())
-        except:
-            error_message = traceback.format_exc()
-            self.main_self.open_secondary_slice_error_window(error_message)
+            # Try to send the slice to ip record queue if put_to_ip_record is set
+            if hasattr(self, "put_to_ip_record") and self.put_to_ip_record:
+                self.main_self.ip_calls_record_deck_instance.secondary_slice_queue.put(
+                    {"type": "slice", "slice": slice})
+
+            # If put_to_pyaudio is set, send the slice to the pyaudio queue
+            if self.put_to_pyaudio:
+                self.main_self.secondary_slice_pyaudio_instance.secondary_slice_pyaudio_queue.put(
+                    {"type": "slice", "slice": slice})
+        except RuntimeError as e:
+            print(f"RuntimeError: {e}")
+        except Exception:
+            print(f"Error: {traceback.format_exc()}")
 
     def close(self):
         try:

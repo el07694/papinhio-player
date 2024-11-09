@@ -797,7 +797,7 @@ class Manage_Speackers_Deck_Secondary_Child_Proc(Process):
                                     self.input_device_index = input_device[1]
                                     self.input_stream = self.p.open(format=pyaudio.paInt16, channels=1,
                                                                     rate=self.new_sample_rate, input=True,
-                                                                    input_device_index=self.input_device_index)
+                                                                    input_device_index=self.input_device_index,frames_per_buffer=2048)
                                     self.input_stream.start_stream()
                                     self.input_channels = 1
                                     self.chunk_number = 0
@@ -817,6 +817,7 @@ class Manage_Speackers_Deck_Secondary_Child_Proc(Process):
             if self.deck_status == "playing":
                 if self.input_stream is not None:
                     in_data = self.input_stream.read(int(1024 * (44100 // 1024 * 0.125)))
+                    #return None
                 else:
                     return None
                 if self.input_channels == 2:

@@ -236,7 +236,7 @@ class Ip_Call_Offering_Child_Proc(Process):
             else:
                 self.www_root_folder = os.path.abspath("../../../exe/extra-files/ip_calls")
 
-            intro_path = os.path.join(self.www_root_folder, "telephone_calls.mp3")
+            intro_path = os.path.abspath("exe/extra-files/ip_calls/telephone_calls.mp3")
 
             self.audio_segment = AudioSegment.from_file(intro_path, format="mp3").set_frame_rate(
                 self.new_sample_rate)
